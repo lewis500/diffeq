@@ -1,0 +1,33 @@
+{
+  "name": "textures",
+  "main": "textures.min.js",
+  "homepage": "https://github.com/riccardoscalco/textures",
+  "authors": [
+    "Riccardo Scalco <riccardo.scalco@gmail.com>"
+  ],
+  "description": "SVG patterns for Data Visualization",
+  "keywords": [
+    "d3",
+    "svg",
+    "patterns",
+    "dataviz"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1869c65a09",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1869c65a09b7e35488e2efa2438f33c45d713394"
+  },
+  "_source": "git://github.com/riccardoscalco/textures.git",
+  "_target": "*",
+  "_originalSource": "textures",
+  "_direct": true
+}

@@ -1,0 +1,29 @@
+.axis path, .axis line {
+    fill: none;
+    stroke: white;
+    shape-rendering: crispEdges;
+}
+
+.axis g.tick line {
+    stroke-width: 1px;
+    stroke-dasharray: 2, 2, 3;
+    stroke-linecap: round;
+    opacity: .9;
+}
+
+rect.background{
+    fill: #eee;
+}
+
+.axis g.tick:nth-last-child(2) {
+    display: none;
+}
+
+.axis g.tick:first-child line{
+    stroke-dasharray: none;
+    stroke-width: 2px;
+}
+
+.axis path.domain {
+    display: none;
+}

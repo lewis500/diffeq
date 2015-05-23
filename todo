@@ -1,0 +1,33 @@
+connect to github repo
+
+
+SHORT TERM
+apply jade to lay out the main file
+triangle directive
+install mathjax
+
+
+FIFTH PLOT
+should explained y vs dy idea
+
+
+CART
+-make directive
+-build cart graphic
+-make it roll
+
+MED TERM
+axis labels
+
+make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)
+
+http://blog.datacamp.com/mathjax-binding-in-angular-js/
+
+LONG TERM
+fix whatever it is wrong with the line being drawn
+mathjax
+make a zoom on the equation plots
+rescaling
+drop shadows
+use scope.$destroy when one of the dots gets killed off
+

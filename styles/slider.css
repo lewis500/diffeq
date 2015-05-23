@@ -1,0 +1,90 @@
+ode-slider {
+  height: 48px;
+  position: relative;
+  display: block;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 0;
+}
+
+ode-slider .ode-slider-wrapper {
+  position: relative;
+}
+
+ode-slider .ode-track-container {
+  width: 100%;
+  position: absolute;
+  top: 21px;
+  height: 6px;
+  cursor: pointer;
+}
+
+.ode-thumb {
+  transform: scale(0.8);
+}
+
+ode-slider .ode-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: #ececec;
+  box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .14);
+  border-radius: 3px;
+}
+
+ode-slider .ode-track-fill {
+  background-color: #06AEA7;
+}
+
+ode-slider .ode-thumb-container {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  /*transition: left .05s;*/
+}
+
+ode-slider .ode-thumb {
+  z-index: 1;
+  position: absolute;
+  left: -19px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: .7px .7px 2px 1px #999;
+  transform: scale(1);
+  transition: transform ease-in-out .2s;
+  cursor: pointer;
+}
+
+ode-slider:focus {
+  outline: none;
+}
+
+ode-slider.dragging .ode-thumb-container,
+ode-slider.dragging .ode-track-fill {
+  transition: none;
+}
+
+ode-slider .ode-thumb md-icon {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transform: scale(1.5);
+  fill: #999999;
+  transition: fill ease-in-out .2s;
+}
+
+ode-slider .ode-thumb:hover {
+  transform: scale(1.15);
+  transition: transform ease-in-out .2s;
+}
+
+ode-slider .ode-thumb:hover md-icon {
+  fill: #464646;
+  transition: fill ease-in-out .2s;
+}

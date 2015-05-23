@@ -1,0 +1,110 @@
+@import "../bower_components/material-color/material-color";
+
+@font-face {
+	font-family: AmLight;
+	src: url("font/AmbassadorPlusSans-Light.otf") format("opentype");
+}
+@font-face {
+	font-family: AmThin;
+	src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
+}
+
+body {
+    font-family:'Libre Baskerville', serif;
+    font-weight: 400;
+    padding-bottom: 150px;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+p {
+	line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, button, text {
+  font-family: 'AMLight'
+}
+
+span#barzun{
+	font-weight: 700;
+}
+
+#content{
+	width: 65%;
+	min-width: 600px
+}
+
+#content div.copy p {
+	margin: 10px;
+	// margin-left: 25px;
+	width: 80%
+}
+
+#content div[layout=row]{
+	padding: 10px;
+	margin: 10px;
+	box-shadow: .25px 1px 3px 0px #ccc;
+	transform: scale(1.0);
+	transition: all ease-in-out .4s;
+}
+
+#content div[layout=row]:hover{
+	// margin: 15px;
+	transform: scale(1.002);
+	margin: 9px;
+	padding: 11px;
+	box-shadow: .25px 1px 3.5px .5px  #ccc;
+	transition: margin padding ease-in-out .3s, transform box-shaddow ease-in-out .5s;
+}
+
+
+
+
+div[vis-der]{
+    width: 75%;
+}
+
+
+line, path{
+	pointer-events: none;
+}
+
+path.fun{
+    stroke-width: 1.5px;
+    fill: none;
+}
+
+path.y{
+    stroke: @clr-pink-500;
+}
+
+path.dy{
+    stroke: @clr-light-blue-500;
+}
+
+path.triangle{
+    stroke-width: 1px;
+    fill: none;
+    stroke: @clr-grey-500;
+}
+
+circle.dot{
+	stroke: white;
+	stroke-width: 1px;	
+}
+
+circle.dot.small {
+	pointer-events: none;
+	fill: @clr-pink-700;
+	stroke-width: 1px;
+}
+circle.dot.large{
+	fill: @clr-grey-300;
+	opacity: 0.6;
+	stroke-width: .4
+	cursor: pointer;
+}
+
+circle.dot.dy{
+	fill: @clr-light-blue-700;
+}
