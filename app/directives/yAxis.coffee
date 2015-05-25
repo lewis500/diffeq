@@ -11,8 +11,9 @@ der = ($window)->
 		scope: 
 			scale: '='
 			width: '='
+			axisFun: '='
 		link: (scope, el, attr, vm)->
-			yAxisFun = d3.svg.axis()
+			yAxisFun = vm.axisFun ? d3.svg.axis()
 				.scale vm.scale
 				.orient 'left'
 

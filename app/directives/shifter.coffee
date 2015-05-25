@@ -1,13 +1,15 @@
 d3 = require 'd3'
 
 der = ($parse)->
-	directive = 
-		templateNamespace: 'svg'
+	directive =
 		link: (scope, el, attr)->
-			reshift = (newVal)-> d3.select(el[0]).attr 'transform', 'translate(' + newVal + ')'
+			reshift = (v)-> 
+				d3.select el[0]
+					.attr 'transform' , "translate(#{v[0]},#{v[1]})"
 
-			scope.$watch(()->
-				$parse(attr.shifter)()
-			, reshift, true)
+			scope.$watch ()->
+					$parse(attr.shifter)(scope)
+				, reshift
+				, true
 
 module.exports = der

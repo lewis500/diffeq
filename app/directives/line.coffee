@@ -15,8 +15,7 @@ der = ()-> #goes on a path element
 		link: (scope, el, attr, vm)->
 			sel = d3.select(el[0])
 			update = ()-> 
-				# sel.attr ''
-				sel.attr 'd', vm.lineFun(vm.data)
+				sel.attr 'd', vm.lineFun vm.data
 
 			scope.$watch 'vm.watch'
 				, update

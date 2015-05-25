@@ -10,8 +10,9 @@ der = ()->
 		restrict: 'A'
 		link: (scope,el,attr)->
 			rad = 10 #the radius of the large circle naturally
-			sel = d3.select(el[0])
-			big = sel.select('circle.dot.large').attr('r', rad)
+			sel = d3.select el[0]
+			big = sel.select 'circle.dot.large'
+				.attr 'r', rad
 			mouseover = ()->
 				big.transition 'grow'
 				.duration 150
@@ -25,8 +26,8 @@ der = ()->
 			mouseover()
 
 			big.on 'mouseover', mouseover
-			.on 'contextmenu', ()-> event.preventDefault()
-			.on 'mousedown', ()->
+			.on 'contextmenu', -> event.preventDefault()
+			.on 'mousedown', ->
 				big.transition 'grow'
 					.duration 150
 					.ease 'cubic'

@@ -3,33 +3,41 @@
 <head>
     <meta name="viewport" content="initial-scale=1" />
     <link rel="stylesheet" href="styles/slider.css">
-    <link rel="stylesheet" href="styles/flex.css">
-    <link rel="stylesheet" href="styles/boilerplate.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
 </head>
 
-<body ng-app='mainApp'>
-    <h1>What's the difference?</h1>
-    <div id='content' layout='column'>
+<body ng-app='mainApp' ng-include="'./dist/home.html'">
+<!--     <div id='header'>
+        <h1 style='font-size: 48px; margin-bottom: 0px;'>What's the difference?</h1>
+        <h3 style='margin-top: 3px;'>differential equations explained</h3>
+        <p id='quote'>With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
+            <br> <span id='barzun'>-Jacques Barzun (1974), <em>The Use and Abuse of Art</em> </span></p>
+    </div>
+    <div id='content' layout='column' layout-padding='20'>
+        <div flex layout='row'>
+            <p flex='50'>Maybe you're used to solving equations like $ t^2 - 2t = 1,$ where 'solving' means finding a <em>number</em>, $t$. By contrast, solving a differential equation involves finding an unknown <em>function</em>, which sounds weird until you do it.</p>
+        </div>
+        <div flex layout='row'>
+            <div flex='50'>
+                <p>Consider a cart rolling to a stop: friction slows it down a lot when it goes fast, and only a little when it goes slow. </p>
+                <p>It turns out friction obeys $$v' = -kv, $$ where $v$ is velocity and $k$ is a 'coefficient of friction' that depends on the cart's axels and the surface. This is a DE that says "acceleration (i.e., $v'$) is negatively proportionate to velocity." Its solution is a function $v(t)$ that gives the velocity at time $t$.</p>
+            </div>
+            <div flex='50' cart-main-der></div>
+        </div>
+    </div> -->
+    <!--     <div id='content' layout='column'>
         <div class='copy'>
-            <p id='quote'>With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
-                <br> <span id='barzun'>-Jacques Barzun (1974), <em>The Use and Abuse of Art</em> </span></p>
         </div>
         <div class='copy'>
-            <p>Maybe you're used to solving equations like $$ t^2 - 2t = 1,$$ where 'solving' means finding a <em>number</em>, $t$. By contrast, a differential equation is a clue about an unknown <em>function</em> &mdash;a clue that involves the its derivative &mdash; and we have to figure out what the function could be.</p>
         </div>
         <div class='copy'>
-            <p>Consider a cart rolling to a stop: friction slows it down a lot when it goes fast, and only a little when it goes slow. </p>
-        </div>
-        <div third-big-der flex></div>
-        <div class='copy'>
-            <p>It turns out friction obeys $$v' = -kv, $$ where $v$ is velocity and $k$ is a 'coefficient of friction' that depends on the cart's axels and the surface. This is a DE that says "acceleration (i.e., $v'$) is negatively proportionate to velocity." Its solution is a function $v(t)$ that gives the velocity at time $t$.</p>
+
             <p>Since this is the Internet, you'll solve this DE visually. What you'll do is drop points on the left plot to make a function $v(t)$. These points are pairs $(t, v(t))$. When you make one, the browser finds the derivative $v'(t)$, and plots the point $(v(t), v'(t))$ on the right. Your job is to draw $v(t)$ so $(v(t),v'(t))$ always winds up on the line $v' = -0.5 \cdot v$.</p>
         </div>
         <div class='copy'>
             <p>Maybe you'll notice: there are many $v(t)$'s that satisfy $v'=0.5v$, but they all have the same sort of shape. These solutions are functions of the form $$v_0 \cdot e^{-kt},$$ where $v_0$ is the starting velocity (the one at time $t=0$) and $e$ is euler's constant. You can check from your derivative rules that $$ \frac{d}{dt}(v_0 \cdot e^{-kt})= k\cdot (v_0 \cdot e^{-kt}),$$ which is what we want.</p>
         </div>
-    </div>
+    </div> -->
 </body>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
@@ -48,10 +56,9 @@ MathJax.Hub.Config({
     }
 });
 
-// MathJax.Hub.Configured();
+MathJax.Hub.Configured();
 </script>
 <script src='dist/thirdParty.js'></script>
 <script src='dist/bundle.js'></script>
-
 
 </html>

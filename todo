@@ -1,18 +1,30 @@
 PLAN
-create the cart in its own frame up top
+do the colors with the material color in less
+
+color the other dots appropriate
+
+bring back the throbbing dots
+add hand cursors
+
+add the first dot and make it unmovable
+
+make a span/color directive
 
 SHORT TERM
 triangle directive
 install mathjax locally
 
 
-CART
--make directive
--build cart graphic
--make it roll
+use a controller extender thing for both plotA and plotB
+
+clamp hte scales where appropriate
+
+add
 
 MED TERM
 axis labels
+put some of the text in tooltips for further explanation
+add a repository field to the package.json
 
 make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)
 

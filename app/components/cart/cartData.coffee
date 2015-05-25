@@ -1,16 +1,16 @@
-d3 = require 'd3'
+_ = require 'lodash'
 {exp, sqrt, atan} = Math
 
-class simpleCart
+class Cart
 	constructor: (@options)->
 		{@x0, @v0, @b} = @options
 		@restart()
 	restart: ->
-		[@x, @v] = [@x0, @v0]
 		@trajectory = []
+		@move(0)
 	move: (t)->
 		@v = @v0 * exp(-@b * t)
 		@x = @x0 + @v0/@b * (1-exp(-@b*t))
 		@trajectory.push {t: t, v: @v, x: @x}
 
-module.exports = new simpleCart({x0: 0, v0: .8, b: 1})
+module.exports = new Cart {x0: 0, v0: 4, b: 1}

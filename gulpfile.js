@@ -5,11 +5,20 @@ var gutil = require('gulp-util');
 var notify = require('gulp-notify');
 var watchify = require('watchify');
 var less = require('gulp-less');
+var jade = require('gulp-jade');
 
 var errorHandler = function(e) {
     gutil.log(e);
     this.emit('end');
 };
+
+gulp.task('jade', function() {
+    return gulp.src('./app/templates/*.jade')
+        .pipe(jade({
+            pretty: true
+        }))
+        .pipe(gulp.dest('./dist/'))
+});
 
 gulp.task('thirdParty', function() {
     return browserify({
@@ -21,7 +30,7 @@ gulp.task('thirdParty', function() {
 });
 
 gulp.task('less', function() {
-    return gulp.src('./styles/main.less')  // only compile the entry file
+    return gulp.src('./styles/main.less') // only compile the entry file
         .pipe(less())
         .pipe(gulp.dest('./styles'));
 });
@@ -36,7 +45,8 @@ gulp.task('watch', function() {
         bundleExternal: false
     }));
 
-    gulp.watch('./styles/*.less', ['less']);  // Watch all the .less files, then run the less task
+    gulp.watch('./styles/*.less', ['less']); // Watch all the .less files, then run the less task
+    gulp.watch('./**/*.jade', ['jade']);
 
     function rebundle() {
         return bundler

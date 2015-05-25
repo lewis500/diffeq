@@ -11,22 +11,25 @@ der = ($window)->
 		scope: 
 			scale: '='
 			height: '='
+			fun: '='
 		link: (scope, el, attr, vm)->
-			xAxisFun = d3.svg.axis()
-				.scale vm.scale
-				.orient 'bottom'
+			xAxisFun = vm.fun ? (d3.svg.axis()
+							.scale vm.scale
+							.orient 'bottom')
 
-			sel = d3.select(el[0]).classed('x axis', true)
+			sel = d3.select el[0]
+				.classed 'x axis', true
 
 			update = ()=>
-				xAxisFun.tickSize( -vm.height)
-				sel.call(xAxisFun)
+				xAxisFun.tickSize -vm.height
+				sel.call xAxisFun
 				
 			update()
 				
 			scope.$watch 'vm.scale.domain()', update , true
 			scope.$watch 'vm.height', update , true
 
-			angular.element($window).on('resize', update)
+			angular.element $window
+				.on 'resize', update
 
 module.exports = der

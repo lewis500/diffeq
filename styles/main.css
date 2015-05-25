@@ -1,20 +1,21 @@
-font-face {
-  font-family: 'Libre Baskerville';
-  src: url('http://fonts.googleapis.com/css?family=Libre+Baskerville');
-}
-@font-face {
-  font-family: AmLight;
-  src: url("font/AmbassadorPlusSans-Light.otf") format("opentype");
-}
-@font-face {
-  font-family: AmThin;
-  src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
-}
+@import "../node_modules/angular-material/angular-material.css";
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500);
 body {
-  font-family: 'Libre Baskerville', serif;
-  padding-bottom: 150px;
+  font-family: 'Roboto', serif;
+  padding-bottom: 50px;
   padding-top: 5px;
   font-size: 16px;
+  padding-left: 10%;
+  width: 70%;
+  max-width: 800px;
+  min-width: 400px;
+}
+#quote {
+  border-left: 1px solid #999;
+  margin-left: 25px;
+  padding: 15px;
+  padding-left: 25px;
+  background-color: #eeeeee;
 }
 h1,
 h2,
@@ -23,35 +24,10 @@ h4,
 h5,
 button,
 text {
-  font-family: 'AMLight';
+  font-weight: 100;
 }
-span#barzun {
-  font-weight: 700;
-}
-#content {
-  width: 65%;
-  min-width: 600px;
-}
-#content div.copy p {
-  margin: 10px;
-  width: 80%;
-}
-#content div[layout=row] {
-  padding: 10px;
-  margin: 10px;
-  box-shadow: .25px 1px 3px 0px #ccc;
-  transform: scale(1);
-  transition: all ease-in-out 0.4s;
-}
-#content div[layout=row]:hover {
-  transform: scale(1.002);
-  margin: 9px;
-  padding: 11px;
-  box-shadow: .25px 1px 3.5px .5px  #ccc;
-  transition: margin padding ease-in-out 0.3s, transform box-shaddow ease-in-out 0.5s;
-}
-div[vis-der] {
-  width: 75%;
+p {
+  line-height: 1.55em;
 }
 line,
 path {
@@ -60,6 +36,9 @@ path {
 path.fun {
   stroke-width: 1.5px;
   fill: none;
+}
+path.target {
+  stroke: #4caf50;
 }
 path.y {
   stroke: #e91e63;
@@ -89,4 +68,32 @@ circle.dot.large {
 }
 circle.dot.dy {
   fill: #0288d1;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: white;
+  shape-rendering: crispEdges;
+}
+.axis g.tick line {
+  stroke-width: 1px;
+  stroke-dasharray: 2, 2, 3;
+  stroke-linecap: round;
+  opacity: .9;
+}
+rect.cart {
+  fill: #e91e63;
+}
+rect.background {
+  fill: #eee;
+}
+.axis g.tick:nth-last-child(2) {
+  display: none;
+}
+.axis g.tick:first-child line {
+  stroke-dasharray: none;
+  stroke-width: 2px;
+}
+.axis path.domain {
+  display: none;
 }
