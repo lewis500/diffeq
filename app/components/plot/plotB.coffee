@@ -4,7 +4,7 @@ d3 = require 'd3'
 require '../../helpers'
 
 template = '''
-	<svg ng-init='vm.resize()' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()'  width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotB'>
 				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
@@ -27,9 +27,9 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 45
+			left: 30
 			top: 20
-			right: 10
+			right: 20
 			bottom: 30
 
 		@DV = d3.scale.linear().domain [-4, 0]

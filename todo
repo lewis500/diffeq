@@ -10,10 +10,12 @@ add the first dot and make it unmovable
 
 make a span/color directive
 
+take off the slection circles form the dots that are on the dv chart
+axis labels
+
 SHORT TERM
 triangle directive
 install mathjax locally
-
 
 use a controller extender thing for both plotA and plotB
 
