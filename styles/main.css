@@ -1,0 +1,92 @@
+font-face {
+  font-family: 'Libre Baskerville';
+  src: url('http://fonts.googleapis.com/css?family=Libre+Baskerville');
+}
+@font-face {
+  font-family: AmLight;
+  src: url("font/AmbassadorPlusSans-Light.otf") format("opentype");
+}
+@font-face {
+  font-family: AmThin;
+  src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
+}
+body {
+  font-family: 'Libre Baskerville', serif;
+  padding-bottom: 150px;
+  padding-top: 5px;
+  font-size: 16px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+text {
+  font-family: 'AMLight';
+}
+span#barzun {
+  font-weight: 700;
+}
+#content {
+  width: 65%;
+  min-width: 600px;
+}
+#content div.copy p {
+  margin: 10px;
+  width: 80%;
+}
+#content div[layout=row] {
+  padding: 10px;
+  margin: 10px;
+  box-shadow: .25px 1px 3px 0px #ccc;
+  transform: scale(1);
+  transition: all ease-in-out 0.4s;
+}
+#content div[layout=row]:hover {
+  transform: scale(1.002);
+  margin: 9px;
+  padding: 11px;
+  box-shadow: .25px 1px 3.5px .5px  #ccc;
+  transition: margin padding ease-in-out 0.3s, transform box-shaddow ease-in-out 0.5s;
+}
+div[vis-der] {
+  width: 75%;
+}
+line,
+path {
+  pointer-events: none;
+}
+path.fun {
+  stroke-width: 1.5px;
+  fill: none;
+}
+path.y {
+  stroke: #e91e63;
+}
+path.dy {
+  stroke: #03a9f4;
+}
+path.triangle {
+  stroke-width: 1px;
+  fill: none;
+  stroke: #9e9e9e;
+}
+circle.dot {
+  stroke: white;
+  stroke-width: 1px;
+}
+circle.dot.small {
+  pointer-events: none;
+  fill: #c2185b;
+  stroke-width: 1px;
+}
+circle.dot.large {
+  fill: #e0e0e0;
+  opacity: 0.6;
+  stroke-width: .4
+	cursor: pointer;
+}
+circle.dot.dy {
+  fill: #0288d1;
+}

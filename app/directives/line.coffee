@@ -15,11 +15,12 @@ der = ()-> #goes on a path element
 		link: (scope, el, attr, vm)->
 			sel = d3.select(el[0])
 			update = ()-> 
-				sel.transition().duration(50).attr 'd', vm.lineFun(vm.data)
+				# sel.attr ''
+				sel.attr 'd', vm.lineFun(vm.data)
 
-			scope.$watch(()->
-				vm.watch(vm.data)
-			, update, true)
-			element(window).on('resize', update)
+			scope.$watch 'vm.watch'
+				, update
+				, true
+			element(window).on 'resize', update
 
 module.exports = der

@@ -1,9 +1,9 @@
 d3 = require 'd3'
 angular = require 'angular'
 
-der = ()->
+der = ($window)->
 	directive = 
-		controller: ()->
+		controller: angular.noop
 		controllerAs: 'vm'
 		bindToController: true
 		restrict: 'A'
@@ -11,7 +11,6 @@ der = ()->
 		scope: 
 			scale: '='
 			width: '='
-			tickFormat: '='
 		link: (scope, el, attr, vm)->
 			yAxisFun = d3.svg.axis()
 				.scale vm.scale
@@ -19,15 +18,13 @@ der = ()->
 
 			sel = d3.select(el[0]).classed('y axis', true)
 
-			if @tickFormat then yAxisFun.tickFormat 'tickFormat'
-
 			update = ()=>
 				yAxisFun.tickSize( -vm.width)
 				sel.call(yAxisFun)
 
 			update()
 				
-			scope.$watch('vm.scale.domain()', update , true)
-			angular.element(window).on('resize', update)
+			scope.$watch 'vm.scale.domain()', update , true
+			scope.$watch 'vm.width', update
 
 module.exports = der

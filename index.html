@@ -1,87 +1,57 @@
 <html>
 
 <head>
-  <meta name="viewport" content="initial-scale=1" />
-  <link rel="stylesheet" href="styles/slider.css">
-  <link rel="stylesheet" href="styles/flex.css">
-  <link rel="stylesheet" href="styles/boilerplate.css">
-  <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
-  <link href="http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700" rel="stylesheet" type="text/css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
+    <meta name="viewport" content="initial-scale=1" />
+    <link rel="stylesheet" href="styles/slider.css">
+    <link rel="stylesheet" href="styles/flex.css">
+    <link rel="stylesheet" href="styles/boilerplate.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
 </head>
-<script src='dist/bundle.js'></script>
 
 <body ng-app='mainApp'>
-  <!-- <ode-slider min='0' max='100' step='1' ng-model='main.value'></ode-slider> -->
-  <h1>What's the difference?</h1>
-  <h2>Differential equations explained</h2>
-  <div id='content' layout='column'>
-    <div class='copy'>
-      <p id='quote'>With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
-        <br> <span id='barzun'>-Jacques Barzun (1974), <em>The Use and Abuse of Art</em> </span></p>
-      <div>\[50\]</div>
-      <p>The phrase "differential equation" is intimidating. It sounds like a fake science word from a movie, like '<a href='http://en.memory-alpha.org/wiki/Inverse_tachyon_pulse'>tachyon pulse</a>' or '<a href='http://en.wikipedia.org/wiki/DeLorean_time_machine'>flux capacitor</a>.' But  <em>DE</em>'s are also among the best tools we have to design systems and make sense of nature. This piece explains</p>
-      <ol>
-        <li>what makes differential equations different from a regular equations</li>
-        <li>how to solve a simple class of them.</li>
-      </ol>
-      <p>It should be readable if you've taken calc.</p>
+    <h1>What's the difference?</h1>
+    <div id='content' layout='column'>
+        <div class='copy'>
+            <p id='quote'>With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
+                <br> <span id='barzun'>-Jacques Barzun (1974), <em>The Use and Abuse of Art</em> </span></p>
+        </div>
+        <div class='copy'>
+            <p>Maybe you're used to solving equations like $$ t^2 - 2t = 1,$$ where 'solving' means finding a <em>number</em>, $t$. By contrast, a differential equation is a clue about an unknown <em>function</em> &mdash;a clue that involves the its derivative &mdash; and we have to figure out what the function could be.</p>
+        </div>
+        <div class='copy'>
+            <p>Consider a cart rolling to a stop: friction slows it down a lot when it goes fast, and only a little when it goes slow. </p>
+        </div>
+        <div third-big-der flex></div>
+        <div class='copy'>
+            <p>It turns out friction obeys $$v' = -kv, $$ where $v$ is velocity and $k$ is a 'coefficient of friction' that depends on the cart's axels and the surface. This is a DE that says "acceleration (i.e., $v'$) is negatively proportionate to velocity." Its solution is a function $v(t)$ that gives the velocity at time $t$.</p>
+            <p>Since this is the Internet, you'll solve this DE visually. What you'll do is drop points on the left plot to make a function $v(t)$. These points are pairs $(t, v(t))$. When you make one, the browser finds the derivative $v'(t)$, and plots the point $(v(t), v'(t))$ on the right. Your job is to draw $v(t)$ so $(v(t),v'(t))$ always winds up on the line $v' = -0.5 \cdot v$.</p>
+        </div>
+        <div class='copy'>
+            <p>Maybe you'll notice: there are many $v(t)$'s that satisfy $v'=0.5v$, but they all have the same sort of shape. These solutions are functions of the form $$v_0 \cdot e^{-kt},$$ where $v_0$ is the starting velocity (the one at time $t=0$) and $e$ is euler's constant. You can check from your derivative rules that $$ \frac{d}{dt}(v_0 \cdot e^{-kt})= k\cdot (v_0 \cdot e^{-kt}),$$ which is what we want.</p>
+        </div>
     </div>
-    <div class='copy'>
-      <h2>Derivative refresher</h2>
-      <p>The derivative of a function is basically its slope. That slope can be rendered as the height of a triangle whose base is $1$ and whose hypoteneuse is tangent to $y$ at $t$. (This makes more sense when you try it out!) Below, hover over the left plot to see $y$'s derivatives, which are plotted on the right as the <em>derivative function</em> $y'(t)$.</p>
-    </div>
-    <div layout='row' flex id='first'>
-      <div first-left-der flex></div>
-      <div first-right-der flex></div>
-    </div>
-    <div class='copy'>
-      <h2>What makes DE's different?</h2>
-      <p>Maybe you're used to solving equations like $$ t^2 - 2t = 1.$$ Solving this equation means finding a value of $t$ that makes the left- and right-hand sides equal. The solution is a <em>number</em>.</p>
-      <p>A differential equation, by contrast, is statement like $$ y'(t) + \lambda \cdot y(t) = 0$$ that involves the derivative of an unknown <em>function</em> $y(t)$. So we start out knowing some fact about $y$'s derivative, and we have figure out what $y$ is.</p>
-    </div>
-    <div class='copy'>
-      <h3>Example 1: Amateur hour</h3>
-      <p>Consider the differential equation $$y'(t) = .$$ You can solve this one pretty easily by just integrating it...$$\int y'(t) = ,$$ but we're going to solve it visually, since this is the Internet. Below, $t^2 + 2t +...$ is plotted on the right. To solve the DE, draw a function, $y(t)$, whose derivatives fall on $t^2 + 2t +...$.</p>
-    </div>
-    <div layout='row' flex>
-      <div second-left-der flex></div>
-      <div second-right-der flex></div>
-    </div>
-    <div class='copy'>
-      <h2>And you shall derive our velocity</h2>
-    </div>
-    <div layout='row' flex>
-      <div fourth-left-der flex></div>
-      <div fourth-right-der flex></div>
-    </div>
-    <div class='copy'>
-      <p>Now it's time to gaze upon the man-melting power of the mother of all DE's:$$ y'(t) = .5 \cdot y(t)$$. Just try to integrate this beast away. You can't because $y(t)$ <em>is already in the equation</em>, crouched and waiting for you with a sharp knife.</p>
-      <p>You'll solve this DE visually, but this time the horizontal axis of the right plot isn't $t$, it's $y$ itself. That's because the equation says, "The derivative of $y$ is always one-half of $y$ itself." So if you draw $y(t)$ correctly, its derivative will always fall on the straight line $y' = 0.5 \cdot y$.</p>
-      <h3>Example 2: And you shall derive our velocity</h3>
-      <p></p>
-    </div>
-    <div third-big-der flex></div>
-  </div>
 </body>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
-  tex2jax: {
-    skipStartupTypeset: true,
-    inlineMath: [
-      ['$', '$'],
-      ["\\(", "\\)"]
-    ],
-    displayMath: [
-      ['$$', '$$'],
-      ["\\[", "\\]"]
-    ],
-    // processEscapes: true
-  }
+    tex2jax: {
+        skipStartupTypeset: true,
+        inlineMath: [
+            ['$', '$'],
+            ["\\(", "\\)"]
+        ],
+        displayMath: [
+            ['$$', '$$'],
+            ["\\[", "\\]"]
+        ],
+        // processEscapes: true
+    }
 });
 
-MathJax.Hub.Configured();
+// MathJax.Hub.Configured();
 </script>
+<script src='dist/thirdParty.js'></script>
+<script src='dist/bundle.js'></script>
+
 
 </html>
