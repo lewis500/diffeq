@@ -4,8 +4,8 @@ Cart = require './cartData'
 
 template = '''
 	<div flex layout='row'>
-		<md-button flex ng-click='vm.play()'>Play</md-button>
-		<md-button flex ng-click='vm.pause()'>Pause</md-button>
+		<md-button flex class="md-raised" ng-click='vm.play()'>Play</md-button>
+		<md-button flex class="md-raised" ng-click='vm.pause()'>Pause</md-button>
 	</div>
 '''
 

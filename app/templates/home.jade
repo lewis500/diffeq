@@ -9,22 +9,37 @@
       em The Use and Abuse of Art
 #content( flex layout='column' )
   div(flex layout='row' )
-    p(flex='50')
-      | Maybe you're used to solving equations like $ t^2 - 2t = 1,$ where 'solving' means finding an unknown <em>number</em>, $t$. By contrast, solving a differential equation involves finding an unknown <em>function</em>.
+    div(flex='50')
+      p
+        | Maybe you're used to solving equations like $ t^2 - 2t = 1,$ where 'solving' means finding an unknown <em>number</em>, $t$. On the right, drag $t$ until $t^2 - 2t$ equals $2$.
+    div(flex offset='5')
+      p
+        | INSERT FUNCTION DEMONSTRATION
+  div(flex layout='row')
+    div(flex='50')
+      p
+        | By contrast, a differential equation (DE) has an unknown <em>function</em>. You solve it with a clue about its derivative. A good way to view derivatives is to draw a triangle. If the hypoteneuse just grazes the function, and its width is $1$, then its height is the derivative.
+    div(flex offset='5')
+      p
+        | INSERT DERIVATIVE DEMONSTRATION
+  div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
+    h2(style='text-align:center') PICTURE ME ROLLING
   div(flex layout='row' )
     div(flex='50')
       p
-        | Consider a cart rolling to a stop: it slows down quickly when it goes fast, and slowly when it goes slow.
-    div( flex offset='5' layout='column')
-      div(cart-plot-der flex )
-      div(cart-buttons-der flex='15')
+        | Think about a cart rolling to a stop: it slows down quickly when it goes fast, and slowly when it goes slow. The cart turns out to obey the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction.' Basically, how fast the cart slows down ($\dot{v}$) is directly proportional to its velocity ($v$)...just like how an ice cube warms up faster than water does.
+    div( flex offset='5' )
+      div(cart-plot-der )
+      div(cart-buttons-der )
         
   div(flex layout='row')
     div(flex='50')
       p
-        | The cart turns out to obey the DE $$v' = -k \cdot v, $$ where $v$ is velocity, $v'$ is the rate-of-change (derivative) of velocity and $k$ is a 'coefficient of friction.' We'll use this DE to find a function $v(t)$ telling the velocity at time $t$. We'll assume the starting velocity is $4$ and $k=1$, so $v(t)$ must solve $v'= -v$ and $v(0)=4$.
+        |  We'll use this DE to find a function $v(t)$ telling the velocity at time $t$. We'll assume the starting velocity is $4$ and $k=1$, so $v(t)$ must solve $v'= -v$ and $v(0)=4$.
         //- (TOOLTIP The DE implies that if the cart goes twice as fast, it slows down twice as fast. If we solve the DE, we can get a function $v(t)$ that tells the velocity at time $t$.)
       //- div(flex  plot-a-der)
+  div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
+    h2(style='text-align:center') 'CART'-OGRAPHY
   div(flex layout='row')
     div(flex='50')
       p

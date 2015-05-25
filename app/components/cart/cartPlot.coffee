@@ -5,7 +5,7 @@ Cart = require './cartData'
 require '../../helpers'
 
 template = '''
-	<svg ng-init='vm.resize()' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 			<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' class='background'/>
 			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
