@@ -1,5 +1,5 @@
 _ = require 'lodash'
-{exp, sqrt, atan, min} = Math
+{exp, sqrt, atan, min, max} = Math
 
 class Dot
 	constructor: (@t, @v)->
@@ -7,8 +7,11 @@ class Dot
 
 class Service
 	constructor: ()->
-		@dots = []
-		@selected = undefined
+		firstDot = new Dot 0 , 4
+		firstDot.id = 'first'
+		@dots = [ firstDot]
+
+		@selected = firstDot
 
 		@target_data = _.range 0, 8, 1/50
 			.map (t)-> 
@@ -23,15 +26,18 @@ class Service
 		@update_dot(@selected, t, v)
 
 	remove_dot: (dot)->
-		@dots.splice(@dots.indexOf(dot), 1)
+		@dots.splice @dots.indexOf(dot), 1
 
-	update_dots: ()-> 
+	update_dots: -> 
 		@dots.sort (a,b)-> a.t - b.t
 		@dots.forEach (dot, i, k)->
 			prev = k[i-1]
-			dot.dv = if prev then min(100,(dot.v - prev.v)/(dot.t - prev.t)) else 0
+			dot.dv = if prev then (dot.v - prev.v)/max(dot.t - prev.t, .01) else 0
 
 	update_dot: (dot, t, v)->
+		if dot.id == 'first'
+			return
+		@selected = dot
 		dot.t = t
 		dot.v = v
 		@update_dots()

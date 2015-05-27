@@ -16,10 +16,11 @@ template = '''
 			<g hor-axis-der height='vm.height' scale='vm.V' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 		</g>
 		<g class='main' clip-path="url(#plotB)" shifter='[vm.mar.left, vm.mar.top]'>
-			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun dy'/>
-			<g ng-repeat='dot in vm.Data.dots track by dot.id' datum=dot shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-der>
-			</g>
+			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(0)}}' />
+			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
+			<path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv'></path>
+			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-der></g>
 		</g>
 	</svg>
 '''
@@ -32,9 +33,9 @@ class Ctrl
 			right: 20
 			bottom: 30
 
-		@DV = d3.scale.linear().domain [-4, 0]
+		@DV = d3.scale.linear().domain [-5, 1]
 
-		@V = d3.scale.linear().domain [0,4]
+		@V = d3.scale.linear().domain [-.5,4]
 
 		@horAxFun = d3.svg.axis()
 			.scale @V
@@ -43,8 +44,7 @@ class Ctrl
 
 		@verAxFun = d3.svg.axis()
 			.scale @DV
-			# .tickFormat d3.format('.0d')
-			# .tickValues @DV.ticks(3)
+			.ticks 5
 			.orient 'left'
 
 		@Data = Data
@@ -57,6 +57,10 @@ class Ctrl
 			.on 'resize', @resize
 
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
+
+	@property 'dots', get:->
+		Data.dots.filter (d)->
+			d.id !='first'
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right

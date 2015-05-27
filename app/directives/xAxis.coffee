@@ -27,9 +27,7 @@ der = ($window)->
 			update()
 				
 			scope.$watch 'vm.scale.domain()', update , true
+			scope.$watch 'vm.scale.range()', update , true
 			scope.$watch 'vm.height', update , true
-
-			angular.element $window
-				.on 'resize', update
 
 module.exports = der

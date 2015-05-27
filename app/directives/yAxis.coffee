@@ -11,9 +11,9 @@ der = ($window)->
 		scope: 
 			scale: '='
 			width: '='
-			axisFun: '='
+			fun: '='
 		link: (scope, el, attr, vm)->
-			yAxisFun = vm.axisFun ? d3.svg.axis()
+			yAxisFun = vm.fun ? d3.svg.axis()
 				.scale vm.scale
 				.orient 'left'
 
@@ -26,6 +26,7 @@ der = ($window)->
 			update()
 				
 			scope.$watch 'vm.scale.domain()', update , true
-			scope.$watch 'vm.width', update
+			scope.$watch 'vm.scale.range()', update , true
+			# scope.$watch 'vm.width', update
 
 module.exports = der

@@ -15,6 +15,8 @@ material = require 'angular-material'
 plotADer = require './components/plot/plotA'
 plotBDer = require './components/plot/plotB'
 lineDer = require './directives/line'
+regularDer = require './components/regular/regular'
+derivativeDer  = require './components/derivative/derivative'
 
 app = angular.module 'mainApp', [material]
 	.directive 'horAxisDer', horAxis
@@ -28,3 +30,5 @@ app = angular.module 'mainApp', [material]
 	.directive 'datum', datum
 	.directive 'lineDer', lineDer
 	.directive 'plotBDer' , plotBDer
+	.directive 'regularDer', regularDer
+	.directive 'derivativeDer', derivativeDer

@@ -3,7 +3,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500);
 body {
     font-family:'Roboto', serif;
-    padding-bottom: 50px;
     padding-top: 5px;
     font-size: 16px;
     padding-left: 10%;
@@ -33,7 +32,7 @@ line, path{
 	pointer-events: none;
 }
 
-path.fun{
+.fun{
     stroke-width: 1.5px;
     fill: none;
 }
@@ -42,18 +41,21 @@ path.target{
     stroke: @clr-green-500;
 }
 
-path.y{
+.v{
     stroke: @clr-pink-500;
 }
 
-path.dy{
+.dv{
     stroke: @clr-light-blue-500;
 }
 
-path.triangle{
-    stroke-width: 1px;
+path.tri{
+    stroke-width: 1.3px;
     fill: none;
-    stroke: @clr-grey-500;
+    opacity: .9;
+    stroke: @clr-grey-400;
+    stroke-dasharray: 1,2;
+    stroke-linecap: round;
 }
 
 circle.dot{
@@ -73,7 +75,7 @@ circle.dot.large{
 	cursor: pointer;
 }
 
-circle.dot.dy{
+circle.dot.dv{
 	fill: @clr-light-blue-700;
 }
 
@@ -94,23 +96,27 @@ rect.cart{
     fill: @clr-pink-500;
 }
 
-// g.tick text{
-//     font-size: 1em;
-// }
-
 rect.background{
     fill: #eee;
 }
 
-.axis g.tick:nth-last-child(2) {
-    display: none;
+line.zero-line{
+    stroke-width: 2px;
+    stroke-dasharray: none;
+    stroke: white;
 }
 
-.axis g.tick:first-child line{
-    stroke-dasharray: none;
-    stroke-width: 2px;
+circle.point{
+    stroke: white;
+    fill: @clr-pink-700;
+    opacity: .95;
+    stroke-width: 1.5px;
 }
 
 .axis path.domain {
     display: none;
+}
+
+g.hide{
+    opacity: 0;
 }

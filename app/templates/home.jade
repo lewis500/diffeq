@@ -11,23 +11,21 @@
   div(flex layout='row' )
     div(flex='50')
       p
-        | Maybe you're used to solving equations like $ t^2 - 2t = 1,$ where 'solving' means finding an unknown <em>number</em>, $t$. On the right, drag $t$ until $t^2 - 2t$ equals $2$.
+        | You're probably used to equations of unknown variables like $ 5(t-.5)(t-1)(t-2)^2 = 0,$ where 'solving' means finding a number, $t$.
     div(flex offset='5')
-      p
-        | INSERT FUNCTION DEMONSTRATION
+      div(regular-der)
   div(flex layout='row')
     div(flex='50')
       p
-        | By contrast, a differential equation (DE) has an unknown <em>function</em>. You solve it with a clue about its derivative. A good way to view derivatives is to draw a triangle. If the hypoteneuse just grazes the function, and its width is $1$, then its height is the derivative.
+        | A differential equation is a statement about the derivative of an unknown  <em>function</em>, not a number. For example, since the derivative of $\sin(t)$ is $\cos(t)$, $\sin(t)$ is a solution of $$ \dot y = \cos(t).$$ A good way to view derivatives is to draw a triangle. If its hypoteneuse just grazes the function, and its width is $1$, then its height is the derivative (see if you can figure out why). 
     div(flex offset='5')
-      p
-        | INSERT DERIVATIVE DEMONSTRATION
+      div(derivative-der)
   div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
     h2(style='text-align:center') PICTURE ME ROLLING
   div(flex layout='row' )
     div(flex='50')
       p
-        | Think about a cart rolling to a stop: it slows down quickly when it goes fast, and slowly when it goes slow. The cart turns out to obey the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction.' Basically, how fast the cart slows down ($\dot{v}$) is directly proportional to its velocity ($v$)...just like how an ice cube warms up faster than water does.
+        | Consider a cart rolling to a stop. It turns out the cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction.' Basically, how fast the cart slows down ($\dot{v}$) is directly proportional to its velocity ($v$).
     div( flex offset='5' )
       div(cart-plot-der )
       div(cart-buttons-der )
@@ -35,7 +33,7 @@
   div(flex layout='row')
     div(flex='50')
       p
-        |  We'll use this DE to find a function $v(t)$ telling the velocity at time $t$. We'll assume the starting velocity is $4$ and $k=1$, so $v(t)$ must solve $v'= -v$ and $v(0)=4$.
+        |  The solution is a function $v(t)$ that gives the velocity at $t$. We'll assume the starting velocity is $4$ and $k=1$, so $v(t)$ must solve $\dot{v}= -v$ and $v(0)=4$.
         //- (TOOLTIP The DE implies that if the cart goes twice as fast, it slows down twice as fast. If we solve the DE, we can get a function $v(t)$ that tells the velocity at time $t$.)
       //- div(flex  plot-a-der)
   div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
@@ -46,7 +44,7 @@
         | To find $v(t)$, make and drag points on Plot A. Each point is a time/velocity pair like $\left( t, v \right)$. The program strings those $(t,v)$ together to make a function $v(t)$. You start out with the point $(t=0,v=2)$, since the cart starts rolling with velocity $2$.
     div(flex style='border-left: solid 1px #eee; padding-left: 10px; margin-left: 3%;')
       p 
-        | Every time you place a point, we can store the value $v(t)$ and the slope $v'(t)$ as a pair $( v, v')$. Those pairs get plotted on Plot B. If you draw the $v(t)$ correctly, then the $(v, v')$ points will all wind up on the line $v'= -v$.
+        | Every time you place a point, we can store the value $v(t)$ and the slope $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on Plot B. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up on the line $\dot{v} = -v$.
   div(flex layout='row')
       div(plot-a-der flex='50')
       div(plot-b-der flex='50')
