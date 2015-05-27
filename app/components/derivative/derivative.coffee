@@ -20,7 +20,7 @@ template = '''
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
 			<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='fun dv' />
-			<path ng-attr-d='{{vm.lineFun([{v: vm.point.dv, t: vm.point.t}, {v: 0, t: vm.point.t}])}}' class='fun dv' style='opacity: .4'/>
+			<path ng-attr-d='{{vm.lineFun([{v: vm.point.dv, t: vm.point.t}, {v: 0, t: vm.point.t}])}}' class='fun dv' style='opacity: .4;'/>
 			<path ng-attr-d='{{vm.lineFun2(vm.data)}}' class='fun dv' style='opacity: .3' />
 			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point'/>
 		</g>

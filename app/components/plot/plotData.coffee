@@ -3,13 +3,18 @@ _ = require 'lodash'
 
 class Dot
 	constructor: (@t, @v)->
-		@id = _.uniqueId 'dot' 
+		@id = _.uniqueId 'dot'
+		@hilited = false
 
 class Service
 	constructor: ()->
 		firstDot = new Dot 0 , 4
 		firstDot.id = 'first'
-		@dots = [ firstDot]
+		@dots = [ firstDot, 
+			new Dot 1, 4*exp(-1)
+		 ]
+		 
+		@first = firstDot
 
 		@selected = firstDot
 

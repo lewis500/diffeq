@@ -4,6 +4,7 @@ d3 = require 'd3'
 require '../../helpers'
 
 template = '''
+	<h3>Plot B</h3>
 	<svg ng-init='vm.resize()'  width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotB'>
@@ -19,8 +20,8 @@ template = '''
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(0)}}' />
 			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
-			<path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv'></path>
-			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-der></g>
+			<path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv' />
+			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-b-der></g>
 		</g>
 	</svg>
 '''
@@ -28,10 +29,10 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 30
-			top: 20
+			left: 25
+			top: 10
 			right: 20
-			bottom: 30
+			bottom: 25
 
 		@DV = d3.scale.linear().domain [-5, 1]
 
@@ -61,6 +62,13 @@ class Ctrl
 	@property 'dots', get:->
 		Data.dots.filter (d)->
 			d.id !='first'
+
+	hilite: (v)->
+		d3.select this
+			.transition()
+			.duration 100
+			.ease 'cubic'
+			.attr 'r' , if v then 6 else 4
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right

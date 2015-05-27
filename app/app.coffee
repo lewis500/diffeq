@@ -1,5 +1,6 @@
 'use strict'
 angular = require 'angular'
+d3 = require 'd3'
 # thirdLeft = require './components/third/thirdLeft'
 # thirdBig = require './components/third/thirdBig'
 # yAxis = require './directives/yAxis'
@@ -17,7 +18,7 @@ plotBDer = require './components/plot/plotB'
 lineDer = require './directives/line'
 regularDer = require './components/regular/regular'
 derivativeDer  = require './components/derivative/derivative'
-
+dotBDer = require './directives/dotB'
 app = angular.module 'mainApp', [material]
 	.directive 'horAxisDer', horAxis
 	.directive 'verAxisDer', verAxis
@@ -32,3 +33,20 @@ app = angular.module 'mainApp', [material]
 	.directive 'plotBDer' , plotBDer
 	.directive 'regularDer', regularDer
 	.directive 'derivativeDer', derivativeDer
+	.directive 'dotBDer', dotBDer
+
+looper = ->
+    setTimeout( ()->
+    			d3.selectAll 'circle.dot.large'
+    				.transition 'grow'
+    				.duration 500
+    				.ease 'cubic-out'
+    				.attr 'transform', 'scale( 1.34)'
+    				.transition 'shrink'
+    				.duration 500
+    				.ease 'cubic-out'
+    				.attr 'transform', 'scale( 1.0)'
+    			looper()
+    		, 1000)
+
+looper()

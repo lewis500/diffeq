@@ -1,6 +1,6 @@
 @import "../node_modules/angular-material/angular-material.css";
 @import "../bower_components/material-color/material-color";
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic);
 body {
     font-family:'Roboto', serif;
     padding-top: 5px;
@@ -11,16 +11,20 @@ body {
     min-width: 400px;
 }
 
-#quote{
-	border-left: 1px solid #999;
-	margin-left: 25px;
-	padding: 15px;
-	padding-left: 25px;
-	background-color: #eee
+// ======== boilerplate =========
+line, path{
+    pointer-events: none;
+}
+
+.axis path.domain {
+    display: none;
+}
+
+rect.background{
+    fill: #eee;
 }
 
 h1, h2, h3, h4, h5, button, text {
-  // font-family: 'Roboto';
   font-weight: 100;
 }
 
@@ -28,16 +32,30 @@ p{
     line-height: 1.55em;
 }
 
-line, path{
-	pointer-events: none;
+.axis path, .axis line {
+    fill: none;
+    stroke: white;
+    shape-rendering: crispEdges;
 }
+
+.axis g.tick line {
+    stroke-width: 1px;
+    stroke-dasharray: 2, 2, 3;
+    stroke-linecap: round;
+    opacity: .9;
+}
+
+
+
+
+// ========= lines ==========
 
 .fun{
     stroke-width: 1.5px;
     fill: none;
 }
 
-path.target{
+.target{
     stroke: @clr-green-500;
 }
 
@@ -58,6 +76,13 @@ path.tri{
     stroke-linecap: round;
 }
 
+line.zero-line{
+    stroke-width: 2px;
+    stroke-dasharray: none;
+    stroke: white;
+}
+
+// ============ dots
 circle.dot{
 	stroke: white;
 	stroke-width: 1px;	
@@ -65,45 +90,26 @@ circle.dot{
 
 circle.dot.small {
 	pointer-events: none;
-	fill: @clr-pink-700;
-	stroke-width: 1px;
+    stroke-width: 1.6px;
 }
+
+[plot-b-der] circle.dot.small {
+    fill: @clr-light-blue-700;
+}
+
+[plot-a-der] circle.dot.small{
+	fill: @clr-pink-700;
+}
+
 circle.dot.large{
 	fill: @clr-grey-300;
 	opacity: 0.6;
-	stroke-width: .4
+	stroke-width: .4;
 	cursor: pointer;
 }
 
 circle.dot.dv{
 	fill: @clr-light-blue-700;
-}
-
-.axis path, .axis line {
-    fill: none;
-    stroke: white;
-    shape-rendering: crispEdges;
-}
-
-.axis g.tick line {
-    stroke-width: 1px;
-    stroke-dasharray: 2, 2, 3;
-    stroke-linecap: round;
-    opacity: .9;
-}
-
-rect.cart{
-    fill: @clr-pink-500;
-}
-
-rect.background{
-    fill: #eee;
-}
-
-line.zero-line{
-    stroke-width: 2px;
-    stroke-dasharray: none;
-    stroke: white;
 }
 
 circle.point{
@@ -113,10 +119,50 @@ circle.point{
     stroke-width: 1.5px;
 }
 
-.axis path.domain {
-    display: none;
+// circle.dot.hilited{
+//     stroke-width: 2.5px;
+//     // stroke: @clr-yellow-700;
+// }
+
+
+// ========= QUOTE ========
+
+#quote{
+    border-left: 4px solid #ccc;
+    margin-left: -15px;
+    padding: 15px;
+    padding-left: 25px;
+    border-radius: 2px;
+    padding-top: 4px;
+    background-color: #F7F7F7
+}
+
+#quote p{
+    font-size: 18px;
+}
+
+#barzun{
+    text-align: right;
+    font-weight: 300;
+}
+
+
+// ==== OTHER =======
+em{
+    font-style: italic;
+}
+
+rect.cart{
+    fill: @clr-pink-500;
 }
 
 g.hide{
     opacity: 0;
+}
+
+[plot-b-der] h3, [plot-a-der] h3 {
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 0px;
 }

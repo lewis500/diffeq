@@ -8,7 +8,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/lewis500/diff.git"
+        "url": "https://github.com/lewis500/diffeq.git"
     },
     "author": "lewis",
     "license": "MIT",

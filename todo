@@ -3,40 +3,26 @@ make hte blue part of the tirangle dotted
 add the blue part as a dotted line over to the plotB
 add the v as a dotted line on the PlotB
 
-take the second circle off the first dot, make it a different color
-get rid of the second circles on the plotB dots, too
-make the triangle turn invisible when the plotA dots aren't being held
-
 take care of right-clicks
-
-show the answer: 4*e^-t
-
-
-make labels for plot A and plot B
-
-bring back the throbbing dots
-
 
 make a "show the answer" button
 
-right-align the Jacques Barzun quote
-
-add the first dot and make it unmovable
-
 make a span/color directive
 
-take off the slection circles form the dots that are on the dv chart
 axis labels
+
+
+make the thing light up when you get the right answer on the first chart
 
 SHORT TERM
 install mathjax locally
 
-clamp the scales where appropriate
+
+put a texture on the background of the plots
 
 MED TERM
 axis labels
 put some of the text in tooltips for further explanation
-
 
 http://blog.datacamp.com/mathjax-binding-in-angular-js/
 

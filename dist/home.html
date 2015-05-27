@@ -2,12 +2,15 @@
 <div id="header">
   <h1 style="font-size: 48px; margin-bottom: 0px;">What's the difference?</h1>
   <h3 style="margin-top: 3px;">differential equations explained</h3>
-  <p id="quote">With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.<br/><span id="barzun">-Jacques Barzun (1974),<em>The Use and Abuse of Art</em></span></p>
+  <div id="quote">
+    <p>With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.</p>
+    <div id="barzun">&mdash; Jacques Barzun in <em>The Use and Abuse of Art</em></div>
+  </div>
 </div>
 <div id="content" flex="flex" layout="column">
   <div flex="flex" layout="row">
     <div flex="50">
-      <p>You're probably used to equations of unknown variables like $ 5(t-.5)(t-1)(t-2)^2 = 0,$ where 'solving' means finding a number, $t$.</p>
+      <p>You're probably used to equations of unknown numbers like $ 5(t-.5)(t-1)(t-2)^2 = 0,$ where 'solving' means finding a number, $t$.</p>
     </div>
     <div flex="flex" offset="5">
       <div regular-der="regular-der"></div>
@@ -15,7 +18,7 @@
   </div>
   <div flex="flex" layout="row">
     <div flex="50">
-      <p>A differential equation is a statement about the derivative of an unknown  <em>function</em>, not a number. For example, since the derivative of $\sin(t)$ is $\cos(t)$, $\sin(t)$ is a solution of $$ \dot y = \cos(t).$$ A good way to view derivatives is to draw a triangle. If its hypoteneuse just grazes the function, and its width is $1$, then its height is the derivative (see if you can figure out why). </p>
+      <p>A differential equation is a fact about the derivative of an unknown  <em>function</em>, not a number. For example, since the derivative of $\sin(t)$ is $\cos(t)$, $y(t)=\sin(t)$ is a solution of $$ \dot y = \cos(t).$$ To visualize derivatives, we'll draw a right triangle. If its width is $1$ and hypoteneuse is tangent to $y(t)$ at $t$, then its height is the derivative at $t$.</p>
     </div>
     <div flex="flex" offset="5">
       <div derivative-der="derivative-der"></div>
@@ -54,7 +57,7 @@
     </div>
   </div>
   <div flex="flex" layout="row">
-    <div plot-a-der="plot-a-der" flex="50"></div>
+    <div plot-a-der="plot-a-der" flex="50">hello</div>
     <div plot-b-der="plot-b-der" flex="50"></div>
   </div>
 </div>

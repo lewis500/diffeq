@@ -1,23 +1,23 @@
 #header
   h1(style='font-size: 48px; margin-bottom: 0px;') What's the difference?
   h3(style='margin-top: 3px;') differential equations explained
-  p#quote
-    | With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
-    br
-    span#barzun
-      | -Jacques Barzun (1974),
-      em The Use and Abuse of Art
+  div#quote
+    p With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
+    div#barzun
+      | &mdash; Jacques Barzun in 
+      em
+        | The Use and Abuse of Art
 #content( flex layout='column' )
   div(flex layout='row' )
     div(flex='50')
       p
-        | You're probably used to equations of unknown variables like $ 5(t-.5)(t-1)(t-2)^2 = 0,$ where 'solving' means finding a number, $t$.
+        | You're probably used to equations of unknown numbers like $ 5(t-.5)(t-1)(t-2)^2 = 0,$ where 'solving' means finding a number, $t$.
     div(flex offset='5')
       div(regular-der)
   div(flex layout='row')
     div(flex='50')
       p
-        | A differential equation is a statement about the derivative of an unknown  <em>function</em>, not a number. For example, since the derivative of $\sin(t)$ is $\cos(t)$, $\sin(t)$ is a solution of $$ \dot y = \cos(t).$$ A good way to view derivatives is to draw a triangle. If its hypoteneuse just grazes the function, and its width is $1$, then its height is the derivative (see if you can figure out why). 
+        | A differential equation is a fact about the derivative of an unknown  <em>function</em>, not a number. For example, since the derivative of $\sin(t)$ is $\cos(t)$, $y(t)=\sin(t)$ is a solution of $$ \dot y = \cos(t).$$ To visualize derivatives, we'll draw a right triangle. If its width is $1$ and hypoteneuse is tangent to $y(t)$ at $t$, then its height is the derivative at $t$.
     div(flex offset='5')
       div(derivative-der)
   div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
@@ -47,4 +47,5 @@
         | Every time you place a point, we can store the value $v(t)$ and the slope $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on Plot B. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up on the line $\dot{v} = -v$.
   div(flex layout='row')
       div(plot-a-der flex='50')
+        | hello
       div(plot-b-der flex='50')

@@ -3,6 +3,7 @@ d3 = require 'd3'
 Data = require './plotData'
 require '../../helpers'
 template = '''
+	<h3>Plot A</h3>
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotA'>
@@ -21,20 +22,19 @@ template = '''
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
 				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='fun dv' />
 			</g>
-			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v'></path>
-			<g ng-repeat='dot in vm.Data.dots track by dot.id' datum=dot shifter='[vm.T(dot.t),vm.V(dot.v)]' behavior='vm.drag' dot-der></g>
+			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />
+			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.T(dot.t),vm.V(dot.v)]' behavior='vm.drag' dot-der ></g>
+			<circle class='dot small' r='4' shifter='[vm.T(vm.Data.first.t),vm.V(vm.Data.first.v)]' />
 		</g>
 	</svg>
 '''
-# point = Data.selected
-
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 30
-			top: 20
+			left: 25
+			top: 10
 			right: 20
-			bottom: 30
+			bottom: 25
 
 		@V = d3.scale.linear().domain [-.25,5]
 
@@ -91,6 +91,10 @@ class Ctrl
 			.on 'resize', @resize
 
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
+
+	@property 'dots', get:-> 
+		res = Data.dots.filter (d)->
+			d.id != 'first'
 
 	on_drag: (dot)=> 
 			if event.which is 3

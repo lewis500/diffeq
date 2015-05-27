@@ -1,5 +1,5 @@
 @import "../node_modules/angular-material/angular-material.css";
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic);
 body {
   font-family: 'Roboto', serif;
   padding-top: 5px;
@@ -9,12 +9,15 @@ body {
   max-width: 800px;
   min-width: 400px;
 }
-#quote {
-  border-left: 1px solid #999;
-  margin-left: 25px;
-  padding: 15px;
-  padding-left: 25px;
-  background-color: #eeeeee;
+line,
+path {
+  pointer-events: none;
+}
+.axis path.domain {
+  display: none;
+}
+rect.background {
+  fill: #eee;
 }
 h1,
 h2,
@@ -28,15 +31,23 @@ text {
 p {
   line-height: 1.55em;
 }
-line,
-path {
-  pointer-events: none;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: white;
+  shape-rendering: crispEdges;
+}
+.axis g.tick line {
+  stroke-width: 1px;
+  stroke-dasharray: 2, 2, 3;
+  stroke-linecap: round;
+  opacity: .9;
 }
 .fun {
   stroke-width: 1.5px;
   fill: none;
 }
-path.target {
+.target {
   stroke: #4caf50;
 }
 .v {
@@ -53,46 +64,33 @@ path.tri {
   stroke-dasharray: 1,2;
   stroke-linecap: round;
 }
+line.zero-line {
+  stroke-width: 2px;
+  stroke-dasharray: none;
+  stroke: white;
+}
 circle.dot {
   stroke: white;
   stroke-width: 1px;
 }
 circle.dot.small {
   pointer-events: none;
+  stroke-width: 1.6px;
+}
+[plot-b-der] circle.dot.small {
+  fill: #0288d1;
+}
+[plot-a-der] circle.dot.small {
   fill: #c2185b;
-  stroke-width: 1px;
 }
 circle.dot.large {
   fill: #e0e0e0;
   opacity: 0.6;
-  stroke-width: .4
-	cursor: pointer;
+  stroke-width: .4;
+  cursor: pointer;
 }
 circle.dot.dv {
   fill: #0288d1;
-}
-.axis path,
-.axis line {
-  fill: none;
-  stroke: white;
-  shape-rendering: crispEdges;
-}
-.axis g.tick line {
-  stroke-width: 1px;
-  stroke-dasharray: 2, 2, 3;
-  stroke-linecap: round;
-  opacity: .9;
-}
-rect.cart {
-  fill: #e91e63;
-}
-rect.background {
-  fill: #eee;
-}
-line.zero-line {
-  stroke-width: 2px;
-  stroke-dasharray: none;
-  stroke: white;
 }
 circle.point {
   stroke: white;
@@ -100,9 +98,35 @@ circle.point {
   opacity: .95;
   stroke-width: 1.5px;
 }
-.axis path.domain {
-  display: none;
+#quote {
+  border-left: 4px solid #ccc;
+  margin-left: -15px;
+  padding: 15px;
+  padding-left: 25px;
+  border-radius: 2px;
+  padding-top: 4px;
+  background-color: #f7f7f7;
+}
+#quote p {
+  font-size: 18px;
+}
+#barzun {
+  text-align: right;
+  font-weight: 300;
+}
+em {
+  font-style: italic;
+}
+rect.cart {
+  fill: #e91e63;
 }
 g.hide {
   opacity: 0;
+}
+[plot-b-der] h3,
+[plot-a-der] h3 {
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0px;
 }
