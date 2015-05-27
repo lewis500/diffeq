@@ -1,18 +1,13 @@
-SHORT TERM
-make hte blue part of the tirangle dotted
-add the blue part as a dotted line over to the plotB
-add the v as a dotted line on the PlotB
 
+show the exp-t function
+
+MED TERM
 take care of right-clicks
-
 make a "show the answer" button
-
 make a span/color directive
-
+color everything
 axis labels
 
-
-make the thing light up when you get the right answer on the first chart
 
 SHORT TERM
 install mathjax locally
@@ -25,6 +20,9 @@ axis labels
 put some of the text in tooltips for further explanation
 
 http://blog.datacamp.com/mathjax-binding-in-angular-js/
+
+
+MATHJAX DIRECTIVE
 
 LONG TERM
 make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)

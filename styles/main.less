@@ -2,7 +2,7 @@
 @import "../bower_components/material-color/material-color";
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic);
 body {
-    font-family:'Roboto', serif;
+    font-family: 'Roboto', serif;
     padding-top: 5px;
     font-size: 16px;
     padding-left: 10%;
@@ -12,7 +12,8 @@ body {
 }
 
 // ======== boilerplate =========
-line, path{
+line,
+path {
     pointer-events: none;
 }
 
@@ -20,19 +21,26 @@ line, path{
     display: none;
 }
 
-rect.background{
+rect.background {
     fill: #eee;
 }
 
-h1, h2, h3, h4, h5, button, text {
-  font-weight: 100;
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+text {
+    font-weight: 100;
 }
 
-p{
+p {
     line-height: 1.55em;
 }
 
-.axis path, .axis line {
+.axis path,
+.axis line {
     fill: none;
     stroke: white;
     shape-rendering: crispEdges;
@@ -45,51 +53,59 @@ p{
     opacity: .9;
 }
 
-
-
-
 // ========= lines ==========
-
-.fun{
+.fun {
     stroke-width: 1.5px;
     fill: none;
 }
 
-.target{
-    stroke: @clr-green-500;
+.target {
+    stroke: @clr-grey-700;
 }
 
-.v{
-    stroke: @clr-pink-500;
+.correct{
+    stroke:@clr-yellow-700;
 }
 
-.dv{
-    stroke: @clr-light-blue-500;
-}
-
-path.tri{
+.tri {
     stroke-width: 1.3px;
     fill: none;
     opacity: .9;
     stroke: @clr-grey-400;
-    stroke-dasharray: 1,2;
+    stroke-dasharray: 1, 2;
     stroke-linecap: round;
 }
 
-line.zero-line{
+.v {
+    stroke: @clr-pink-500;
+}
+
+.dv {
+    stroke: @clr-light-blue-500;
+}
+
+line.zero-line {
     stroke-width: 2px;
     stroke-dasharray: none;
     stroke: white;
 }
 
+line.zero-line.correct{
+    stroke: @clr-yellow-700;
+}
+
+// line.correct-line{
+//     stroke: 2px;
+// }
+
 // ============ dots
-circle.dot{
-	stroke: white;
-	stroke-width: 1px;	
+circle.dot {
+    stroke: white;
+    stroke-width: 1px;
 }
 
 circle.dot.small {
-	pointer-events: none;
+    pointer-events: none;
     stroke-width: 1.6px;
 }
 
@@ -97,22 +113,22 @@ circle.dot.small {
     fill: @clr-light-blue-700;
 }
 
-[plot-a-der] circle.dot.small{
-	fill: @clr-pink-700;
+[plot-a-der] circle.dot.small {
+    fill: @clr-pink-700;
 }
 
-circle.dot.large{
-	fill: @clr-grey-300;
-	opacity: 0.6;
-	stroke-width: .4;
-	cursor: pointer;
+circle.dot.large {
+    fill: @clr-grey-300;
+    opacity: 0.6;
+    stroke-width: .4;
+    cursor: pointer;
 }
 
-circle.dot.dv{
-	fill: @clr-light-blue-700;
+circle.dot.dv {
+    fill: @clr-light-blue-700;
 }
 
-circle.point{
+circle.point {
     stroke: white;
     fill: @clr-pink-700;
     opacity: .95;
@@ -123,11 +139,8 @@ circle.point{
 //     stroke-width: 2.5px;
 //     // stroke: @clr-yellow-700;
 // }
-
-
 // ========= QUOTE ========
-
-#quote{
+#quote {
     border-left: 4px solid #ccc;
     margin-left: -15px;
     padding: 15px;
@@ -137,30 +150,35 @@ circle.point{
     background-color: #F7F7F7
 }
 
-#quote p{
+#quote p {
     font-size: 18px;
 }
 
-#barzun{
+#barzun {
     text-align: right;
     font-weight: 300;
 }
 
-
 // ==== OTHER =======
-em{
+text.label {
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+em {
     font-style: italic;
 }
 
-rect.cart{
+rect.cart {
     fill: @clr-pink-500;
 }
 
-g.hide{
+.hide {
     opacity: 0;
 }
 
-[plot-b-der] h3, [plot-a-der] h3 {
+[plot-b-der] h3,
+[plot-a-der] h3 {
     text-align: center;
     margin-bottom: 5px;
     margin-top: 5px;

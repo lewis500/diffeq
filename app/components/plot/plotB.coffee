@@ -15,11 +15,22 @@ template = '''
 			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
 			<g ver-axis-der width='vm.width' scale='vm.DV' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.V' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
+					<text class='label'>$\\dot{v}$</text>
+			</foreignObject>
+			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
+					<text class='label' >$v$</text>
+			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#plotB)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(0)}}' />
 			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
+			<g ng-class='{hide: !vm.Data.show}' >
+				<line class='tri v' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(0)}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(vm.Data.selected.v)}}' />
+				<line class='tri dv' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(vm.Data.selected.dv)}}' />
+				<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
+			</g>
 			<path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv' />
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-b-der></g>
 		</g>
@@ -29,14 +40,14 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 25
+			left: 30
 			top: 10
 			right: 20
-			bottom: 25
+			bottom: 37
 
-		@DV = d3.scale.linear().domain [-5, 1]
+		@DV = d3.scale.linear().domain [-5, .25]
 
-		@V = d3.scale.linear().domain [-.5,4]
+		@V = d3.scale.linear().domain [-.25,4]
 
 		@horAxFun = d3.svg.axis()
 			.scale @V

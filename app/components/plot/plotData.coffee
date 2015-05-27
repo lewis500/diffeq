@@ -11,19 +11,21 @@ class Service
 		firstDot = new Dot 0 , 4
 		firstDot.id = 'first'
 		@dots = [ firstDot, 
-			new Dot 1, 4*exp(-1)
+			new Dot .3, 4*exp(-.3)
 		 ]
-		 
+		@correct = false
+
 		@first = firstDot
 
 		@selected = firstDot
-
+		@show = false
 		@target_data = _.range 0, 8, 1/50
 			.map (t)-> 
 				res  = 
 					t: t
 					v: 4* exp(-t)
 					dv: -4 * exp(-t)
+		@update_dots()
 
 	add_dot: (t, v)->
 		@selected = new Dot t,v
@@ -46,6 +48,7 @@ class Service
 		dot.t = t
 		dot.v = v
 		@update_dots()
+		@correct = Math.abs(@selected.v + @selected.dv) < 0.1
 
 service = new Service
 

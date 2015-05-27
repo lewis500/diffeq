@@ -1,12 +1,13 @@
 #header
-  h1(style='font-size: 48px; margin-bottom: 0px;') What's the difference?
-  h3(style='margin-top: 3px;') differential equations explained
   div#quote
     p With nothing to see except a blackboard strewn with differential equations, the educated man with an informed interest in science melted away.
     div#barzun
-      | &mdash; Jacques Barzun in 
+      | &mdash; Jacques Barzun,  
       em
         | The Use and Abuse of Art
+
+  h1(style='font-size: 48px; margin-top: 15px; margin-bottom: 0px;') What's the difference?
+  h3(style='margin-top: 3px;') differential equations explained
 #content( flex layout='column' )
   div(flex layout='row' )
     div(flex='50')
@@ -41,10 +42,10 @@
   div(flex layout='row')
     div(flex='50')
       p
-        | To find $v(t)$, make and drag points on Plot A. Each point is a time/velocity pair like $\left( t, v \right)$. The program strings those $(t,v)$ together to make a function $v(t)$. You start out with the point $(t=0,v=2)$, since the cart starts rolling with velocity $2$.
+        | Below, click and drag Plot A to make points of time/velocity pair like $\left( t, v \right)$. Together those pairs make up a function $v(t)$. You can't change the point $(t=0,v=4)$, though, since the cart's initial velocity is $4$.
     div(flex style='border-left: solid 1px #eee; padding-left: 10px; margin-left: 3%;')
       p 
-        | Every time you place a point, we can store the value $v(t)$ and the slope $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on Plot B. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up on the line $\dot{v} = -v$.
+        | For each point, we can store the value $v(t)$ and the derivative $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on Plot B. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up on the line $\dot{v} = -v$.
   div(flex layout='row')
       div(plot-a-der flex='50')
         | hello

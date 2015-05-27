@@ -48,7 +48,18 @@ p {
   fill: none;
 }
 .target {
-  stroke: #4caf50;
+  stroke: #616161;
+}
+.correct {
+  stroke: #fbc02d;
+}
+.tri {
+  stroke-width: 1.3px;
+  fill: none;
+  opacity: .9;
+  stroke: #bdbdbd;
+  stroke-dasharray: 1, 2;
+  stroke-linecap: round;
 }
 .v {
   stroke: #e91e63;
@@ -56,18 +67,13 @@ p {
 .dv {
   stroke: #03a9f4;
 }
-path.tri {
-  stroke-width: 1.3px;
-  fill: none;
-  opacity: .9;
-  stroke: #bdbdbd;
-  stroke-dasharray: 1,2;
-  stroke-linecap: round;
-}
 line.zero-line {
   stroke-width: 2px;
   stroke-dasharray: none;
   stroke: white;
+}
+line.zero-line.correct {
+  stroke: #fbc02d;
 }
 circle.dot {
   stroke: white;
@@ -114,13 +120,17 @@ circle.point {
   text-align: right;
   font-weight: 300;
 }
+text.label {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
 em {
   font-style: italic;
 }
 rect.cart {
   fill: #e91e63;
 }
-g.hide {
+.hide {
   opacity: 0;
 }
 [plot-b-der] h3,

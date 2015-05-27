@@ -14,12 +14,15 @@ template = '''
 			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' ng-mousemove='vm.move($event)' />
 			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
+					<text class='label' >$t$</text>
+			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#reg)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
-			<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='fun dv' />
+			<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri fun dv' />
 			<path ng-attr-d='{{vm.lineFun([{v: vm.point.dv, t: vm.point.t}, {v: 0, t: vm.point.t}])}}' class='fun dv' style='opacity: .4;'/>
 			<path ng-attr-d='{{vm.lineFun2(vm.data)}}' class='fun dv' style='opacity: .3' />
 			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point'/>
@@ -33,7 +36,7 @@ class triCtrl
 			left: 30
 			top: 20
 			right: 20
-			bottom: 25
+			bottom: 35
 
 		@V = d3.scale.linear().domain [-2,2]
 		@T = d3.scale.linear().domain [0,8]

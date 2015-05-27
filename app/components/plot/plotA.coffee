@@ -14,13 +14,21 @@ template = '''
 			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' behavior='vm.drag_rect'></rect>
 			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
+					<text class='label'>$v$</text>
+			</foreignObject>
+			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
+					<text class='label' >$t$</text>
+			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#plotA)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
 			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.T(0)}}' ng-attr-x2='{{vm.T(0)}}' />
-			<g ng-class='{hide: !vm.show}' >
+			<g ng-class='{hide: !vm.Data.show}' >
+				<line class='tri v' ng-attr-x1='{{vm.T(0)}}' ng-attr-x2='{{vm.T(0)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.Data.selected.v)}}' />
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
-				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='fun dv' />
+				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
 			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />
 			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.T(dot.t),vm.V(dot.v)]' behavior='vm.drag' dot-der ></g>
@@ -31,16 +39,14 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 25
+			left: 30
 			top: 10
 			right: 20
-			bottom: 25
+			bottom: 37
 
 		@V = d3.scale.linear().domain [-.25,5]
 
-		@T = d3.scale.linear().domain [-.5,6]
-
-		@show = false
+		@T = d3.scale.linear().domain [-.25,5]
 
 		@Data = Data
 
@@ -60,7 +66,7 @@ class Ctrl
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
-				@show= true
+				Data.show= true
 				event.stopPropagation()
 				if event.which is 3
 					return event.preventDefault()
@@ -71,12 +77,12 @@ class Ctrl
 				@scope.$evalAsync()
 			.on 'drag', => @on_drag(Data.selected)
 			.on 'dragend', => 
-				@show = false
+				Data.show = false
 				@scope.$evalAsync()
 
 		@drag = d3.behavior.drag()
 			.on 'dragstart', (dot)=>
-				@show = true
+				Data.show = true
 				event.stopPropagation()
 				if event.which is 3
 					Data.remove_dot dot
@@ -84,7 +90,7 @@ class Ctrl
 					@scope.$evalAsync()
 			.on 'drag', @on_drag
 			.on 'dragend', => 
-				@show = false
+				Data.show = false
 				@scope.$evalAsync()
 
 		angular.element @window

@@ -17,6 +17,8 @@ der = ()->
 
 			mouseover = ()->
 				scope.dot.hilited = true
+				scope.vm.Data.selected = scope.dot
+				scope.vm.Data.show = true
 				scope.$evalAsync()
 				big.transition 'grow'
 					.duration 150
@@ -41,6 +43,7 @@ der = ()->
 						.attr 'r', rad*1.3
 				.on 'mouseout' , ()->
 					scope.dot.hilited = false
+					scope.vm.Data.show = false
 					scope.$evalAsync()
 					big.transition 'shrink'
 						.duration 350
