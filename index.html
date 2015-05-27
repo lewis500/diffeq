@@ -3,12 +3,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({ 
-            tex2jax: {inlineMath: [ ['$', '$'], ["\\(", "\\)"] ], displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ] 
-        }});
-    </script>
-    <script type="text/javascript"   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+    <script type="text/javascript"   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG&delayStartupUntil=configured"></script>
 </head>
 
 <body>
@@ -16,5 +11,11 @@
 </body>
 <script src='dist/thirdParty.js'></script>
 <script src='dist/bundle.js'></script>
+<script>
+    MathJax.Hub.Config({ 
+        tex2jax: {inlineMath: [ ['$', '$'], ["\\(", "\\)"] ], displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ] 
+    }});
+    MathJax.Hub.Configured();
+</script>
 
 </html>
