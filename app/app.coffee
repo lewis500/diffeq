@@ -1,38 +1,23 @@
 'use strict'
 angular = require 'angular'
 d3 = require 'd3'
-datum = require './directives/datum'
-dotDer = require './directives/dot'
-horAxis = require './directives/xAxis'
-verAxis = require './directives/yAxis'
-behavior = require './directives/behavior'
-cartSimDer = require './components/cart/cartSim'
-cartButtonsDer = require './components/cart/cartButtons'
-shifter = require './directives/shifter'
-material = require 'angular-material'
-plotADer = require './components/plot/plotA'
-plotBDer = require './components/plot/plotB'
-d3Der = require './directives/d3Der'
-regularDer = require './components/regular/regular'
-derivativeDer  = require './components/derivative/derivative'
-dotBDer = require './directives/dotB'
-app = angular.module 'mainApp', [material]
-	.directive 'horAxisDer', horAxis
-	.directive 'verAxisDer', verAxis
-	.directive 'cartSimDer', cartSimDer
-	.directive 'cartButtonsDer', cartButtonsDer
-	.directive 'shifter' , shifter
-	.directive 'plotADer', plotADer
-	.directive 'behavior', behavior
-	.directive 'dotDer', dotDer
-	.directive 'datum', datum
-	.directive 'd3Der', d3Der
-	.directive 'plotBDer' , plotBDer
-	.directive 'regularDer', regularDer
-	.directive 'derivativeDer', derivativeDer
-	.directive 'dotBDer', dotBDer
-	.directive 'cartPlotDer', require './components/cart/cartPlot'
-	.directive 'plotCartDer', require './components/plot/plotCart'
+app = angular.module 'mainApp', [require 'angular-material']
+	.directive 'horAxisDer', require './directives/xAxis'
+	.directive 'verAxisDer', require './directives/yAxis'
+	.directive 'cartSimDer', require './components/cart/cartSim'
+	.directive 'cartButtonsDer', require './components/cart/cartButtons'
+	.directive 'shifter' , require './directives/shifter'
+	.directive 'designADer', require './components/design/designA'
+	.directive 'behavior', require './directives/behavior'
+	.directive 'dotDer', require './directives/dot'
+	.directive 'datum', require './directives/datum'
+	.directive 'd3Der', require './directives/d3Der'
+	.directive 'designBDer' , require './components/design/designB'
+	.directive 'regularDer', require './components/regular/regular'
+	.directive 'derivativeDer', require './components/derivative/derivative'
+	.directive 'dotBDer', require './directives/dotB'
+	.directive 'cartPlot', require './components/cart/cartPlot'
+	.directive 'designCartDer', require './components/design/designCartA'
 
 looper = ->
     setTimeout( ()->

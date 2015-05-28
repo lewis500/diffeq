@@ -1,7 +1,7 @@
 _ = require 'lodash'
 d3= require 'd3'
 {min} = Math
-Data = require './plotData'
+Data = require './designData'
 require '../../helpers'
 
 template = '''

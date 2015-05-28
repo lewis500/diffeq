@@ -1,4 +1,4 @@
-Data = require './plotData'
+Data = require './designData'
 angular = require 'angular'
 d3 = require 'd3'
 require '../../helpers'
@@ -27,15 +27,14 @@ template = '''
 			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
 			<g ng-class='{hide: !vm.Data.show}' >
-				<line class='tri v' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(0)}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(vm.Data.selected.v)}}' />
-				<line class='tri dv' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(vm.Data.selected.dv)}}' />
+				<line class='tri v' d3-der='{x1: vm.V(0), x2: vm.V(vm.point.v), y1: vm.DV(vm.point.dv), y2: vm.DV(vm.point.dv)}'/>
+				<line class='tri dv' d3-der='{x1: vm.V(vm.point.v), x2: vm.V(vm.point.v), y1: vm.DV(0), y2: vm.DV(vm.point.dv)}'/>
 				<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-b-der></g>
 		</g>
 	</svg>
 '''
-			# <path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv' />
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
@@ -81,9 +80,11 @@ class Ctrl
 			.ease 'cubic'
 			.attr 'r' , if v then 6 else 4
 
+	@property 'point', get: -> Data.selected
+
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width * .7
+		@height = @width
 		@DV.range [@height, 0]
 		@V.range [0, @width] 
 		@scope.$evalAsync()

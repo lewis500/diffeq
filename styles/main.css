@@ -83,10 +83,10 @@ circle.dot.small {
   pointer-events: none;
   stroke-width: 1.6px;
 }
-[plot-b-der] circle.dot.small {
+[design-b-der] circle.dot.small {
   fill: #0288d1;
 }
-[plot-a-der] circle.dot.small {
+[design-a-der] circle.dot.small {
   fill: #c2185b;
 }
 circle.dot.large {
@@ -107,7 +107,7 @@ circle.point {
 #quote {
   border-left: 4px solid #ccc;
   margin-left: -15px;
-  padding: 15px;
+  padding: 20px;
   padding-left: 25px;
   border-radius: 2px;
   padding-top: 4px;

@@ -1,8 +1,5 @@
-INTEGRATE
--rename things
--create a scale
-
-
+on design scales, have only one scale for width and height
+make the design plots totally squared
 
 STRATEGY
 - add the little art
@@ -33,7 +30,7 @@ ASK IAN THE DOM QUESITON ABOUT THE HEIGHT
 put a texture on the background of the plots
 
 LONG TERM
-make a line derective where you pass in {x1, x2, y1, y2}, and it watches the sum of them
+make em a bold italic, not just an italic
 make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)
 use scope.$destroy when one of the dots gets killed off
 get rid of mathjs dependency

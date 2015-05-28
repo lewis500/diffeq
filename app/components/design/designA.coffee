@@ -1,6 +1,6 @@
 angular = require 'angular'
 d3 = require 'd3'
-Data = require './plotData'
+Data = require './designData'
 require '../../helpers'
 template = '''
 	<h3>Plot A</h3>
@@ -26,7 +26,7 @@ template = '''
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
 			<line class='zero-line' d3-der="{x1: vm.T(0), x2: vm.T(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
-				<line class='tri v' ng-attr-x1='{{vm.T(0)}}' ng-attr-x2='{{vm.T(0)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.Data.selected.v)}}' />
+				<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
 				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
@@ -46,9 +46,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@V = d3.scale.linear().domain [0,5]
+		@V = d3.scale.linear().domain [-.25,5]
 
-		@T = d3.scale.linear().domain [0,5]
+		@T = d3.scale.linear().domain [-.25,5]
 
 		@Data = Data
 
@@ -65,23 +65,6 @@ class Ctrl
 		@lineFun = d3.svg.line()
 			.y (d)=> @V d.v
 			.x (d)=> @T d.t
-
-		# @getSamples = (path, num) ->
-		# 	len = path.getTotalLength()
-		# 	p = undefined
-		# 	result = []
-		# 	i = 0
-		# 	while i < num
-		# 		p = path.getPointAtLength(i * len / num)
-		# 		result.push 
-		# 			t: @T.invert(p.x)
-		# 			v: @V.invert(p.y)
-		# 		i++
-		# 	result
-
-		# @node = d3.select @el[0]
-		# 	.select 'path.fun.v'
-		# 	.node()
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
@@ -126,7 +109,6 @@ class Ctrl
 				event.preventDefault()
 				return
 			Data.update_dot dot, @T.invert(d3.event.x), @V.invert(d3.event.y)
-			# Data.samples = @getSamples(@node, 200)
 			@scope.$evalAsync()
 
 	@property 'point', get: -> Data.selected
@@ -137,7 +119,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width * .7
+		@height = @width
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()
