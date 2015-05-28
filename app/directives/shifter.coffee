@@ -7,7 +7,7 @@ der = ($parse)->
 				d3.select el[0]
 					.attr 'transform' , "translate(#{v[0]},#{v[1]})"
 
-			scope.$watch ()->
+			scope.$watch ->
 					$parse(attr.shifter)(scope)
 				, reshift
 				, true

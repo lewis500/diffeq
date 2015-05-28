@@ -19,6 +19,9 @@ path {
 rect.background {
   fill: #eee;
 }
+foreign-object {
+  pointer-events: none;
+}
 h1,
 h2,
 h3,
@@ -107,8 +110,8 @@ circle.point {
 #quote {
   border-left: 4px solid #ccc;
   margin-left: -15px;
-  padding: 20px;
-  padding-left: 25px;
+  padding: 33px;
+  padding-bottom: 25px;
   border-radius: 2px;
   padding-top: 4px;
   background-color: #f7f7f7;

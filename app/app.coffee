@@ -15,6 +15,7 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.directive 'designBDer' , require './components/design/designB'
 	.directive 'regularDer', require './components/regular/regular'
 	.directive 'derivativeDer', require './components/derivative/derivative'
+	.directive 'derivativeBDer', require './components/derivative/derivativeB'
 	.directive 'dotBDer', require './directives/dotB'
 	.directive 'cartPlot', require './components/cart/cartPlot'
 	.directive 'designCartDer', require './components/design/designCartA'

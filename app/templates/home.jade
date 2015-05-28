@@ -21,7 +21,9 @@ h3(style='margin-top: 9px;') differential equations explained
       p
         | A differential equation is a fact about the derivative of an unknown  <em>function</em>, not a number. For example, since the derivative of $\sin(t)$ is $\cos(t)$, $y(t)=\sin(t)$ is a solution of $$ \dot y = \cos(t).$$ To visualize derivatives, we'll draw a right triangle. If its width is $1$ and hypoteneuse is tangent to $y(t)$ at $t$, then its height is the derivative at $t$.
     div(flex offset='5')
-      div(derivative-der)
+      div(flex layout='column' )
+        div(derivative-der flex='50')
+        div(derivative-b-der flex='50')
   div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
     h2(style='text-align:center') PICTURE ME ROLLING
   div(flex layout='row' )

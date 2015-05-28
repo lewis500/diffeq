@@ -4,9 +4,6 @@ require '../../helpers'
 
 vScale = d3.scale.linear()
 xScale = d3.scale.linear()
-	# .interpolate (a,b)->
-	# 	(t)->
-	# 		a*(1-t)**2
 
 class Dot
 	constructor: (@t, @v)->
@@ -70,8 +67,11 @@ class Service
 			prev = k[i-1]
 			if prev
 				dt = dot.t - prev.t
+				# if 0 < dt < .0001 then dot.t += .0001
+				# if -.0001 < dt <= 0 then dot.t -= .0001
+				# dt = dot.t - prev.t
 				dot.x = prev.x + dt * (dot.v + prev.v)/2
-				dot.dv = (dot.v - prev.v)/max(dt, .001)
+				dot.dv = (dot.v - prev.v)/max(dt, .0001)
 			else
 				dot.x = 0
 				dot.dv = 0

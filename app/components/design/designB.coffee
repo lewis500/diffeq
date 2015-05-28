@@ -23,8 +23,8 @@ template = '''
 			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#plotB)" shifter='[vm.mar.left, vm.mar.top]'>
-			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(0)}}' />
-			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' />
+			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.DV(0), y2: vm.DV(0)}' />
+			<line class='zero-line' d3-der="{x1: vm.V(0), x2: vm.V(0), y1: vm.height, y2: 0}" />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.V(0), x2: vm.V(vm.point.v), y1: vm.DV(vm.point.dv), y2: vm.DV(vm.point.dv)}'/>

@@ -4,12 +4,19 @@ angular = require 'angular'
 der = ($parse)-> #goes on a svg element
 	directive = 
 		restrict: 'A'
+		scope: 
+			d3Der: '='
+			tran: '='
 		link: (scope, el, attr)->
 			sel = d3.select el[0]
-			scope.$watch ->
-					$parse(attr.d3Der)(scope)
+			scope.$watch 'd3Der'
 				, (v)->
-					sel.attr v
-				, true
+					if scope.tran
+						sel.transition()
+							.attr v
+							.call(scope.tran)
+					else
+						sel.attr v
 
+				, true
 module.exports = der

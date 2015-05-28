@@ -1,7 +1,6 @@
 angular = require 'angular'
 d3 = require 'd3'
 require '../../helpers'
-math = require 'mathjs'
 _ = require 'lodash'
 template = '''
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
@@ -20,8 +19,8 @@ template = '''
 			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#reg)" shifter='[vm.mar.left, vm.mar.top]'>
-			<line class='zero-line' ng-class='{"correct": vm.correct}' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
-			<line class='tri v' ng-attr-x1='{{vm.T(vm.point.t)}}' ng-attr-x2='{{vm.T(vm.point.t)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.point.v)}}' />
+			<line class='zero-line hor' ng-class='{"correct": vm.correct}' d3-der='{x1: 0, x2: vm.width, y1: vm.V(0), y2: vm.V(0)}'/>
+			<line class='tri v' d3-der='{x1: vm.T(vm.point.t), x2: vm.T(vm.point.t), y1: vm.V(0), y2: vm.V(vm.point.v )}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point'/>
 			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
@@ -31,7 +30,7 @@ template = '''
 	</svg>
 '''
 
-class regCtrl
+class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
 			left: 30
@@ -51,19 +50,17 @@ class regCtrl
 			.scale @V
 			.ticks 5
 			.orient 'left'
-		
+
 		@lineFun = d3.svg.line()
 			.y (d)=> @V d.v
 			.x (d)=> @T d.t
 
-		parser = math.parser()
-		parser.eval 'v(t) = 5* (t-.5) * (t-1) * (t-2)^2'
-		vFun = parser.get 'v'
+		vFun = (t)->5* (t-.5) * (t-1) * (t-2)**2
 
 		@data = _.range 0 , 3 , 1/50
 			.map (t)->
 				res = 
-					v: vFun(t)
+					v: vFun t
 					t: t
 
 		@point = _.sample @data
@@ -87,7 +84,7 @@ class regCtrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].parentElement.clientHeight - @mar.left - @mar.right
+		@height = @el[0].clientWidth*.5 - @mar.left - @mar.right
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()
@@ -101,6 +98,6 @@ der = ()->
 		scope: {}
 		template: template
 		templateNamespace: 'svg'
-		controller: ['$scope','$element', '$window', regCtrl]
+		controller: ['$scope','$element', '$window', Ctrl]
 
 module.exports = der

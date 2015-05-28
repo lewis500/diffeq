@@ -14,8 +14,8 @@ template = '''
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<g class='g-cart' shifter='[vm.X(vm.Data.x),0]'>
-				<rect class='cart' ng-attr-y='{{vm.height/3}}' ng-attr-x='{{-vm.height/6}}' ng-attr-width='{{vm.height/3}}' ng-attr-height='{{vm.height/3}}'/>
+			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Data.x) + ",0)"}' tran="vm.tran">
+				<rect class='cart' x='-25' width='50' ng-attr-y='{{vm.height/3}}' height='50'/>
 			</g>
 		</g>
 	</svg>
@@ -30,8 +30,6 @@ class Ctrl
 			top: 10
 			bottom: 18
 		@X = d3.scale.linear().domain [-.25,5] 
-		sel  = d3.select @el[0]
-		cart = sel.select '.g-cart'
 
 		@axisFun = d3.svg.axis()
 			.scale @X
@@ -43,17 +41,19 @@ class Ctrl
 			, (v)=>
 				@X.domain [-.25, v+1]
 
-		# @scope.$watch =>
-		# 		@X(Data.area)
-		# 	, (x)=>
-		# 		cart
-		# 			.transition()
-		# 			.duration 15
-		# 			.ease 'linear'
-		# 			.attr 'transform', "translate(#{x},0)"
+		@tran = (tran)->
+			tran.ease 'cubic'
+				.duration 35
+
+		@moveCart= =>
+				x = @X(Data.x)
+				move = "translate(" + x + ",0)" 
+				console.log move
+				res = {transform: move}
+				res
 
 		angular.element @window
-			.on 'resize' , ()=>@resize()
+			.on 'resize' , @resize
 
 	@property 'svg_height' , get:-> @height + @mar.top + @mar.bottom
 

@@ -1,5 +1,10 @@
+
 on design scales, have only one scale for width and height
 make the design plots totally squared
+break the sin/cos plots into two
+
+
+put class on foreignobject stuff to stylize the mathjax 
 
 STRATEGY
 - add the little art
@@ -10,16 +15,15 @@ add a second cart
 show the exp-t function
 
 MED TERM
+have the last v extended in the cart example
 change everything to v' = 0.8\cdot v
 take care of right-clicks
 make a "show the answer" button
 make a span/color directive
 color everything
-put some of the text in tooltips for further explanation
 use marker arrows on the lines to point the derivative direction
 
 SHORT TERM
-install mathjax locally
 http://blog.datacamp.com/mathjax-binding-in-angular-js/
 
 
@@ -30,11 +34,13 @@ ASK IAN THE DOM QUESITON ABOUT THE HEIGHT
 put a texture on the background of the plots
 
 LONG TERM
+put the plot titles in front of little grey things
+
+have a ghost of the cart...light-opacity images of it sampled at regular intervals
+use one of those special scales that doesn't go off the end for the foreignobject labels
+put a y-axis zero line and label on the first three charts
+don't just have the value light up at the top, have it snap to the zero-line
 make em a bold italic, not just an italic
 make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)
 use scope.$destroy when one of the dots gets killed off
-get rid of mathjs dependency
 put all in-line calculations as getters
-kill the lines and use the d3Der
-
-rearrange your app.coffee so the requries are just in the directive definition
