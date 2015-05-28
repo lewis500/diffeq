@@ -1,29 +1,40 @@
 
+
+STRATEGY
+-show the solution e^-t
+- add the little art
+
+
+
+
 show the exp-t function
 
 MED TERM
+change everything to v' = 0.8\cdot v
 take care of right-clicks
 make a "show the answer" button
 make a span/color directive
 color everything
-axis labels
-
+put some of the text in tooltips for further explanation
+use marker arrows on the lines to point the derivative direction
 
 SHORT TERM
 install mathjax locally
+http://blog.datacamp.com/mathjax-binding-in-angular-js/
+
+
+
+ASK IAN THE DOM QUESITON ABOUT THE HEIGHT
 
 
 put a texture on the background of the plots
 
-MED TERM
-axis labels
-put some of the text in tooltips for further explanation
-
-http://blog.datacamp.com/mathjax-binding-in-angular-js/
-
-
-MATHJAX DIRECTIVE
-
 LONG TERM
+make a line derective where you pass in {x1, x2, y1, y2}, and it watches the sum of them
 make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)
 use scope.$destroy when one of the dots gets killed off
+get rid of mathjs dependency
+put all in-line calculations as getters
+kill the lines and use the d3Der
+
+rearrange your app.coffee so the requries are just in the directive definition

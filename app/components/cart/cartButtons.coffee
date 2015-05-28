@@ -14,19 +14,21 @@ class Ctrl
 		@cart = Cart
 
 	play: ->
-		@paused = true
+		Cart.paused = true
 		d3.timer.flush()
-		@paused = false
+		@cart.restart()
+		Cart.paused = false
 		setTimeout =>
-			d3.timer (t)=>
-				@cart.move t/1000
+			last = 0
+			d3.timer (elapsed)=>
+				@cart.increment (elapsed - last)/1000
+				last = elapsed
+				if (@cart.v < .01) then Cart.paused = true
 				@scope.$evalAsync()
-				if (@cart.v < .01) then @paused = true
-				if @paused then console.log 'leaving'
-				@paused
+				Cart.paused
 
 	pause: ->
-		@paused = true
+		Cart.paused = true
 
 der = ()->
 	directive = 

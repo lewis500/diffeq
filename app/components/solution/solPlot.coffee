@@ -24,7 +24,7 @@ template = '''
 		</g>
 		<g class='main' clip-path="url(#plotA)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
-			<line class='zero-line' d3-der="{x1: vm.T(0), x2: vm.T(0), y1: vm.height, y2: 0}" />
+			<line class='zero-line' y1='0' ng-attr-y2='{{vm.height}}' ng-attr-x1='{{vm.T(0)}}' ng-attr-x2='{{vm.T(0)}}' />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' ng-attr-x1='{{vm.T(0)}}' ng-attr-x2='{{vm.T(0)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.Data.selected.v)}}' />
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
@@ -36,8 +36,6 @@ template = '''
 		</g>
 	</svg>
 '''
-
-
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 

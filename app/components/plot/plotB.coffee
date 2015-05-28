@@ -71,8 +71,8 @@ class Ctrl
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
 
 	@property 'dots', get:->
-		Data.dots.filter (d)->
-			d.id !='first'
+		Data.dots
+			.filter (d)-> d.id !='first'
 
 	hilite: (v)->
 		d3.select this

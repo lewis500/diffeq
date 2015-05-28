@@ -28,15 +28,14 @@
       p
         | Consider a cart rolling to a stop. It turns out the cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction.' Basically, how fast the cart slows down ($\dot{v}$) is directly proportional to its velocity ($v$).
     div( flex offset='5' )
-      div(cart-plot-der )
+      div(cart-sim-der )
       div(cart-buttons-der )
+      div(cart-plot-der)
         
   div(flex layout='row')
     div(flex='50')
       p
         |  The solution is a function $v(t)$ that gives the velocity at $t$. We'll assume the starting velocity is $4$ and $k=1$, so $v(t)$ must solve $\dot{v}= -v$ and $v(0)=4$.
-        //- (TOOLTIP The DE implies that if the cart goes twice as fast, it slows down twice as fast. If we solve the DE, we can get a function $v(t)$ that tells the velocity at time $t$.)
-      //- div(flex  plot-a-der)
   div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
     h2(style='text-align:center') 'CART'-OGRAPHY
   div(flex layout='row')

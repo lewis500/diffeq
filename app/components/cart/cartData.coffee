@@ -6,8 +6,16 @@ class Cart
 		{@x0, @v0, @b} = @options
 		@restart()
 	restart: ->
+		@t = 0
 		@trajectory = []
 		@move(0)
+		@paused = true
+	set_t: (t)->
+		@t = t
+		@move t
+	increment: (dt)->
+		@t+=dt
+		@move @t
 	move: (t)->
 		@v = @v0 * exp(-@b * t)
 		@x = @x0 + @v0/@b * (1-exp(-@b*t))

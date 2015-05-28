@@ -22,6 +22,9 @@ template = '''
 			<line class='zero-line' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
+			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
+					<text class='label' font-size='13px'>$\\dot{v}$</text>
+			</foreignObject>
 			<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri fun dv' />
 			<path ng-attr-d='{{vm.lineFun([{v: vm.point.dv, t: vm.point.t}, {v: 0, t: vm.point.t}])}}' class='fun dv' style='opacity: .4;'/>
 			<path ng-attr-d='{{vm.lineFun2(vm.data)}}' class='fun dv' style='opacity: .3' />
@@ -85,6 +88,10 @@ class triCtrl
 			@scope.$evalAsync()
 
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
+
+	@property 'sthing', get:->
+		@V(@point.dv/2 + @point.v) - 7
+
 
 	triangleData:->
 		@lineFun [{v: @point.v, t: @point.t}, {v:@point.dv + @point.v, t: @point.t+1}, {v: @point.dv + @point.v, t: @point.t}]

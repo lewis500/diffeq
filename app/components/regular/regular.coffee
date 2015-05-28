@@ -15,12 +15,13 @@ template = '''
 			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
-					<text class='label' >$t$</text>
+				<text class='label' >$t$</text>
 			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#reg)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' ng-class='{"correct": vm.correct}' x1='0' ng-attr-x2='{{vm.width}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(0)}}' />
 			<line class='tri v' ng-attr-x1='{{vm.T(vm.point.t)}}' ng-attr-x2='{{vm.T(vm.point.t)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.point.v)}}' />
+
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point'/>
 		</g>

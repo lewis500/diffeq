@@ -1,67 +1,100 @@
-_ = require 'lodash'
-d3= require 'd3'
-{min} = Math
-Cart = require './cartData'
+angular = require 'angular'
+d3 = require 'd3'
 require '../../helpers'
-
+_ = require 'lodash'
+Cart = require './cartData'
 template = '''
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
-		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' class='background'/>
-			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
-			<g class='g-cart'>
-				<rect class='cart' ng-attr-y='{{vm.height/3}}' ng-attr-width='{{vm.height/3}}' ng-attr-height='{{vm.height/3}}'/>
-			</g>
+		<defs>
+			<clippath id='sol'>
+				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
+			</clippath>
+		</defs>
+		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
+			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' ng-mousemove='vm.move($event)' />
+			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
+			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
+				<text class='label' >$t$</text>
+			</foreignObject>
+			<foreignObject width='30' height='30' shifter='[-31, vm.height/2-8]'>
+					<text class='label' >$v$</text>
+			</foreignObject>
+		</g>
+		<g class='main' clip-path="url(#sol)" shifter='[vm.mar.left, vm.mar.top]'>
+			<line class='zero-line' d3-der="{x1: 0 , x2: vm.width, y1: vm.V(0), y2: vm.V(0)}" /> 
+			<line class='zero-line' d3-der="{x1: vm.T(0) , x2: vm.T(0), y1: 0, y2: vm.height}" /> 
+			<line class='tri v'  ng-attr-x1='{{vm.T(vm.Cart.t)}}' ng-attr-x2='{{vm.T(vm.Cart.t)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.Cart.v)}}' />
+
+			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
+			<circle r='3px' shifter='[vm.T(vm.Cart.t), vm.V(vm.Cart.v)]' class='Cart'/>
 		</g>
 	</svg>
 '''
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
-		@cart = Cart
 		@mar = 
-			left: 10
-			right: 10
-			top: 10
-			bottom: 18
-		@X = d3.scale.linear().domain [-.25,5] 
-		sel  = d3.select @el[0]
-		cart = sel.select '.g-cart'
+			left: 30
+			top: 20
+			right: 20
+			bottom: 35
 
-		@axisFun = d3.svg.axis()
-			.scale @X
+		@V = d3.scale.linear().domain [-.1,5]
+			# .clamp true
+		@T = d3.scale.linear().domain [-.1,5]
+			# .clamp true
+
+		@Cart = Cart
+
+		@horAxFun = d3.svg.axis()
+			.scale @T
 			.ticks 5
 			.orient 'bottom'
 
-		@scope.$watch 'vm.cart.x', (x)=>
-			xPx = @X(x)
-			cart
-				.transition()
-				.duration 15
-				.ease 'linear'
-				.attr 'transform', "translate(#{xPx},0)"
+		@verAxFun = d3.svg.axis()
+			.scale @V
+			.ticks 5
+			.orient 'left'
+		
+		@lineFun = d3.svg.line()
+			.y (d)=> @V d.v
+			.x (d)=> @T d.t
+
+		vFun = (t)-> 4*Math.exp -t
+
+		@data = _.range 0 , 5 , 1/60
+			.map (t)->
+				res = 
+					v: vFun t
+					t: t
 
 		angular.element @window
-			.on 'resize' , ()=>@resize()
+			.on 'resize', @resize
 
-	# @property 
+		@move = (event) =>
+			if not Cart.paused then return
+			rect = event.target.getBoundingClientRect()
+			t = @T.invert event.x - rect.left
+			t = Math.max 0 , t
+			Cart.set_t t
+			@scope.$evalAsync()
 
-	@property 'svg_height' , get:-> @height + @mar.top + @mar.bottom
+	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width*.3 - @mar.top - @mar.bottom
-		@X.range([0, @width])
+		@height = @width*.7 - @mar.left - @mar.right
+		@V.range [@height, 0]
+		@T.range [0, @width]
 		@scope.$evalAsync()
 
 der = ()->
 	directive = 
-		template: template
-		scope: {}
-		restrict: 'A'
-		bindToController: true
-		templateNamespace: 'svg'
-		controller: ['$scope', '$element', '$window', Ctrl]
 		controllerAs: 'vm'
+		scope: {}
+		template: template
+		templateNamespace: 'svg'
+		controller: ['$scope','$element', '$window', Ctrl]
 
 module.exports = der
