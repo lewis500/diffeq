@@ -46,9 +46,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@V = d3.scale.linear().domain [-.25,5]
+		@V = d3.scale.linear().domain [0,5]
 
-		@T = d3.scale.linear().domain [-.25,5]
+		@T = d3.scale.linear().domain [0,5]
 
 		@Data = Data
 
@@ -65,6 +65,23 @@ class Ctrl
 		@lineFun = d3.svg.line()
 			.y (d)=> @V d.v
 			.x (d)=> @T d.t
+
+		@getSamples = (path, num) ->
+			len = path.getTotalLength()
+			p = undefined
+			result = []
+			i = 0
+			while i < num
+				p = path.getPointAtLength(i * len / num)
+				result.push 
+					t: @T.invert(p.x)
+					v: @V.invert(p.y)
+				i++
+			result
+
+		@node = d3.select @el[0]
+			.select 'path.fun.v'
+			.node()
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
@@ -109,6 +126,7 @@ class Ctrl
 				event.preventDefault()
 				return
 			Data.update_dot dot, @T.invert(d3.event.x), @V.invert(d3.event.y)
+			Data.samples = @getSamples(@node, 200)
 			@scope.$evalAsync()
 
 	@property 'point', get: -> Data.selected

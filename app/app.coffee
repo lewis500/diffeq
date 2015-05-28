@@ -32,6 +32,7 @@ app = angular.module 'mainApp', [material]
 	.directive 'derivativeDer', derivativeDer
 	.directive 'dotBDer', dotBDer
 	.directive 'cartPlotDer', require './components/cart/cartPlot'
+	.directive 'plotCartDer', require './components/plot/plotCart'
 
 looper = ->
     setTimeout( ()->
