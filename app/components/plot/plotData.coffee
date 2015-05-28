@@ -2,6 +2,12 @@ _ = require 'lodash'
 require '../../helpers'
 {exp, sqrt, atan, min, max} = Math
 
+vScale = d3.scale.linear()
+xScale = d3.scale.linear()
+	# .interpolate (a,b)->
+	# 	(t)->
+	# 		a*(1-t)**2
+
 class Dot
 	constructor: (@t, @v)->
 		@id = _.uniqueId 'dot'
@@ -28,24 +34,14 @@ class Service
 					t: t
 					v: 4* exp(-t)
 					dv: -4 * exp(-t)
+		@data = _.range 0, 5, 1/150
+			.map (t)->
+				res = 
+					t: t
+					v: 0
+					x: 0
+		xScale.domain _.pluck @data, 't'
 		@update_dots()
-
-		@samples = []
-
-		@getArea = (t) ->
-			total = 0
-			s = undefined
-			i = 0
-			while i < @samples.length
-				s = @samples[i]
-				if s.t > t
-				  break
-				total += s.v * (s.t - (@samples[i-1]?.t or 0))
-				i++
-			total
-
-	@property 'area', get:->
-		@getArea @t
 
 	add_dot: (t, v)->
 		@selected = new Dot t,v
@@ -57,10 +53,28 @@ class Service
 
 	update_dots: -> 
 		@dots.sort (a,b)-> a.t - b.t
+		vScale.domain _.pluck @dots, 't'
+			.range _.pluck @dots , 'v'
+
+		@data.forEach (d,i,k)->
+			d.v = vScale d.t
+			if i > 0
+				prev = k[i-1]
+				d.x = prev.x + (prev.v + d.v)/2*(d.t-prev.t)
+			else
+				d.x = 0
+
+		xScale.range _.pluck @data, 'x'
+
 		@dots.forEach (dot, i, k)->
 			prev = k[i-1]
-			dot.dv = if prev then (dot.v - prev.v)/max(dot.t - prev.t, .01) else 0
-			dot.x = if prev then (prev.x + dot.v * (dot.t - prev.t) + dot.dv /2 * (dot.t - prev.t)**2) else 0
+			if prev
+				dt = dot.t - prev.t
+				dot.x = prev.x + dt * (dot.v + prev.v)/2
+				dot.dv = (dot.v - prev.v)/max(dt, .001)
+			else
+				dot.x = 0
+				dot.dv = 0
 
 	update_dot: (dot, t, v)->
 		if dot.id == 'first' then return
@@ -71,9 +85,10 @@ class Service
 		@correct = Math.abs(@selected.v + @selected.dv) < 0.1
 
 	@property 'x', get: ->
-		dot = _.findLast @dots , (d)=> d.t <= @t
-		dt = @t - dot.t
-		x = dot.x + dt*dot.v + 0.5*dot.dv * (dt)**2
+		res = xScale @t
+
+	@property 'maxX', get:->
+		@data[@data.length - 1].x
 
 service = new Service
 

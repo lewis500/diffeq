@@ -31,11 +31,11 @@ template = '''
 				<line class='tri dv' ng-attr-x1='{{vm.V(0)}}' ng-attr-x2='{{vm.V(0)}}' ng-attr-y1='{{vm.DV(0)}}' ng-attr-y2='{{vm.DV(vm.Data.selected.dv)}}' />
 				<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
-			<path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv' />
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.V(dot.v),vm.DV(dot.dv)]' dot-b-der></g>
 		</g>
 	</svg>
 '''
+			# <path ng-attr-d='{{vm.lineFun(vm.dots)}}' class='fun dv' />
 
 class Ctrl
 	constructor: (@scope, @el, @window)->

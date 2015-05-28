@@ -14,7 +14,7 @@ template = '''
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<g class='g-cart'>
+			<g class='g-cart' shifter='[vm.X(vm.Data.x),0]'>
 				<rect class='cart' ng-attr-y='{{vm.height/3}}' ng-attr-x='{{-vm.height/6}}' ng-attr-width='{{vm.height/3}}' ng-attr-height='{{vm.height/3}}'/>
 			</g>
 		</g>
@@ -38,14 +38,19 @@ class Ctrl
 			.ticks 5
 			.orient 'bottom'
 
-		@scope.$watch =>
-				@X(Data.area)
-			, (x)=>
-				cart
-					.transition()
-					.duration 15
-					.ease 'linear'
-					.attr 'transform', "translate(#{x},0)"
+		@scope.$watch -> 
+				Data.maxX
+			, (v)=>
+				@X.domain [-.25, v+1]
+
+		# @scope.$watch =>
+		# 		@X(Data.area)
+		# 	, (x)=>
+		# 		cart
+		# 			.transition()
+		# 			.duration 15
+		# 			.ease 'linear'
+		# 			.attr 'transform', "translate(#{x},0)"
 
 		angular.element @window
 			.on 'resize' , ()=>@resize()

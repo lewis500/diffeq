@@ -23,7 +23,7 @@ template = '''
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
 			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
-					<text class='label' font-size='13px'>$\\dot{v}$</text>
+					<text class='label' font-size='13px'>$\\dot{y}$</text>
 			</foreignObject>
 			<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri fun dv' />
 			<path ng-attr-d='{{vm.lineFun([{v: vm.point.dv, t: vm.point.t}, {v: 0, t: vm.point.t}])}}' class='fun dv' style='opacity: .4;'/>
