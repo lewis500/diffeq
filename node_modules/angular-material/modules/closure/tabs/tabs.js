@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.4
+ * v0.9.6
  */
 goog.provide('ng.material.components.tabs');
 goog.require('ng.material.components.icon');
@@ -164,11 +164,13 @@ angular
     .directive('mdTabItem', MdTabItem);
 
 function MdTabItem () {
-  return { require: '^?mdTabs', link: link };
-  function link (scope, element, attr, ctrl) {
-    if (!ctrl) return;
-    ctrl.attachRipple(scope, element);
-  }
+  return {
+    require: '^?mdTabs',
+    link: function link (scope, element, attr, ctrl) {
+      if (!ctrl) return;
+      ctrl.attachRipple(scope, element);
+    }
+  };
 }
 
 angular.module('material.components.tabs')
@@ -193,7 +195,10 @@ angular
     .module('material.components.tabs')
     .controller('MdTabsController', MdTabsController);
 
-function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $mdInkRipple,
+/**
+ * @ngInject
+ */
+function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $mdTabInkRipple,
                            $mdUtil, $animate) {
   var ctrl     = this,
       locked   = false,
@@ -307,7 +312,7 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   function handleOffsetChange (left) {
     var newValue = shouldCenterTabs() ? '' : '-' + left + 'px';
-    angular.element(elements.paging).css('left', newValue);
+    angular.element(elements.paging).css('transform', 'translate3d(' + newValue + ', 0, 0)');
     $scope.$broadcast('$mdTabsPaginationChanged');
   }
 
@@ -548,10 +553,10 @@ function MdTabsController ($scope, $element, $window, $timeout, $mdConstant, $md
 
   function attachRipple (scope, element) {
     var options = { colorElement: angular.element(elements.inkBar) };
-    $mdInkRipple.attachTabBehavior(scope, element, options);
+    $mdTabInkRipple.attach(scope, element, options);
   }
 }
-MdTabsController.$inject = ["$scope", "$element", "$window", "$timeout", "$mdConstant", "$mdInkRipple", "$mdUtil", "$animate"];
+MdTabsController.$inject = ["$scope", "$element", "$window", "$timeout", "$mdConstant", "$mdTabInkRipple", "$mdUtil", "$animate"];
 
 /**
  * @ngdoc directive
@@ -650,7 +655,7 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
       stretchTabs:   '@?mdStretchTabs'
     },
     template: function (element, attr) {
-      attr.$mdTabsTemplate = element.html();
+      var content = attr["$mdTabsTemplate"] = element.html();
       return '\
         <md-tabs-wrapper ng-class="{ \'md-stretch-tabs\': $mdTabsCtrl.shouldStretchTabs() }">\
           <md-tab-data></md-tab-data>\
@@ -736,6 +741,7 @@ function MdTabs ($mdTheming, $mdUtil, $compile) {
               ng-repeat="(index, tab) in $mdTabsCtrl.tabs" \
               md-template="tab.template"\
               md-scope="tab.parent"\
+              md-connected-if="tab.isActive()"\
               ng-class="{\
                 \'md-no-transition\': $mdTabsCtrl.lastSelectedIndex == null,\
                 \'md-active\':        tab.isActive(),\
@@ -775,22 +781,35 @@ angular
     .module('material.components.tabs')
     .directive('mdTemplate', MdTemplate);
 
-function MdTemplate ($compile) {
+function MdTemplate ($compile, $mdUtil, $timeout) {
   return {
     restrict: 'A',
     link: link,
     scope: {
       template: '=mdTemplate',
-      compileScope: '=mdScope'
+      compileScope: '=mdScope',
+      connected: '=?mdConnectedIf'
     },
     require: '^?mdTabs'
   };
   function link (scope, element, attr, ctrl) {
     if (!ctrl) return;
+    var compileScope = scope.compileScope.$new();
     element.html(scope.template);
-    $compile(element.contents())(scope.compileScope);
+    $compile(element.contents())(compileScope);
+    return $timeout(handleScope);
+    function handleScope () {
+      scope.$watch('connected', function (value) { value ? reconnect() : disconnect(); });
+      scope.$on('$destroy', reconnect);
+    }
+    function disconnect () {
+      $mdUtil.disconnectScope(compileScope);
+    }
+    function reconnect () {
+      $mdUtil.reconnectScope(compileScope);
+    }
   }
 }
-MdTemplate.$inject = ["$compile"];
+MdTemplate.$inject = ["$compile", "$mdUtil", "$timeout"];
 
 ng.material.components.tabs = angular.module("material.components.tabs");

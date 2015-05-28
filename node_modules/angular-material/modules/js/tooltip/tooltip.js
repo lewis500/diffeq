@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.4
+ * v0.9.6
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -32,7 +32,7 @@ angular
  *   <md-tooltip>
  *     Play Music
  *   </md-tooltip>
- *   <md-icon icon="/img/icons/ic_play_arrow_24px.svg"></md-icon>
+ *   <md-icon icon="img/icons/ic_play_arrow_24px.svg"></md-icon>
  * </md-button>
  * </hljs>
  *
@@ -81,6 +81,7 @@ function MdTooltipDirective($timeout, $window, $$rAF, $document, $mdUtil, $mdThe
       manipulateElement();
       bindEvents();
       configureWatchers();
+      addAriaLabel();
     }
 
     function setDefaults () {
@@ -99,10 +100,15 @@ function MdTooltipDirective($timeout, $window, $$rAF, $document, $mdUtil, $mdThe
       });
     }
 
+    function addAriaLabel () {
+      if (!parent.attr('aria-label') && !parent.text().trim()) {
+        parent.attr('aria-label', element.text().trim());
+      }
+    }
+
     function manipulateElement () {
       element.detach();
       element.attr('role', 'tooltip');
-      element.attr('id', attr.id || ('tooltip_' + $mdUtil.nextUid()));
     }
 
     function getParentWithPointerEvents () {
@@ -158,8 +164,6 @@ function MdTooltipDirective($timeout, $window, $$rAF, $document, $mdUtil, $mdThe
         return;
       }
 
-      parent.attr('aria-describedby', element.attr('id'));
-
       positionTooltip();
       angular.forEach([element, background, content], function (element) {
         $animate.addClass(element, 'md-show');
@@ -167,7 +171,6 @@ function MdTooltipDirective($timeout, $window, $$rAF, $document, $mdUtil, $mdThe
     }
 
     function hideTooltip() {
-      parent.removeAttr('aria-describedby');
       $q.all([
         $animate.removeClass(content, 'md-show'),
         $animate.removeClass(background, 'md-show'),

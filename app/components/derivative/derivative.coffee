@@ -7,7 +7,7 @@ Data = require './derivativeData'
 template = '''
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
-			<clippath id='derivative'>
+			<clippath id='derClip'>
 				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
 			</clippath>
 		</defs>
@@ -19,7 +19,7 @@ template = '''
 					<text class='label' >$t$</text>
 			</foreignObject>
 		</g>
-		<g class='main' clip-path="url(#derivative)" shifter='[vm.mar.left, vm.mar.top]'>
+		<g class='main' clip-path="url(#derClip)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line hor' d3-der='{x1: 0, x2: vm.width, y1: vm.V(0), y2: vm.V(0)}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
@@ -27,7 +27,7 @@ template = '''
 			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
 					<text class='label' font-size='13px'>$\\dot{y}$</text>
 			</foreignObject>
-			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point'/>
+			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 		</g>
 	</svg>
 '''
@@ -41,12 +41,13 @@ class Ctrl
 			bottom: 35
 
 		@V = d3.scale.linear().domain [-1.5,1.5]
-		@T = d3.scale.linear().domain [0,8]
+		@T = d3.scale.linear().domain [0,6]
 
 		@data = Data.data
 
 		@horAxFun = d3.svg.axis()
 			.scale @T
+			.ticks 5
 			.orient 'bottom'
 
 		@verAxFun = d3.svg.axis()
@@ -56,9 +57,6 @@ class Ctrl
 
 		@lineFun = d3.svg.line()
 			.y (d)=> @V d.v
-			.x (d)=> @T d.t
-		@lineFun2 = d3.svg.line()
-			.y (d)=> @V d.dv
 			.x (d)=> @T d.t
 
 		angular.element @window
@@ -82,7 +80,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientWidth*.5 - @mar.top - @mar.bottom
+		@height = @el[0].clientHeight - @mar.top - @mar.bottom - 8
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()

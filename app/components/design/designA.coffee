@@ -2,6 +2,7 @@ angular = require 'angular'
 d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
+textures = require 'textures'
 template = '''
 	<h3>Plot A</h3>
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
@@ -49,6 +50,19 @@ class Ctrl
 		@V = d3.scale.linear().domain [-.25,5]
 
 		@T = d3.scale.linear().domain [-.25,5]
+		t = textures.lines()
+			.orientation("3/8", "7/8")
+			.size(5)
+			.stroke('#E6E6E6')
+		    .strokeWidth(1)
+
+		d3.select @el[0]
+			.select 'svg'
+			.call t
+
+		d3.select @el[0]
+			.select 'rect.background'
+			.style 'fill', t.url()
 
 		@Data = Data
 

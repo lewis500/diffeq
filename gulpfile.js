@@ -8,6 +8,8 @@ var less = require('gulp-less');
 var jade = require('gulp-jade');
 
 var errorHandler = function(e) {
+    e.showProperties = false;
+    e.stack = ' '
     gutil.log(e);
     this.emit('end');
 };
@@ -17,12 +19,16 @@ gulp.task('jade', function() {
         .pipe(jade({
             pretty: true
         }))
+        .on('error', notify.onError('build error'))
+        .on('error', errorHandler)
+        // .on( 'error', gutil.log)
         .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('thirdParty', function() {
     return browserify({
-            require: ['lodash', 'd3', 'angular', 'angular-material'],
+            require: 
+            ['lodash', 'd3', 'angular', 'angular-material', 'textures'],
         })
         .bundle()
         .pipe(source('thirdParty.js'))
@@ -40,7 +46,8 @@ gulp.task('watch', function() {
     var bundler = watchify(browserify('./app/app.coffee', {
         debug: true,
         extensions: ['.coffee'],
-        external: ['lodash', 'd3', 'angular', 'angular-material'],
+        external: 
+            ['lodash', 'd3', 'angular', 'angular-material', 'textures'],
         transform: ['coffeeify'],
         bundleExternal: false
     }));

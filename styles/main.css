@@ -1,12 +1,12 @@
 @import "../node_modules/angular-material/angular-material.css";
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500italic);
 body {
   font-family: 'Roboto', serif;
   padding-top: 5px;
   font-size: 16px;
   padding-left: 10%;
-  width: 70%;
-  max-width: 800px;
+  width: 80%;
+  max-width: 880px;
   min-width: 400px;
 }
 line,
@@ -38,11 +38,10 @@ p {
 .axis line {
   fill: none;
   stroke: white;
-  shape-rendering: crispEdges;
 }
 .axis g.tick line {
   stroke-width: 1px;
-  stroke-dasharray: 2, 2, 3;
+  stroke-dasharray: 2, 2;
   stroke-linecap: round;
   opacity: .9;
 }
@@ -59,9 +58,9 @@ p {
 .tri {
   stroke-width: 1.3px;
   fill: none;
-  opacity: .9;
-  stroke: #bdbdbd;
-  stroke-dasharray: 1, 2;
+  opacity: 1;
+  stroke: #4caf50;
+  stroke-dasharray: 2, 2;
   stroke-linecap: round;
 }
 .v {
@@ -69,6 +68,12 @@ p {
 }
 .dv {
   stroke: #03a9f4;
+}
+.point.v {
+  fill: #e91e63;
+}
+.point.dv {
+  fill: #03a9f4;
 }
 line.zero-line {
   stroke-width: 2px;
@@ -103,7 +108,6 @@ circle.dot.dv {
 }
 circle.point {
   stroke: white;
-  fill: #c2185b;
   opacity: .95;
   stroke-width: 1.5px;
 }
@@ -128,6 +132,7 @@ text.label {
   dominant-baseline: central;
 }
 em {
+  font-weight: 500;
   font-style: italic;
 }
 rect.cart {
@@ -142,4 +147,14 @@ rect.cart {
   margin-bottom: 5px;
   margin-top: 5px;
   padding: 0px;
+}
+span.col {
+  padding: 3px 4px 3px 3px;
+  border-radius: 2px;
+}
+span.v {
+  background-color: rgba(233, 30, 99, 0.3);
+}
+span.dv {
+  background-color: rgba(3, 169, 244, 0.4);
 }

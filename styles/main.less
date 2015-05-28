@@ -1,13 +1,13 @@
 @import "../node_modules/angular-material/angular-material.css";
 @import "../bower_components/material-color/material-color";
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500italic);
 body {
     font-family: 'Roboto', serif;
     padding-top: 5px;
     font-size: 16px;
     padding-left: 10%;
-    width: 70%;
-    max-width: 800px;
+    width: 80%;
+    max-width: 880px;
     min-width: 400px;
 }
 
@@ -28,6 +28,8 @@ path {
 rect.background {
     fill: #eee;
 }
+
+// #E6E6E6
 
 foreign-object{
     pointer-events: none;
@@ -51,12 +53,13 @@ p {
 .axis line {
     fill: none;
     stroke: white;
-    shape-rendering: crispEdges;
+    // shape-rendering: crispEdges;
 }
 
 .axis g.tick line {
     stroke-width: 1px;
-    stroke-dasharray: 2, 2, 3;
+    stroke-dasharray: 2, 2;
+    // shape-rendering: crispEdges;
     stroke-linecap: round;
     opacity: .9;
 }
@@ -78,9 +81,9 @@ p {
 .tri {
     stroke-width: 1.3px;
     fill: none;
-    opacity: .9;
-    stroke: @clr-grey-400;
-    stroke-dasharray: 1, 2;
+    opacity: 1;
+    stroke: @clr-green-500;
+    stroke-dasharray: 2, 2;
     stroke-linecap: round;
 }
 
@@ -91,6 +94,18 @@ p {
 .dv {
     stroke: @clr-light-blue-500;
 }
+
+.point.v{
+    fill: @clr-pink-500;
+}
+.point.dv{
+    fill: @clr-light-blue-500;
+}
+
+// span{
+//     padding: 4px;
+// }
+
 
 line.zero-line {
     stroke-width: 2px;
@@ -138,7 +153,6 @@ circle.dot.dv {
 
 circle.point {
     stroke: white;
-    fill: @clr-pink-700;
     opacity: .95;
     stroke-width: 1.5px;
 }
@@ -175,6 +189,7 @@ text.label {
 }
 
 em {
+    font-weight: 500;
     font-style: italic;
 }
 
@@ -192,4 +207,18 @@ rect.cart {
     margin-bottom: 5px;
     margin-top: 5px;
     padding: 0px;
+}
+
+span.col{
+    padding: 3px 4px 3px 3px;
+    border-radius: 2px;
+}
+
+span.v{
+    background-color: fade(@clr-pink-500, 30%);
+    // color: @clr-pink-500;
+    // fill: @clr-pink-500;
+}
+span.dv{
+    background-color: fade(@clr-light-blue-500, 40%);
 }

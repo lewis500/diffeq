@@ -26,7 +26,7 @@ template = '''
 			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.DV(vm.point.dv*.5)-6]' style='font-size: 13px; font-weight: 100;'>
 					<text class='label' font-size='13px'>$\\dot{y}$</text>
 			</foreignObject>
-			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.DV(vm.point.dv)]' class='point'/>
+			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.DV(vm.point.dv)]' class='point dv'/>
 		</g>
 	</svg>
 '''
@@ -40,12 +40,13 @@ class Ctrl
 			bottom: 35
 
 		@DV = d3.scale.linear().domain [-1.5,1.5]
-		@T = d3.scale.linear().domain [0,8]
+		@T = d3.scale.linear().domain [0,6]
 
 		@data = Data.data
 
 		@horAxFun = d3.svg.axis()
 			.scale @T
+			.ticks 5
 			.orient 'bottom'
 
 		@verAxFun = d3.svg.axis()
@@ -72,7 +73,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientWidth*0.5 - @mar.top - @mar.bottom
+		@height = @el[0].clientHeight - @mar.top - @mar.bottom
 		@DV.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()

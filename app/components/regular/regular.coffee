@@ -22,7 +22,7 @@ template = '''
 			<line class='zero-line hor' ng-class='{"correct": vm.correct}' d3-der='{x1: 0, x2: vm.width, y1: vm.V(0), y2: vm.V(0)}'/>
 			<line class='tri v' d3-der='{x1: vm.T(vm.point.t), x2: vm.T(vm.point.t), y1: vm.V(0), y2: vm.V(vm.point.v )}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
-			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point'/>
+			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
 					<text class='label' font-size='13px'>$y$</text>
 			</foreignObject>
@@ -84,7 +84,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientWidth*.5 - @mar.left - @mar.right
+		@height = @el[0].clientHeight - @mar.left - @mar.right - 10
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()
