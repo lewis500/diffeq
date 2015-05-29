@@ -17,8 +17,9 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.directive 'derivativeDer', require './components/derivative/derivative'
 	.directive 'derivativeBDer', require './components/derivative/derivativeB'
 	.directive 'dotBDer', require './directives/dotB'
-	.directive 'cartPlot', require './components/cart/cartPlot'
-	.directive 'designCartDer', require './components/design/designCartA'
+	.directive 'cartPlotDer', require './components/cart/cartPlot'
+	.directive 'designCartADer', require './components/design/designCartA'
+	.directive 'designCartBDer', require './components/design/designCartB'
 
 looper = ->
     setTimeout( ()->

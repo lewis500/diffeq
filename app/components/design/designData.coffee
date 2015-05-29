@@ -4,7 +4,7 @@ require '../../helpers'
 
 vScale = d3.scale.linear()
 xScale = d3.scale.linear()
-
+# trueXScale = d3.scale.linear()
 class Dot
 	constructor: (@t, @v)->
 		@id = _.uniqueId 'dot'
@@ -17,7 +17,8 @@ class Service
 		firstDot = new Dot 0 , 4
 		firstDot.id = 'first'
 		@dots = [ firstDot, 
-			new Dot .3, 4*exp(-.3)
+			new Dot( .3, 4*exp(-.3)),
+			# lastDot
 		 ]
 		@correct = false
 
@@ -25,13 +26,13 @@ class Service
 
 		@selected = firstDot
 		@show = false
-		@target_data = _.range 0, 8, 1/50
+		@target_data = _.range 0, 5, 1/50
 			.map (t)-> 
 				res  = 
 					t: t
 					v: 4* exp(-t)
 					dv: -4 * exp(-t)
-		@data = _.range 0, 5, 1/150
+		@data = _.range 0, 5, 1/50
 			.map (t)->
 				res = 
 					t: t
@@ -47,11 +48,16 @@ class Service
 
 	remove_dot: (dot)->
 		@dots.splice @dots.indexOf(dot), 1
+		@update_dots()
 
 	update_dots: -> 
 		@dots.sort (a,b)-> a.t - b.t
-		vScale.domain _.pluck @dots, 't'
-			.range _.pluck @dots , 'v'
+		domain = _.pluck( @dots, 't')
+		domain.push(6.5)
+		range = _.pluck( @dots , 'v')
+		range.push(@dots[@dots.length - 1].v)
+		vScale.domain domain
+			.range range
 
 		@data.forEach (d,i,k)->
 			d.v = vScale d.t
@@ -86,6 +92,9 @@ class Service
 
 	@property 'x', get: ->
 		res = xScale @t
+
+	@property 'true_x', get: ->
+		4*(1-Math.exp -@t )
 
 	@property 'maxX', get:->
 		@data[@data.length - 1].x

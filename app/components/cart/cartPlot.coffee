@@ -20,17 +20,21 @@ template = '''
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2-8]'>
 					<text class='label' >$v$</text>
 			</foreignObject>
-		</g>
-		<g class='main' clip-path="url(#sol)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' d3-der="{x1: 0 , x2: vm.width, y1: vm.V(0), y2: vm.V(0)}" /> 
 			<line class='zero-line' d3-der="{x1: vm.T(0) , x2: vm.T(0), y1: 0, y2: vm.height}" /> 
-			<line class='tri v'  ng-attr-x1='{{vm.T(vm.Cart.t)}}' ng-attr-x2='{{vm.T(vm.Cart.t)}}' ng-attr-y1='{{vm.V(0)}}' ng-attr-y2='{{vm.V(vm.Cart.v)}}' />
-
+		</g>
+		<g class='main' clip-path="url(#sol)" shifter='[vm.mar.left, vm.mar.top]'>
+			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
+					<text class='label' font-size='13px'>$v$</text>
+			</foreignObject>
+			<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
-			<circle r='3px' shifter='[vm.T(vm.Cart.t), vm.V(vm.Cart.v)]' class='Cart'/>
+			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 		</g>
 	</svg>
 '''
+				# <path ng-attr-d='{{vm.triangleData()}}' class='tri' />
+				# <path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
@@ -41,11 +45,9 @@ class Ctrl
 			bottom: 35
 
 		@V = d3.scale.linear().domain [-.1,5]
-			# .clamp true
 		@T = d3.scale.linear().domain [-.1,5]
-			# .clamp true
 
-		@Cart = Cart
+		@point = Cart
 
 		@horAxFun = d3.svg.axis()
 			.scale @T
@@ -79,6 +81,9 @@ class Ctrl
 			t = Math.max 0 , t
 			Cart.set_t t
 			@scope.$evalAsync()
+
+	@property 'sthing', get:->
+		@V(@point.v/2) - 7
 
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
 

@@ -5,8 +5,6 @@ Data = require './designData'
 require '../../helpers'
 
 template = '''
-	<md-slider flex min="0" max="5" step='0.025' ng-model="vm.Data.t" aria-label="red" id="red-slider"></md-slider>
-	{{vm.Data.t | number: 2}}
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 			<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' class='background'/>
@@ -14,7 +12,7 @@ template = '''
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Data.x) + ",0)"}' tran="vm.tran">
+			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Data.true_x) + ",0)"}' tran="vm.tran">
 				<rect class='cart' x='-12.5' width='25' ng-attr-y='{{vm.height/2-12.5}}' height='25'/>
 			</g>
 		</g>
