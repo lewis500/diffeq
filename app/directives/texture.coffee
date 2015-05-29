@@ -8,7 +8,7 @@ class Ctrl
 			.orientation "3/8", "7/8"
 			.size 5
 			.stroke('#E6E6E6')
-		    .strokeWidth 1
+		    .strokeWidth .8
 
 		t.id 'myTexture'
 

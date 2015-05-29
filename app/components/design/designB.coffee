@@ -4,7 +4,6 @@ d3 = require 'd3'
 require '../../helpers'
 
 template = '''
-	<h3>Plot B</h3>
 	<svg ng-init='vm.resize()'  width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotB'>
@@ -44,9 +43,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@DV = d3.scale.linear().domain [-5, .25]
+		@DV = d3.scale.linear().domain [-2.25, .25]
 
-		@V = d3.scale.linear().domain [-.25,4]
+		@V = d3.scale.linear().domain [-.25,2.25]
 
 		@horAxFun = d3.svg.axis()
 			.scale @V
@@ -84,7 +83,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width
+		@height = @width * .8 - @mar.top - @mar.bottom
 		@DV.range [@height, 0]
 		@V.range [0, @width] 
 		@scope.$evalAsync()

@@ -23,8 +23,8 @@ template = '''
 			<line class='zero-line hor' d3-der='{x1: 0, x2: vm.width, y1: vm.DV(0), y2: vm.DV(0)}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun dv' />
 			<line class='tri dv' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.DV(0), y2: vm.DV(vm.point.dv)}'/>
-			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.DV(vm.point.dv*.5)-6]' style='font-size: 13px; font-weight: 100;'>
-					<text class='label' font-size='13px'>$\\dot{y}$</text>
+			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.DV(vm.point.dv*.5)-6]'>
+					<text class='tri-label'>$\\dot{y}$</text>
 			</foreignObject>
 			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.DV(vm.point.dv)]' class='point dv'/>
 		</g>
@@ -51,6 +51,9 @@ class Ctrl
 
 		@verAxFun = d3.svg.axis()
 			.scale @DV
+			.tickFormat (d)->
+				if Math.floor( d ) != d then return
+				d
 			.ticks 5
 			.orient 'left'
 

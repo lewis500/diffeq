@@ -13,10 +13,6 @@ body {
 }
 
 // ======== boilerplate =========
-// svg{
-//     width: 100%;
-// }
-
 line,
 path {
     pointer-events: none;
@@ -27,11 +23,8 @@ path {
 }
 
 rect.background {
-    // fill: #eee;
     fill: url(#myTexture)
 }
-
-// #E6E6E6
 
 foreign-object{
     pointer-events: none;
@@ -111,10 +104,6 @@ p {
     fill: @clr-light-blue-500;
 }
 
-// span{
-//     padding: 4px;
-// }
-
 
 line.zero-line {
     stroke-width: 2px;
@@ -126,9 +115,6 @@ line.zero-line.correct{
     stroke: @clr-yellow-700;
 }
 
-// line.correct-line{
-//     stroke: 2px;
-// }
 
 // ============ dots
 circle.dot {
@@ -175,7 +161,6 @@ circle.point {
     border-left: 4px solid #ccc;
     margin-left: -15px;
     padding: 33px;
-    // padding-left: 25px;
     padding-bottom: 25px;
     border-radius: 2px;
     padding-top: 4px;
@@ -195,6 +180,10 @@ circle.point {
 text.label {
     text-anchor: middle;
     dominant-baseline: central;
+}
+
+text.tri-label{
+    font-size: 13px;
 }
 
 em {
@@ -225,8 +214,6 @@ span.col{
 
 span.v{
     background-color: fade(@clr-pink-500, 30%);
-    // color: @clr-pink-500;
-    // fill: @clr-pink-500;
 }
 span.dv{
     background-color: fade(@clr-light-blue-500, 40%);

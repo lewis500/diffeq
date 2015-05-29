@@ -23,8 +23,8 @@ template = '''
 			<line class='tri v' d3-der='{x1: vm.T(vm.point.t), x2: vm.T(vm.point.t), y1: vm.V(0), y2: vm.V(vm.point.v )}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
-			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
-					<text class='label' font-size='13px'>$y$</text>
+			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]'>
+					<text class='tri-label' font-size='13px'>$y$</text>
 			</foreignObject>
 		</g>
 	</svg>
@@ -39,16 +39,19 @@ class Ctrl
 			bottom: 35
 
 		@V = d3.scale.linear().domain [-1,1]
-		@T = d3.scale.linear().domain [0,3]
+		@T = d3.scale.linear().domain [0,2.5]
 
 		@horAxFun = d3.svg.axis()
 			.scale @T
-			.tickValues [0,1,2,3]
+			.tickFormat(d3.format 'd')
 			.orient 'bottom'
 
 		@verAxFun = d3.svg.axis()
 			.scale @V
 			.ticks 5
+			.tickFormat (d)->
+				if Math.floor(d) != d then return
+				d
 			.orient 'left'
 
 		@lineFun = d3.svg.line()
@@ -84,7 +87,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientHeight - @mar.left - @mar.right - 10
+		@height = @el[0].parentElement.clientHeight - @mar.left - @mar.right - 10
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()

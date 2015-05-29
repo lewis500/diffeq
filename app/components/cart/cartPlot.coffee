@@ -28,13 +28,11 @@ template = '''
 					<text class='label' font-size='13px'>$v$</text>
 			</foreignObject>
 			<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
-			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
+			<path ng-attr-d='{{vm.lineFun(vm.trajectory)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 		</g>
 	</svg>
 '''
-				# <path ng-attr-d='{{vm.triangleData()}}' class='tri' />
-				# <path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
@@ -44,10 +42,11 @@ class Ctrl
 			right: 20
 			bottom: 35
 
-		@V = d3.scale.linear().domain [-.1,5]
+		@V = d3.scale.linear().domain [-.1,2.5]
 		@T = d3.scale.linear().domain [-.1,5]
 
 		@point = Cart
+		@trajectory = Cart.trajectory
 
 		@horAxFun = d3.svg.axis()
 			.scale @T
@@ -62,14 +61,6 @@ class Ctrl
 		@lineFun = d3.svg.line()
 			.y (d)=> @V d.v
 			.x (d)=> @T d.t
-
-		vFun = (t)-> 4*Math.exp -t
-
-		@data = _.range 0 , 5 , 1/60
-			.map (t)->
-				res = 
-					v: vFun t
-					t: t
 
 		angular.element @window
 			.on 'resize', @resize

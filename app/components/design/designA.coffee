@@ -4,7 +4,6 @@ Data = require './designData'
 require '../../helpers'
 textures = require 'textures'
 template = '''
-	<h3>Plot A</h3>
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotA'>
@@ -19,7 +18,7 @@ template = '''
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
 					<text class='label'>$v$</text>
 			</foreignObject>
-			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
+			<foreignObject width='30' height='30' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
 		</g>
@@ -47,22 +46,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@V = d3.scale.linear().domain [-.25,5]
+		@V = d3.scale.linear().domain [-.25,2.5]
 
-		@T = d3.scale.linear().domain [-.25,5]
-		t = textures.lines()
-			.orientation("3/8", "7/8")
-			.size(5)
-			.stroke('#E6E6E6')
-		    .strokeWidth(1)
-
-		d3.select @el[0]
-			.select 'svg'
-			.call t
-
-		d3.select @el[0]
-			.select 'rect.background'
-			.style 'fill', t.url()
+		@T = d3.scale.linear().domain [-.25,7]
 
 		@Data = Data
 
@@ -133,7 +119,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width
+		@height = @width * .8 - @mar.top - @mar.bottom
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()

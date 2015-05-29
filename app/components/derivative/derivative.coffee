@@ -24,8 +24,8 @@ template = '''
 			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
 			<line class='tri dv' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(vm.point.v), y2: vm.V((vm.point.v + vm.point.dv))}'/>
-			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
-					<text class='label' font-size='13px'>$\\dot{y}$</text>
+			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]'>
+					<text class='tri-label' >$\\dot{y}$</text>
 			</foreignObject>
 			<circle r='3px'  shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 		</g>
@@ -52,6 +52,9 @@ class Ctrl
 
 		@verAxFun = d3.svg.axis()
 			.scale @V
+			.tickFormat (d)->
+				if Math.floor( d ) != d then return
+				d
 			.ticks 5
 			.orient 'left'
 
@@ -80,7 +83,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientHeight - @mar.top - @mar.bottom - 8
+		@height = @el[0].parentElement.clientHeight - @mar.top - @mar.bottom - 8
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()

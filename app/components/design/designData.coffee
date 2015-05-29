@@ -1,10 +1,10 @@
 _ = require 'lodash'
 require '../../helpers'
-{exp, sqrt, atan, min, max} = Math
+Cart = require '../cart/cartData'
+{exp, min, max} = Math
 
 vScale = d3.scale.linear()
 xScale = d3.scale.linear()
-# trueXScale = d3.scale.linear()
 class Dot
 	constructor: (@t, @v)->
 		@id = _.uniqueId 'dot'
@@ -14,38 +14,30 @@ class Service
 	constructor: ()->
 		@t = 0
 		@x = 0
-		firstDot = new Dot 0 , 4
+		firstDot = new Dot 0 , Cart.v0
 		firstDot.id = 'first'
 		@dots = [ firstDot, 
-			new Dot( .3, 4*exp(-.3)),
-			# lastDot
-		 ]
+			new Dot Cart.trajectory[10].t , Cart.trajectory[10].v
+		]
 		@correct = false
-
-		@first = firstDot
-
-		@selected = firstDot
 		@show = false
-		@target_data = _.range 0, 5, 1/50
-			.map (t)-> 
-				res  = 
-					t: t
-					v: 4* exp(-t)
-					dv: -4 * exp(-t)
-		@data = _.range 0, 5, 1/50
+		@first = firstDot
+		@selected = firstDot
+		@target_data = Cart.trajectory
+
+		@data = _.range 0, 7, 1/30
 			.map (t)->
 				res = 
 					t: t
 					v: 0
 					x: 0
-
 				
 		xScale.domain _.pluck @data, 't'
 		@update_dots()
 
-		@sample = _.range( 0 , 10)
+		@sample = _.range 0 , 10
 			.map (n)=>
-				@data[n*25]
+				@data[n*21]
 
 	add_dot: (t, v)->
 		@selected = new Dot t,v
@@ -75,14 +67,10 @@ class Service
 
 		xScale.range _.pluck @data, 'x'
 
-
 		@dots.forEach (dot, i, k)->
 			prev = k[i-1]
 			if prev
 				dt = dot.t - prev.t
-				# if 0 < dt < .0001 then dot.t += .0001
-				# if -.0001 < dt <= 0 then dot.t -= .0001
-				# dt = dot.t - prev.t
 				dot.x = prev.x + dt * (dot.v + prev.v)/2
 				dot.dv = (dot.v - prev.v)/max(dt, .0001)
 			else
@@ -95,7 +83,7 @@ class Service
 		dot.t = t
 		dot.v = v
 		@update_dots()
-		@correct = Math.abs(@selected.v + @selected.dv) < 0.1
+		@correct = Math.abs(Cart.k * @selected.v + @selected.dv) < 0.05
 
 	@property 'x', get: ->
 		res = xScale @t
@@ -105,8 +93,6 @@ class Service
 
 	@property 'maxX', get:->
 		@data[@data.length - 1].x
-
-
 
 service = new Service
 

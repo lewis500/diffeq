@@ -3,11 +3,18 @@ _ = require 'lodash'
 
 class Cart
 	constructor: (@options)->
-		{@x0, @v0, @b} = @options
+		{@x0, @v0, @k} = @options
 		@restart()
 	restart: ->
 		@t = 0
-		@trajectory = []
+		@trajectory = _.range 0 , 5 , 1/60
+			.map (t)=>
+				v = @v0 * exp(-@k * t)
+				res = 
+					v: v
+					x: @x0 + @v0/@k * (1-exp(-@k*t))
+					dv: -@k*v
+					t: t
 		@move(0)
 		@paused = true
 	set_t: (t)->
@@ -17,9 +24,8 @@ class Cart
 		@t+=dt
 		@move @t
 	move: (t)->
-		@v = @v0 * exp(-@b * t)
-		@x = @x0 + @v0/@b * (1-exp(-@b*t))
+		@v = @v0 * exp -@k * t
+		@x = @x0 + @v0/@k * (1-exp(-@k*t))
 		@dv = -@v
-		@trajectory.push {t: t, v: @v, x: @x}
 
-module.exports = new Cart {x0: 0, v0: 4, b: 1}
+module.exports = new Cart {x0: 0, v0: 2, k: .8}

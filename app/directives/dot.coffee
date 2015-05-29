@@ -57,7 +57,7 @@ der = ()->
 						.ease 'cubic-out'
 						.style
 							'stroke-width': 2.5
-							stroke: '#222'
+							stroke: '#4CAF50'
 				else 
 					circ.transition()
 						.duration 100

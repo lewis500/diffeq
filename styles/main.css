@@ -137,6 +137,9 @@ text.label {
   text-anchor: middle;
   dominant-baseline: central;
 }
+text.tri-label {
+  font-size: 13px;
+}
 em {
   font-weight: 500;
   font-style: italic;
