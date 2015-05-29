@@ -12,9 +12,8 @@ template = '''
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
 			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' behavior='vm.drag_rect'></rect>
-			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
-			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
-			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
+			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
 					<text class='label'>$v$</text>
 			</foreignObject>
@@ -23,16 +22,16 @@ template = '''
 			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#plotA)" shifter='[vm.mar.left, vm.mar.top]'>
-			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.V(0), y2: vm.V(0)}' />
-			<line class='zero-line' d3-der="{x1: vm.T(0), x2: vm.T(0), y1: vm.height, y2: 0}" />
+			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
+			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
-				<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
+				<line class='tri v' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(0), y2: vm.Ver(vm.point.v)}'/>
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
 				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
 			<path ng-attr-d='{{vm.lineFun(vm.Data.data)}}' class='fun v' />
-			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.T(dot.t),vm.V(dot.v)]' behavior='vm.drag' dot-der ></g>
-			<circle class='dot small' r='4' shifter='[vm.T(vm.Data.first.t),vm.V(vm.Data.first.v)]' />
+			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der ></g>
+			<circle class='dot small' r='4' shifter='[vm.Hor(vm.Data.first.t),vm.Ver(vm.Data.first.v)]' />
 		</g>
 	</svg>
 '''
@@ -46,25 +45,25 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@V = d3.scale.linear().domain [-.25,2.5]
+		@Ver = d3.scale.linear().domain [-.25,2.5]
 
-		@T = d3.scale.linear().domain [-.25,7]
+		@Hor = d3.scale.linear().domain [-.25,7]
 
 		@Data = Data
 
 		@horAxFun = d3.svg.axis()
-			.scale @T
+			.scale @Hor
 			.ticks 5
 			.orient 'bottom'
 
 		@verAxFun = d3.svg.axis()
-			.scale @V
+			.scale @Ver
 			.ticks 5
 			.orient 'left'
 		
 		@lineFun = d3.svg.line()
-			.y (d)=> @V d.v
-			.x (d)=> @T d.t
+			.y (d)=> @Ver d.v
+			.x (d)=> @Hor d.t
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
@@ -73,8 +72,8 @@ class Ctrl
 				if event.which is 3
 					return event.preventDefault()
 				rect = event.toElement.getBoundingClientRect()
-				t = @T.invert event.x - rect.left
-				v  = @V.invert event.y - rect.top
+				t = @Hor.invert event.x - rect.left
+				v  = @Ver.invert event.y - rect.top
 				Data.add_dot t , v
 				@scope.$evalAsync()
 			.on 'drag', => @on_drag(Data.selected)
@@ -108,7 +107,7 @@ class Ctrl
 			if event.which is 3
 				event.preventDefault()
 				return
-			Data.update_dot dot, @T.invert(d3.event.x), @V.invert(d3.event.y)
+			Data.update_dot dot, @Hor.invert(d3.event.x), @Ver.invert(d3.event.y)
 			@scope.$evalAsync()
 
 	@property 'point', get: -> Data.selected
@@ -120,8 +119,8 @@ class Ctrl
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
 		@height = @width * .8 - @mar.top - @mar.bottom
-		@V.range [@height, 0]
-		@T.range [0, @width]
+		@Ver.range [@height, 0]
+		@Hor.range [0, @width]
 		@scope.$evalAsync()
 
 

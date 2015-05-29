@@ -1,5 +1,10 @@
 
+
+
+
 RIGHT NOW
+switch from @V to @VER, etc.
+
 put the solution on the designA plot faint and yellow
 
 STRATEGY
@@ -8,13 +13,9 @@ add a second cart
 
 MED TERM
 have the last v extended in the cart example
-change everything to v' = 0.8\cdot v
 take care of right-clicks
 make a "show the answer" button
 use marker arrows on the lines to point the derivative direction
-
-SHORT TERM
-http://blog.datacamp.com/mathjax-binding-in-angular-js/
 
 
 LONG TERM
@@ -22,14 +23,8 @@ add scroll to zoom on the y-axis of the designA chart
 just use a fixed height for everything
 add a optional transition duration on the axes
 download the fonts
-put the plot titles in front of little grey things
-have a ghost of the cart...light-opacity images of it sampled at regular intervals
 use one of those special scales that doesn't go off the end for the foreignobject labels
 don't just have the value light up at the top, have it snap to the zero-line
-make em a bold italic, not just an italic
-make a mathJAX directive and use it to place text by using the getBoundingClientRect of whatever you're pointing at (or use getBBox)
-use scope.$destroy when one of the dots gets killed off
-put all in-line calculations as getters
 use common classes to simplify controllers
 use my own slider
 animate the triangle in and out of existence
@@ -37,5 +32,3 @@ put transitions on a lot more things
 
 
 UNIFYING CLASSES
-changes @V and @T to @VER and @HOR
-

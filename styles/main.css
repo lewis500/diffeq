@@ -1,10 +1,11 @@
 @import "../node_modules/angular-material/angular-material.css";
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500italic);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,400italic);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,400italic,500);
 @import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic);
 body {
-  font-family: 'Roboto', serif;
+  font-family: 'Josefin Sans', serif;
   padding-top: 5px;
-  font-size: 16px;
+  font-size: 18px;
   padding-left: 10%;
   width: 80%;
   max-width: 880px;
@@ -29,10 +30,12 @@ h3,
 h4,
 h5,
 button {
-  font-weight: 100;
+  font-family: 'Josefin Sans';
+  font-weight: 300;
 }
 p {
-  line-height: 1.55em;
+  font-weight: 400;
+  line-height: 1.35em;
 }
 .axis path,
 .axis line {
