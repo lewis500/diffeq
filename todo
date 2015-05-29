@@ -1,5 +1,7 @@
+
+
+
 RIGHT NOW
-take a sample
 
 instead of putting the things in rows, maybe do two subcolumns ?
 put the solution on the designA plot faint and yellow
@@ -17,8 +19,6 @@ change everything to v' = 0.8\cdot v
 take care of right-clicks
 make a "show the answer" button
 use marker arrows on the lines to point the derivative direction
-
-fix the ugly ass axis numbers. make them a strong serif like the labels are.
 
 SHORT TERM
 http://blog.datacamp.com/mathjax-binding-in-angular-js/

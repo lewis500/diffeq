@@ -18,7 +18,7 @@ path {
   display: none;
 }
 rect.background {
-  fill: #eee;
+  fill: url(#myTexture);
 }
 foreign-object {
   pointer-events: none;
@@ -45,8 +45,9 @@ p {
   font-size: 12px;
 }
 .axis g.tick line {
-  stroke-width: 1px;
+  stroke-width: 1.3px;
   stroke-dasharray: 2, 2;
+  shape-rendering: crispEdges;
   stroke-linecap: round;
   opacity: .9;
 }

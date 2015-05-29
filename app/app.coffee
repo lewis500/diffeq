@@ -20,6 +20,7 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.directive 'cartPlotDer', require './components/cart/cartPlot'
 	.directive 'designCartADer', require './components/design/designCartA'
 	.directive 'designCartBDer', require './components/design/designCartB'
+	.directive 'textureDer', require './directives/texture'
 
 looper = ->
     setTimeout( ()->

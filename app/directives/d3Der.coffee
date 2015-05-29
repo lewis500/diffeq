@@ -13,9 +13,9 @@ der = ($parse)-> #goes on a svg element
 			scope.$watch 'd3Der'
 				, (v)->
 					if scope.tran
-						sel.transition(u)
+						sel.transition u
 							.attr v
-							.call(scope.tran)
+							.call scope.tran
 					else
 						sel.attr v
 

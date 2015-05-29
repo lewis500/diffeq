@@ -27,7 +27,8 @@ path {
 }
 
 rect.background {
-    fill: #eee;
+    // fill: #eee;
+    fill: url(#myTexture)
 }
 
 // #E6E6E6
@@ -65,9 +66,9 @@ p {
 }
 
 .axis g.tick line {
-    stroke-width: 1px;
+    stroke-width: 1.3px;
     stroke-dasharray: 2, 2;
-    // shape-rendering: crispEdges;
+    shape-rendering: crispEdges;
     stroke-linecap: round;
     opacity: .9;
 }
