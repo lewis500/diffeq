@@ -5,7 +5,7 @@ _ = require 'lodash'
 Data = require './derivativeData'
 
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' height='250px'>
 		<defs>
 			<clippath id='derClip'>
 				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
@@ -83,7 +83,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].parentElement.clientHeight - @mar.top - @mar.bottom - 8
+		@height = @el[0].clientHeight - @mar.top - @mar.bottom - 8
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()

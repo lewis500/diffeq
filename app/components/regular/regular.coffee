@@ -3,7 +3,7 @@ d3 = require 'd3'
 require '../../helpers'
 _ = require 'lodash'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' height='250px'>
 		<defs>
 			<clippath id='reg'>
 				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
@@ -87,7 +87,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].parentElement.clientHeight - @mar.left - @mar.right - 10
+		@height = @el[0].clientHeight - @mar.left - @mar.right
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()

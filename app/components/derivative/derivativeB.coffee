@@ -5,7 +5,7 @@ _ = require 'lodash'
 Data = require './derivativeData'
 
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%'  height='250px'>
 		<defs>
 			<clippath id='dervativeB'>
 				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>

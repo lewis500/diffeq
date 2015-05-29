@@ -11,7 +11,7 @@ h3(style='margin-top: 9px;') differential equations explained
 				| The Use and Abuse of Art
 
 #content(layout='column' )
-	div(flex layout='column' layout-margin)
+	div(flex layout='column')
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
@@ -26,7 +26,7 @@ h3(style='margin-top: 9px;') differential equations explained
 					| To see derivatives, we'll draw a right triangle whose hypoteneuse is tangent to (i.e., barely grazes) a function. If the  triangle's width is $1$, its <span class='col dv'>height</span> is the derivative.
 
 			div(flex offset='5' derivative-der)
-		div(flex layout='row' )
+		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
 					| Using that one neat trick, you can see that the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Therefore, $y(t)=\sin(t)$ is a solution to the DE $$ \dot y = \cos(t).$$ 
