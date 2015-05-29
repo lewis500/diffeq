@@ -17,6 +17,9 @@ template = '''
 			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Data.x) + ",0)"}' tran="vm.tran">
 				<rect class='cart' x='-12.5' width='25' ng-attr-y='{{vm.height/2-12.5}}' height='25'/>
 			</g>
+			<g class='g-cart' ng-repeat='asdf in vm.Data.sample' d3-der='{transform: "translate(" + vm.X(asdf.x) + ",0)"}' style='opacity:.3;'>
+				<rect class='cart' x='-12.5' width='25' ng-attr-y='{{vm.height/2-12.5}}' height='25'/>
+			</g>
 		</g>
 	</svg>
 '''

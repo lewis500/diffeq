@@ -9,10 +9,11 @@ der = ($parse)-> #goes on a svg element
 			tran: '='
 		link: (scope, el, attr)->
 			sel = d3.select el[0]
+			u = 't-' + Math.random()
 			scope.$watch 'd3Der'
 				, (v)->
 					if scope.tran
-						sel.transition()
+						sel.transition(u)
 							.attr v
 							.call(scope.tran)
 					else

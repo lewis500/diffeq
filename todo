@@ -1,6 +1,5 @@
 RIGHT NOW
-add the second cart
-
+take a sample
 
 instead of putting the things in rows, maybe do two subcolumns ?
 put the solution on the designA plot faint and yellow
@@ -28,6 +27,7 @@ http://blog.datacamp.com/mathjax-binding-in-angular-js/
 LONG TERM
 add a optional transition duration on the axes
 take decimals off axes
+download the fonts
 put the plot titles in front of little grey things
 have a ghost of the cart...light-opacity images of it sampled at regular intervals
 use one of those special scales that doesn't go off the end for the foreignobject labels
@@ -38,3 +38,5 @@ use scope.$destroy when one of the dots gets killed off
 put all in-line calculations as getters
 use common classes to simplify controllers
 use my own slider
+animate the triangle in and out of existence
+put transitions on a lot more things

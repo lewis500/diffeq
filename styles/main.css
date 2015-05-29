@@ -1,5 +1,6 @@
 @import "../node_modules/angular-material/angular-material.css";
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500italic);
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic);
 body {
   font-family: 'Roboto', serif;
   padding-top: 5px;
@@ -27,8 +28,7 @@ h2,
 h3,
 h4,
 h5,
-button,
-text {
+button {
   font-weight: 100;
 }
 p {
@@ -38,6 +38,11 @@ p {
 .axis line {
   fill: none;
   stroke: white;
+}
+.axis text {
+  font-family: 'Libre Baskerville' serif;
+  font-style: italic;
+  font-size: 12px;
 }
 .axis g.tick line {
   stroke-width: 1px;

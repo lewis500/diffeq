@@ -38,6 +38,8 @@ gulp.task('thirdParty', function() {
 gulp.task('less', function() {
     return gulp.src('./styles/main.less') // only compile the entry file
         .pipe(less())
+        .on('error', notify.onError('build error'))
+        .on('error', errorHandler)
         .pipe(gulp.dest('./styles'));
 });
 

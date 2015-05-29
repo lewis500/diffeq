@@ -38,8 +38,14 @@ class Service
 					t: t
 					v: 0
 					x: 0
+
+				
 		xScale.domain _.pluck @data, 't'
 		@update_dots()
+
+		@sample = _.range( 0 , 10)
+			.map (n)=>
+				@data[n*25]
 
 	add_dot: (t, v)->
 		@selected = new Dot t,v
@@ -68,6 +74,7 @@ class Service
 				d.x = 0
 
 		xScale.range _.pluck @data, 'x'
+
 
 		@dots.forEach (dot, i, k)->
 			prev = k[i-1]
@@ -98,6 +105,8 @@ class Service
 
 	@property 'maxX', get:->
 		@data[@data.length - 1].x
+
+
 
 service = new Service
 
