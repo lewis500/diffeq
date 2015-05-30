@@ -14,6 +14,7 @@ class Data
 		@t = @x = 0
 		firstDot = new Dot 0 , Cart.v0
 		firstDot.id = 'first'
+		# lastDot = new Dot 0 , Cart.
 		@dots = [ firstDot, 
 			new Dot Cart.trajectory[10].t , Cart.trajectory[10].v
 		]
@@ -43,6 +44,8 @@ class Data
 			else
 				dot.x = 0
 				dot.dv = 0
+		# @design_data.forEach (d)->
+		# 	d.v = 
 
 	update_dot: (dot, t, v)->
 		if dot.id == 'first' then return

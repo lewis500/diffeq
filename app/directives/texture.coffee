@@ -16,14 +16,12 @@ class Ctrl
 			.select 'svg'
 			.call t
 
-der = ()->
+der = ->
 	directive = 
-		template: '<svg></svg>'
-		scope: {}
-		restrict: 'A'
-		bindToController: true
-		# templateNamespace: 'svg'
-		controller: ['$scope', '$element', '$window', Ctrl]
 		controllerAs: 'vm'
+		scope: {}
+		template: '<svg height="0px" style="position: absolute;" width="0px"></svg>'
+		templateNamespace: 'svg'
+		controller: ['$scope','$element', '$window', Ctrl]
 
 module.exports = der

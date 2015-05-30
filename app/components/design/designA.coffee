@@ -44,9 +44,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@Ver = d3.scale.linear().domain [-.25,2.25]
+		@Ver = d3.scale.linear().domain [-.1,2.1]
 
-		@Hor = d3.scale.linear().domain [-.25,5]
+		@Hor = d3.scale.linear().domain [-.1,5]
 
 		@Data = Data
 
@@ -117,7 +117,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width * .8 - @mar.top - @mar.bottom
+		@height = @width*.9 - @mar.top - @mar.bottom
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()

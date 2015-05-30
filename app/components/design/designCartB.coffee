@@ -1,7 +1,6 @@
 _ = require 'lodash'
 d3= require 'd3'
 {min} = Math
-# Data = require './designData'
 require '../../helpers'
 Cart = require './trueCart'
 
@@ -14,25 +13,26 @@ template = '''
 					<text class='label' >$t$</text>
 			</foreignObject>
 			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Cart.x) + ",0)"}' >
-				<rect class='cart' x='-12.5' width='25' y='{{vm.height/2-12.5}}' height='25'/>
+				<rect class='cart' x='-12.5' width='25' y='{{30-12.5}}' height='25'/>
+			</g>
+			<g class='g-cart' ng-repeat='t in vm.sample' d3-der='{transform: "translate(" + vm.X(vm.Cart.loc(t)) + ",0)"}' style='opacity:.3;'>
+					<rect class='cart' x='-12.5' width='25' y='{{30-12.5}}' height='25'/>
 			</g>
 		</g>
 	</svg>
 '''
-			# <g class='g-cart' ng-repeat='asdf in vm.Data.true_sample' d3-der='{transform: "translate(" + vm.X(asdf.x) + ",0)"}' style='opacity:.3;'>
-			# 	<rect class='cart' x='-12.5' width='25' y='{{vm.height/2-12.5}}' height='25'/>
-			# </g>
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
-		# @Data = Data
 		@mar = 
 			left: 30
 			right: 10
 			top: 10
 			bottom: 18
-
+			
 		@X = d3.scale.linear().domain [-.25,3.5] 
+
+		@sample = _.range( 0, 3.5 , .5)
 
 		@Cart = Cart
 
@@ -52,7 +52,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width*.1 - @mar.top - @mar.bottom
+		@height = 60
 		@X.range [0, @width]
 		@scope.$evalAsync()
 

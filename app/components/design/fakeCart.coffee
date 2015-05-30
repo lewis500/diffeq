@@ -5,7 +5,7 @@ class Cart
 	constructor: ->
 
 	loc: (t)->
-		i = _.findLastIndex Data.dots, 't', (d)->
+		i = _.findLastIndex Data.dots, (d)->
 			d.t <= t
 		a = Data.dots[i]
 		dt = t - a.t

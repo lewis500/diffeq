@@ -1,23 +1,8 @@
-
-make an xScale
-
-
-RIGHT NOW
-use a standard cart data source thing
+åSHORT TERM
+go through and change those heights and widths to be done with the d3Der
+add a "lastDot" again
 add a "show hte answer thing"
-
-
-fixed height for the tracks
-
-
-RIGHT NOW
-put the solution on the designA plot faint and yellow
-
-
-MED TERM
-have the last v extended in the cart example
 take care of right-clicks
-make a "show the answer" button
 
 
 LONG TERM
@@ -28,3 +13,4 @@ use one of those special scales that doesn't go off the end for the foreignobjec
 don't just have the value light up at the top, have it snap to the zero-line
 use common classes to simplify controllers
 animate the triangle in and out of existence
+on the picture me rolling thing use the pause/play button set up, and have it start out playing
