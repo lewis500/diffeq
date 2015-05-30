@@ -84,6 +84,19 @@ p {
 .point.dv {
   fill: #03a9f4;
 }
+.tri.dv {
+  marker-end: url(#arrow);
+}
+#arrow {
+  fill: #03a9f4;
+  stroke: white;
+  stroke-width: 1px;
+}
+#arrow2 {
+  fill: #e91e63;
+  stroke: white;
+  stroke-width: 1px;
+}
 line.zero-line {
   stroke-width: 2px;
   stroke-dasharray: none;

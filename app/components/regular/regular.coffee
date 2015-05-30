@@ -21,8 +21,8 @@ template = '''
 		<g class='main' clip-path="url(#reg)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line hor' ng-class='{"correct": vm.correct}' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}'/>
 			<line class='tri v' d3-der='{x1: vm.Hor(vm.point.t), x2: vm.Hor(vm.point.t), y1: vm.Ver(0), y2: vm.Ver(vm.point.v )}'/>
-			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.Hor(vm.point.t), vm.Ver(vm.point.v)]' class='point v'/>
+			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.Ver(vm.point.v/2) - 7]'>
 					<text class='tri-label' font-size='13px'>$y$</text>
 			</foreignObject>

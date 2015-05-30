@@ -1,38 +1,25 @@
-MAKING THE PLAY/REPEAT THING
+RIGHT NOW
+use a standard cart data source thing
+add a "show hte answer thing"
 
-
-
-add play button
 
 
 
 RIGHT NOW
-switch from @V to @VER, etc.
-
 put the solution on the designA plot faint and yellow
 
-STRATEGY
-add a play button
-add a second cart
 
 MED TERM
 have the last v extended in the cart example
 take care of right-clicks
 make a "show the answer" button
-use marker arrows on the lines to point the derivative direction
 
 
 LONG TERM
 add scroll to zoom on the y-axis of the designA chart
-just use a fixed height for everything
 add a optional transition duration on the axes
 download the fonts
 use one of those special scales that doesn't go off the end for the foreignobject labels
 don't just have the value light up at the top, have it snap to the zero-line
 use common classes to simplify controllers
-use my own slider
 animate the triangle in and out of existence
-put transitions on a lot more things
-
-
-UNIFYING CLASSES

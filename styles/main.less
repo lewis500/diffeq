@@ -3,7 +3,6 @@
 // @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500italic);
 @import url(http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,400italic);
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,400italic,500);
-
 @import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic);
 body {
     font-family: 'Josefin Sans', serif;
@@ -14,8 +13,6 @@ body {
     max-width: 880px;
     min-width: 400px;
 }
-
-
 
 // ======== boilerplate =========
 line,
@@ -31,7 +28,7 @@ rect.background {
     fill: url(#myTexture)
 }
 
-foreign-object{
+foreign-object {
     pointer-events: none;
 }
 
@@ -46,7 +43,7 @@ button,
     font-weight: 300;
 }
 
-p { 
+p {
     font-weight: 400;
     line-height: 1.35em;
 }
@@ -58,7 +55,7 @@ p {
     // shape-rendering: crispEdges;
 }
 
-.axis text{
+.axis text {
     font-family: 'Libre Baskerville' serif;
     font-style: italic;
     font-size: 12px;
@@ -83,8 +80,8 @@ p {
     stroke: @clr-grey-700;
 }
 
-.correct{
-    stroke:@clr-yellow-700;
+.correct {
+    stroke: @clr-yellow-700;
 }
 
 .tri {
@@ -104,13 +101,32 @@ p {
     stroke: @clr-light-blue-500;
 }
 
-.point.v{
+.point.v {
     fill: @clr-pink-500;
 }
-.point.dv{
+
+.point.dv {
     fill: @clr-light-blue-500;
 }
 
+.tri.dv {
+    marker-end: url(#arrow);
+}
+
+// .tri.v{
+//     marker-end: url(#arrow2);
+// }
+
+#arrow{
+    fill: @clr-light-blue-500;
+    stroke: white;
+    stroke-width: 1px;
+}
+#arrow2{
+    fill: @clr-pink-500;
+    stroke: white;
+    stroke-width: 1px;
+}
 
 line.zero-line {
     stroke-width: 2px;
@@ -118,7 +134,7 @@ line.zero-line {
     stroke: white;
 }
 
-line.zero-line.correct{
+line.zero-line.correct {
     stroke: @clr-yellow-700;
 }
 
@@ -184,7 +200,7 @@ text.label {
     dominant-baseline: central;
 }
 
-text.tri-label{
+text.tri-label {
     font-size: 15px;
 }
 
@@ -209,14 +225,15 @@ rect.cart {
     padding: 0px;
 }
 
-span.col{
+span.col {
     padding: 3px 4px 3px 3px;
     border-radius: 2px;
 }
 
-span.v{
+span.v {
     background-color: fade(@clr-pink-500, 30%);
 }
-span.dv{
+
+span.dv {
     background-color: fade(@clr-light-blue-500, 40%);
 }
