@@ -19,7 +19,7 @@ path {
   display: none;
 }
 rect.background {
-  fill: url(#myTexture);
+  fill: #eee;
 }
 foreign-object {
   pointer-events: none;

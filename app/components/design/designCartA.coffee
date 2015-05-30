@@ -3,6 +3,8 @@ d3= require 'd3'
 {min} = Math
 Data = require './designData'
 require '../../helpers'
+Cart = require './fakeCart'
+
 
 template = '''
 	{{vm.Data.t | number: 2}}
@@ -13,15 +15,15 @@ template = '''
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Data.x) + ",0)"}' >
-				<rect class='cart' x='-12.5' width='25' y='{{vm.height/2-12.5}}' height='25'/>
-			</g>
-			<g class='g-cart' ng-repeat='asdf in vm.Data.sample' d3-der='{transform: "translate(" + vm.X(asdf.x) + ",0)"}' style='opacity:.3;'>
+			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Cart.x) + ",0)"}' >
 				<rect class='cart' x='-12.5' width='25' y='{{vm.height/2-12.5}}' height='25'/>
 			</g>
 		</g>
 	</svg>
 '''
+			# <g class='g-cart' ng-repeat='asdf in vm.Data.sample' d3-der='{transform: "translate(" + vm.X(asdf.x) + ",0)"}' style='opacity:.3;'>
+			# 	<rect class='cart' x='-12.5' width='25' y='{{vm.height/2-12.5}}' height='25'/>
+			# </g>
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
@@ -31,17 +33,15 @@ class Ctrl
 			right: 10
 			top: 10
 			bottom: 18
-		@X = d3.scale.linear().domain [-.25,5] 
+			
+		@X = d3.scale.linear().domain [-.25,3.5] 
+
+		@Cart = Cart
 
 		@axisFun = d3.svg.axis()
 			.scale @X
 			.ticks 5
 			.orient 'bottom'
-
-		@scope.$watch -> 
-				Data.maxX
-			, (v)=>
-				@X.domain [-.25, v]
 
 		@tran = (tran)->
 			tran.ease 'linear'

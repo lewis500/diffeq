@@ -28,7 +28,7 @@ template = '''
 				<path d='{{vm.triangleData()}}' class='tri' />
 				<path d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
-			<path d='{{vm.lineFun(vm.Data.data)}}' class='fun v' />
+			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />
 			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der ></g>
 			<circle class='dot small' r='4' shifter='[vm.Hor(vm.Data.first.t),vm.Ver(vm.Data.first.v)]' />
 		</g>
@@ -44,9 +44,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@Ver = d3.scale.linear().domain [-.25,2.5]
+		@Ver = d3.scale.linear().domain [-.25,2.25]
 
-		@Hor = d3.scale.linear().domain [-.25,7]
+		@Hor = d3.scale.linear().domain [-.25,5]
 
 		@Data = Data
 

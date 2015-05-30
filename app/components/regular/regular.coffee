@@ -6,7 +6,7 @@ template = '''
 	<svg ng-init='vm.resize()' width='100%' height='250px'>
 		<defs>
 			<clippath id='reg'>
-				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
+				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
