@@ -27,6 +27,7 @@ der = ($window)->
 				
 			scope.$watch 'vm.scale.domain()', update , true
 			scope.$watch 'vm.scale.range()', update , true
-			# scope.$watch 'vm.width', update
+			scope.$watch 'vm.scale.ticks()', update , true
+
 
 module.exports = der

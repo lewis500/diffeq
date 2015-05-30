@@ -3,13 +3,13 @@ d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}' >
 		<defs>
 			<clippath id='plotA'>
 				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
 			</clippath>
 		</defs>
-		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
+		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]' behavior='vm.zoom'>
 			<rect class='background' width='{{vm.width}}' height='{{vm.height}}' behavior='vm.drag_rect'></rect>
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
@@ -20,7 +20,7 @@ template = '''
 					<text class='label' >$t$</text>
 			</foreignObject>
 		</g>
-		<g class='main' clip-path="url(#plotA)" shifter='[vm.mar.left, vm.mar.top]'>
+		<g class='main' clip-path="url(#plotA)" shifter='[vm.mar.left, vm.mar.top]' >
 			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
@@ -63,6 +63,15 @@ class Ctrl
 		@lineFun = d3.svg.line()
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
+
+		@zoom = d3.behavior.zoom()
+		    .scaleExtent [.5, 4]
+		    .on "zoom", ()=>
+		    	# console.log d3.event
+		    	d3.event.translate = [0,0]
+		    	# @zoom.y @Ver
+	    	.on 'zoomend', ()=>
+		    	@scope.$evalAsync()
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
@@ -118,6 +127,7 @@ class Ctrl
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
 		@height = @width*.9 - @mar.top - @mar.bottom
+		@zoom.y @Ver
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()
