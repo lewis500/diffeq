@@ -1,5 +1,5 @@
 _ = require 'lodash'
-{exp, sqrt, atan} = Math
+{exp} = Math
 
 class Cart
 	constructor: (@options)->
@@ -7,7 +7,7 @@ class Cart
 		@restart()
 	restart: ->
 		@t = 0
-		@trajectory = _.range 0 , 5 , 1/60
+		@trajectory = _.range 0 , 6 , 1/50
 			.map (t)=>
 				v = @v0 * exp(-@k * t)
 				res = 

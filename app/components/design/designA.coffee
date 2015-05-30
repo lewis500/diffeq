@@ -2,7 +2,6 @@ angular = require 'angular'
 d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
-textures = require 'textures'
 template = '''
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>

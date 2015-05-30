@@ -6,24 +6,22 @@ Cart = require '../cart/cartData'
 vScale = d3.scale.linear()
 xScale = d3.scale.linear()
 
-class Dot
-	constructor: (@t, @v)->
-		@id = _.uniqueId 'dot'
-		@hilited = false
-
 class Data
-	constructor: ->
-		@t = @x = 0
+	constructor: ()->
+		@t = 0
+		@x = 0
 		firstDot = new Dot 0 , Cart.v0
 		firstDot.id = 'first'
 		@dots = [ firstDot, 
 			new Dot Cart.trajectory[10].t , Cart.trajectory[10].v
 		]
-		@correct = @show = false
-		@first = @selected = firstDot
+		@correct = false
+		@show = false
+		@first = firstDot
+		@selected = firstDot
 		@target_data = Cart.trajectory
 
-		@data = _.range 0, 6, 1/50
+		@data = _.range 0, 7, 1/30
 			.map (t)->
 				res = 
 					t: t
@@ -35,11 +33,8 @@ class Data
 
 		@sample = _.range 0 , 10
 			.map (n)=>
-				@data[n*30]
-
-		@true_sample = _.range 0 , 10
-			.map (n)=>
-				Cart.trajectory[n*30]
+				@data[n*21]
+		@paused = false
 
 	add_dot: (t, v)->
 		@selected = new Dot t,v
@@ -52,19 +47,10 @@ class Data
 
 	update_dots: -> 
 		@dots.sort (a,b)-> a.t - b.t
-		@dots.forEach (dot, i, k)->
-			prev = k[i-1]
-			if prev
-				dt = dot.t - prev.t
-				dot.x = prev.x + dt * (dot.v + prev.v)/2
-				dot.dv = (dot.v - prev.v)/max(dt, .0001)
-			else
-				dot.x = 0
-				dot.dv = 0
-		domain = _.pluck @dots, 't'
-		domain.push 6.5
-		range = _.pluck  @dots , 'v'
-		range.push @dots[@dots.length - 1].v
+		domain = _.pluck( @dots, 't')
+		domain.push(6.5)
+		range = _.pluck( @dots , 'v')
+		range.push(@dots[@dots.length - 1].v)
 		vScale.domain domain
 			.range range
 
@@ -78,6 +64,15 @@ class Data
 
 		xScale.range _.pluck @data, 'x'
 
+		@dots.forEach (dot, i, k)->
+			prev = k[i-1]
+			if prev
+				dt = dot.t - prev.t
+				dot.x = prev.x + dt * (dot.v + prev.v)/2
+				dot.dv = (dot.v - prev.v)/max(dt, .0001)
+			else
+				dot.x = 0
+				dot.dv = 0
 
 	update_dot: (dot, t, v)->
 		if dot.id == 'first' then return
@@ -91,11 +86,9 @@ class Data
 		res = xScale @t
 
 	@property 'true_x', get: ->
-		_.findLast Cart.trajectory, (d)=> 
-				d.t <= @t
-			.x
+		4*(1-Math.exp -@t )
 
 	@property 'maxX', get:->
-		3
+		@data[@data.length - 1].x
 
 module.exports = new Data
