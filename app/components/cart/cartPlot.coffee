@@ -4,14 +4,14 @@ require '../../helpers'
 _ = require 'lodash'
 Cart = require './cartData'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='sol'>
-				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
+				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' ng-mousemove='vm.move($event)' />
+			<rect class='background' width='{{vm.width}}' height='{{vm.height}}' ng-mousemove='vm.move($event)' />
 			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
@@ -28,7 +28,7 @@ template = '''
 					<text class='label' font-size='13px'>$v$</text>
 			</foreignObject>
 			<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
-			<path ng-attr-d='{{vm.lineFun(vm.trajectory)}}' class='fun v' />
+			<path d='{{vm.lineFun(vm.trajectory)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 		</g>
 	</svg>

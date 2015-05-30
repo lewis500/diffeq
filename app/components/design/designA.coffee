@@ -3,14 +3,14 @@ d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotA'>
-				<rect ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
+				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}' behavior='vm.drag_rect'></rect>
+			<rect class='background' width='{{vm.width}}' height='{{vm.height}}' behavior='vm.drag_rect'></rect>
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
@@ -25,10 +25,10 @@ template = '''
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(0), y2: vm.Ver(vm.point.v)}'/>
-				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
-				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
+				<path d='{{vm.triangleData()}}' class='tri' />
+				<path d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
-			<path ng-attr-d='{{vm.lineFun(vm.Data.data)}}' class='fun v' />
+			<path d='{{vm.lineFun(vm.Data.data)}}' class='fun v' />
 			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der ></g>
 			<circle class='dot small' r='4' shifter='[vm.Hor(vm.Data.first.t),vm.Ver(vm.Data.first.v)]' />
 		</g>
