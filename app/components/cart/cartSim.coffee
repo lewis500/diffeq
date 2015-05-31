@@ -5,16 +5,16 @@ Cart = require './cartData'
 require '../../helpers'
 
 template = '''
-	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<rect width='{{vm.width}}' height='{{vm.height}}' class='background'/>
+			<rect class='background' d3-der='{width: vm.width, height: vm.height}' ng-mousemove='vm.move($event)' />
 			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
 
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<g class='g-cart'>
-				<rect class='cart' y='{{vm.height/3}}' width='{{vm.height/3}}' height='{{vm.height/3}}'/>
+			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Cart.x) + ",0)"}' tran='vm.tran'>
+					<rect class='cart' x='-12.5' width='25' ng-attr-y='{{30-12.5}}' height='25'/>
 			</g>
 		</g>
 	</svg>
@@ -22,31 +22,25 @@ template = '''
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
-		@cart = Cart
+		@Cart = Cart
 		@mar = 
 			left: 30
 			right: 10
 			top: 10
 			bottom: 18
-		@X = d3.scale.linear().domain [-.25,5] 
-		sel  = d3.select @el[0]
-		cart = sel.select '.g-cart'
+		@X = d3.scale.linear().domain [-.1,3] 
 
 		@axisFun = d3.svg.axis()
 			.scale @X
 			.ticks 5
 			.orient 'bottom'
 
-		@scope.$watch 'vm.cart.x', (x)=>
-			xPx = @X(x)
-			cart
-				.transition()
-				.duration 15
-				.ease 'linear'
-				.attr 'transform', "translate(#{xPx},0)"
-
 		angular.element @window
 			.on 'resize' , ()=>@resize()
+
+	tran: (tran)->
+		tran.ease 'linear'
+			.duration 60
 
 	@property 'svg_height' , get:-> @height + @mar.top + @mar.bottom
 
@@ -55,6 +49,8 @@ class Ctrl
 		@height = @width*.3 - @mar.top - @mar.bottom
 		@X.range([0, @width])
 		@scope.$evalAsync()
+
+
 
 der = ()->
 	directive = 

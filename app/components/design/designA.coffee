@@ -10,7 +10,7 @@ template = '''
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' width='{{vm.width}}' d3-der='{height: vm.height}' behavior='vm.drag_rect'></rect>
+			<rect class='background' d3-der='{width: vm.width, height: vm.height}' behavior='vm.drag_rect' />
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
@@ -25,8 +25,8 @@ template = '''
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(0), y2: vm.Ver(vm.point.v)}'/>
-				<path d='{{vm.triangleData()}}' class='tri' />
-				<path d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
+				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
+				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
 			<path ng-attr-d='{{vm.lineFun(vm.Data.Cart.trajectory)}}' class='fun target' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />

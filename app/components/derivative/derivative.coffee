@@ -8,11 +8,11 @@ template = '''
 	<svg ng-init='vm.resize()' width='100%' height='250px'>
 		<defs>
 			<clippath id='derClip'>
-				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
+				<rect d3-der='{width: vm.width, height: vm.height}'></rect>
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' width='{{vm.width}}' height='{{vm.height}}' ng-mousemove='vm.move($event)' />
+			<rect class='background' d3-der='{width: vm.width, height: vm.height}' ng-mousemove='vm.move($event)' />
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
@@ -21,8 +21,8 @@ template = '''
 		</g>
 		<g class='main' clip-path="url(#derClip)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line hor' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}'/>
-			<path d='{{vm.lineFun(vm.data)}}' class='fun v' />
-			<path d='{{vm.triangleData}}' class='tri' />
+			<path ng-attr-d='{{vm.lineFun(vm.data)}}' class='fun v' />
+			<path ng-attr-d='{{vm.triangleData}}' class='tri' />
 			<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(vm.point.v), y2: vm.Ver((vm.point.v + vm.point.dv))}'/>
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.sthing]'>
 					<text class='tri-label' >$\\dot{y}$</text>

@@ -6,7 +6,7 @@ class Cart
 		{@v0, @k} = @options
 		@restart()
 	restart: ->
-		@t = 0
+		@t = @x = 0
 		@trajectory = _.range 0 , 6 , 1/50
 			.map (t)=>
 				v = @v0 * exp(-@k * t)

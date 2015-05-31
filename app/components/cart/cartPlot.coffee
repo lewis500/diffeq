@@ -4,14 +4,14 @@ require '../../helpers'
 _ = require 'lodash'
 Cart = require './cartData'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
-			<clippath id='sol'>
-				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
+			<clippath id='cartPlot'>
+				<rect d3-der='{width: vm.width, height: vm.height}' />
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' width='{{vm.width}}' height='{{vm.height}}' ng-mousemove='vm.move($event)' />
+			<rect class='background' d3-der='{width: vm.width, height: vm.height}' />
 			<g ver-axis-der width='vm.width' scale='vm.V' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.T' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
@@ -23,12 +23,12 @@ template = '''
 			<line class='zero-line' d3-der="{x1: 0 , x2: vm.width, y1: vm.V(0), y2: vm.V(0)}" /> 
 			<line class='zero-line' d3-der="{x1: vm.T(0) , x2: vm.T(0), y1: 0, y2: vm.height}" /> 
 		</g>
-		<g class='main' clip-path="url(#sol)" shifter='[vm.mar.left, vm.mar.top]'>
+		<g class='main' clip-path="url(#cartPlot)" shifter='[vm.mar.left, vm.mar.top]'>
 			<foreignObject width='30' height='30' shifter='[(vm.T(vm.point.t) - 16), vm.sthing]' style='font-size: 13px; font-weight: 100;'>
 					<text class='label' font-size='13px'>$v$</text>
 			</foreignObject>
 			<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
-			<path d='{{vm.lineFun(vm.trajectory)}}' class='fun v' />
+			<path ng-attr-d='{{vm.lineFun(vm.trajectory)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
 		</g>
 	</svg>

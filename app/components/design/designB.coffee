@@ -4,14 +4,14 @@ d3 = require 'd3'
 require '../../helpers'
 
 template = '''
-	<svg ng-init='vm.resize()'  width='100%' height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()'  width='100%' ng-attr-height='{{vm.svg_height}}'>
 		<defs>
 			<clippath id='plotB'>
-				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
+				<rect d3-der='{width: vm.width, height: vm.height}' />
 			</clippath>
 		</defs>
 		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' width='{{vm.width}}' height='{{vm.height}}'></rect>
+			<rect class='background' d3-der='{width: vm.width, height: vm.height}' />
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.V' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
@@ -24,7 +24,7 @@ template = '''
 		<g class='main' clip-path="url(#plotB)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
-			<path d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
+			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(0), x2: vm.Hor(vm.point.v), y1: vm.Ver(vm.point.dv), y2: vm.Ver(vm.point.dv)}'/>
 				<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.v), x2: vm.Hor(vm.point.v), y1: vm.Ver(0), y2: vm.Ver(vm.point.dv)}'/>
