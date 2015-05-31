@@ -83,15 +83,16 @@ class Ctrl
 
 		@drag = d3.behavior.drag()
 			.on 'dragstart', (dot)=>
-				Data.show = true
 				event.stopPropagation()
+				event.preventDefault()
 				if event.which is 3
 					Data.remove_dot dot
-					event.preventDefault()
 					@scope.$evalAsync()
+				else
+					Data.show = true
 			.on 'drag', @on_drag
 			.on 'dragend', => 
-				Data.show = false
+				# Data.show = false
 				@scope.$evalAsync()
 
 		angular.element @window

@@ -1,5 +1,9 @@
+RIGHT CLICKS
+
+
+
 make the throbbing circles smalelr
-make a cart directive
+make a cart directive with the wheels on it
 
 
 SHORT TERM
@@ -26,6 +30,5 @@ add a optional transition duration on the axes
 download the fonts
 use one of those special scales that doesn't go off the end for the foreignobject labels
 don't just have the value light up at the top, have it snap to the zero-line
-use common classes to simplify controllers
 animate the triangle in and out of existence
 on the picture me rolling thing use the pause/play button set up, and have it start out playing

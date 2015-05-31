@@ -1,9 +1,8 @@
 @import "../node_modules/angular-material/angular-material.css";
-@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,400italic);
-@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,400italic,500);
-@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic);
+@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,400italic);
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:400,400italic);
 body {
-  font-family: 'Josefin Sans', serif;
+  font-family: 'Vollkorn', serif;
   padding-top: 5px;
   font-size: 18px;
   padding-left: 10%;
@@ -30,7 +29,7 @@ h3,
 h4,
 h5,
 button {
-  font-family: 'Josefin Sans';
+  font-family: 'Vollkorn';
   font-weight: 300;
 }
 p {
@@ -43,9 +42,9 @@ p {
   stroke: white;
 }
 .axis text {
-  font-family: 'Libre Baskerville' serif;
+  font-family: 'PT Serif', serif;
+  font-size: 14px;
   font-style: italic;
-  font-size: 12px;
 }
 .axis g.tick line {
   stroke-width: 1.3px;

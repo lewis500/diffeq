@@ -19,12 +19,12 @@ texture-der
 			div(flex='50')
 				p
 					| You're probably used to equations like $$ 5(t-.5)(t-1)(t-2)^2 = 0,$$ where 'solving' means finding an unknown <em>number</em>. To solve for $t$, we can plot the left-hand-side as a function <span class='col v'>$y(t)$</span> and find where $y(t)=0$.
+				p
+
+					| A differential equation (DE), by contrast, concerns an unknown  <em>function</em>. It gives you a clue &mdash; a fact about a derivative &mdash; and you find a function that fits the clue.
 			div(flex offset='5' regular-der)
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
-				p
-
-					| A differential equation (DE), by contrast, concerns an unknown  <em>function</em>, not a number. Through a fact about its derivative, the DE gives a clue what the function is.
 				p
 					| To see derivatives, we'll draw a right triangle whose hypoteneuse is tangent to (i.e., barely grazes) a function. If the  triangle's width is $1$, its <span class='col dv'>height</span> is the derivative.
 
@@ -42,7 +42,7 @@ texture-der
 	div(flex layout='row' layout-align='start center')
 		div(flex='50')
 			p
-				| Now consider a cart rolling to a stop. The cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity (how fast it slows down) and $k$ is a 'coefficient of friction' that depends on how greased the axels are. In other words, how fast the cart slows down depends on how fast the cart is going: the faster it goes, the more quickly it slows down.
+				| Now consider a cart rolling to a stop. The cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity (how fast it slows down) and $k$ is a 'coefficient of friction' that depends on how greased the axels are. This equation means something like: the faster the cart goes, the more quickly it slows down.
 		div(flex offset='5' )
 			div(cart-sim-der )
 			div(cart-buttons-der )
@@ -50,9 +50,9 @@ texture-der
 	div(flex layout='row' layout-align='start center')
 		div(flex='50')
 			p
-				|  The solution  to the DE is a function $v(t)$ that gives the velocity at $t$. We'll assume that $k=.8$, so $v(t)$ must solve the DE $\dot{v}= -.8v$. Also, we'll assume the cart starts out with velocity $2$, so we need $v(0)=2$. 
+				|  The solution is a function $v(t)$ giving the cart's velocity at time $t$. We'll assume that $k=.8$ and also that the cart starts out rolling at time $t=0$ with velocity $2$. So the two clues we have are $\dot{v}= -.8v$ and $v(0)=2$.
 			p
-				| It turns out the exponential function, $e^{-kt}$, has the special property that $$ \frac{d}{dt}e^{-kt}=-ke^{-kt}.$$ If we multiply both sides by $2$ and plug in $k=0.8$, the relationship is still true. So, a solution is $v(t)=2\cdot e^{-.8t}$ (try it out here).
+				| The exponential function, $e^{-kt}$, has the special property that $$ \frac{d}{dt}e^{-kt}=-ke^{-kt}.$$ If we multiply both sides by $2$ and plug in $k=0.8$, the relationship holds. Also,  $v(t)=2\cdot e^{-.8t}$ is a solution (try it out here).
 		div(flex offset='5')
 			div(cart-plot-der)
 
