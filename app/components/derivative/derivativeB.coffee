@@ -26,6 +26,9 @@ template = '''
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.Ver(vm.point.dv*.5)-6]'>
 					<text class='tri-label'>$\\dot{y}$</text>
 			</foreignObject>
+			<foreignObject width='100' height='30' shifter='[vm.Hor(.9), vm.Ver(1)]'>
+				<text class='tri-label'>$\\cos(t)$</text>
+			</foreignObject>
 			<circle r='3px'  shifter='[vm.Hor(vm.point.t), vm.Ver(vm.point.dv)]' class='point dv'/>
 		</g>
 	</svg>

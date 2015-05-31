@@ -23,17 +23,20 @@ texture-der
 
 					| A differential equation (DE), by contrast, concerns an unknown  <em>function</em>. It gives you a clue &mdash; a fact about a derivative &mdash; and you find a function that fits the clue.
 			div(flex offset='5' regular-der)
+
+		div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 10px;')
+			h2(style='text-align:center') ORIGINAL $\sin(t)$
+
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
-					| To see derivatives, we'll draw a right triangle whose hypoteneuse is tangent to (i.e., barely grazes) a function. If the  triangle's width is $1$, its <span class='col dv'>height</span> is the derivative.
-
+					| Scroll over the plot of <span class='col v'>$\sin(t)$ </span>to the right. To see the derivative of a function, we can draw a right triangle whose hypoteneuse is tangent to (i.e., barely grazes) it. If the  triangle's width is $1$, its <span class='col dv'>height</span> is the derivative.
 			div(flex offset='5' derivative-der)
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
 					| Using that one weird trick, you can see that the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Therefore, $y(t)=\sin(t)$ is a solution to the DE $$ \dot y = \cos(t).$$ 
-			div(flex offset='5' derivative-b-der )
+			div(flex offset='5'  derivative-b-der)
 
 	div(flex style='background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;')
 		h2(style='text-align:center') PICTURE ME ROLLING

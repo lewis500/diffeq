@@ -5,6 +5,7 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.directive 'horAxisDer', require './directives/xAxis'
 	.directive 'verAxisDer', require './directives/yAxis'
 	.directive 'cartSimDer', require './components/cart/cartSim'
+	.directive 'cartObjectDer', require './components/cart/cartObject'
 	.directive 'cartButtonsDer', require './components/cart/cartButtons'
 	.directive 'shifter' , require './directives/shifter'
 	.directive 'designADer', require './components/design/designA'

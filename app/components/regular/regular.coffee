@@ -16,6 +16,7 @@ template = '''
 			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
 				<text class='label'>$t$</text>
 			</foreignObject>
+
 		</g>
 		<g class='main' clip-path="url(#reg)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line hor' ng-class='{"correct": vm.correct}' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}'/>
@@ -24,6 +25,9 @@ template = '''
 			<path d3-der='{d:vm.lineFun(vm.data)}' class='fun v' />
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.Ver(vm.point.v/2) - 7]'>
 					<text class='tri-label' font-size='13px'>$y$</text>
+			</foreignObject>
+			<foreignObject width='200' height='30' shifter='[vm.Hor(1), vm.Ver(.9)]'>
+				<text class='tri-label'>$5(t-.5)(t-1)(t-1)^2$</text>
 			</foreignObject>
 		</g>
 	</svg>

@@ -5,9 +5,9 @@
 put a latex label on the line: \dot v = -.8v
 put latex labels on all functions
 
+style the play button
 
 
-make the throbbing circles smalelr
 make a cart directive with the wheels on it
 
 
@@ -18,10 +18,6 @@ add a light-up on the left plot
 FIX THE HILITING
 
 do the rescaling of the carts
-
-go through and change those heights and widths to be done with the d3Der
-add a "lastDot" again
-add a "show hte answer thing"
 take care of right-clicks
 
 
