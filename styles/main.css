@@ -58,8 +58,9 @@ p {
   stroke-width: 1.5px;
   fill: none;
 }
-.target {
-  stroke: #616161;
+[design-b-der] path.target {
+  stroke: #01579b;
+  opacity: .9;
 }
 [design-a-der] path.target {
   stroke: #880e4f;
