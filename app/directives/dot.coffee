@@ -9,7 +9,7 @@ der = ()->
 		template: template
 		restrict: 'A'
 		link: (scope,el,attr)->
-			rad = 10 #the radius of the large circle naturally
+			rad = 7 #the radius of the large circle naturally
 			sel = d3.select el[0]
 			big = sel.select 'circle.dot.large'
 				.attr 'r', rad

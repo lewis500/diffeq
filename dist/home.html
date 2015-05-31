@@ -48,7 +48,7 @@
   <div flex="flex" layout="row" layout-align="start center">
     <div flex="50">
       <p> The solution is a function $v(t)$ giving the cart's velocity at time $t$. We'll assume that $k=.8$ and also that the cart starts out rolling at time $t=0$ with velocity $2$. So the two clues we have are $\dot{v}= -.8v$ and $v(0)=2$.</p>
-      <p>The exponential function, $e^{-kt}$, has the special property that $$ \frac{d}{dt}e^{-kt}=-ke^{-kt}.$$ If we multiply both sides by $2$ and plug in $k=0.8$, the relationship holds. Also,  $v(t)=2\cdot e^{-.8t}$ is a solution (try it out here).</p>
+      <p>It turns the exponential function, $e^{-kt}$, has the convenient properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-.8\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$, as required!</p>
     </div>
     <div flex="flex" offset="5">
       <div cart-plot-der="cart-plot-der"></div>
@@ -59,7 +59,7 @@
   </div>
   <div flex="flex" layout="row" layout-align="start center">
     <div flex="50">
-      <p>Here, you'll solve the cart's DE manually by designing your own function $v(t)$. To do that, click and drag the right plot to make time/velocity points like $\left( t, v \right)$. Together, they make a function $v(t)$. The first point, $(0,2)$ is fixed. You're given the real answer $v(t)=2e^{-.8t}$. Notice</p>
+      <p>Here, you'll solve the cart's DE manually by designing your own function $v(t)$. To do that, click and drag the right plot to make time/velocity points like $\left( t, v \right)$. Together, they make a function $v(t)$. The first point, $(0,2)$ is fixed. You're given the real answer $v(t)=2e^{-.8t}$.</p>
     </div>
     <div design-a-der="design-a-der" flex="flex" offset="5"></div>
   </div>
@@ -68,7 +68,7 @@
       <div flex="flex">
         <p>
            
-          For each point, we can store the value $v(t)$ and the derivative $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on the right. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up on the line $\dot{v} = -v$.
+          For each point, we can store the value $v(t)$ and the derivative $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on the right. Notice that if you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up around the line $\dot{v} = -v$.
         </p>
       </div>
       <div flex="flex" design-cart-a-der="design-cart-a-der"></div>

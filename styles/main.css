@@ -125,8 +125,9 @@ circle.dot.small {
   fill: #c2185b;
 }
 circle.dot.large {
-  fill: #e0e0e0;
-  opacity: 0.6;
+  fill: #c2185b;
+  fill-opacity: 0.1;
+  stroke-opacity: .6;
   stroke-width: .4;
   cursor: pointer;
 }
@@ -145,10 +146,11 @@ circle.point {
   padding-bottom: 25px;
   border-radius: 2px;
   padding-top: 4px;
-  background-color: #f7f7f7;
+  background-color: #F7F7F7;
+  margin-bottom: 20px;
 }
 #quote p {
-  font-size: 18px;
+  font-size: 20px;
 }
 #barzun {
   text-align: right;
