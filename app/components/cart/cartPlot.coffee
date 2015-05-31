@@ -4,7 +4,7 @@ require '../../helpers'
 _ = require 'lodash'
 Cart = require './cartData'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()' width='100%' class='topChart'>
 		<defs>
 			<clippath id='cartPlot'>
 				<rect d3-der='{width: vm.width, height: vm.height}' />
@@ -80,7 +80,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width*.7 - @mar.left - @mar.right
+		@height = @el[0].clientHeight - @mar.left - @mar.right
 		@V.range [@height, 0]
 		@T.range [0, @width]
 		@scope.$evalAsync()

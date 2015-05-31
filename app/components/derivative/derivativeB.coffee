@@ -5,7 +5,7 @@ _ = require 'lodash'
 Data = require './derivativeData'
 
 template = '''
-	<svg ng-init='vm.resize()' width='100%'  height='250px'>
+	<svg ng-init='vm.resize()' width='100%'  class='topChart'>
 		<defs>
 			<clippath id='dervativeB'>
 				<rect d3-der='{width: vm.width, height: vm.height}' />

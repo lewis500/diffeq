@@ -1,4 +1,9 @@
-RIGHT CLICKS
+
+
+
+
+put a latex label on the line: \dot v = -.8v
+put latex labels on all functions
 
 
 
@@ -12,12 +17,7 @@ add a light-up on the left plot
 
 FIX THE HILITING
 
-
-DO THE HEIGHTS IN THE LESS FILE, NOT IN THE TEMPLATE
-
-
 do the rescaling of the carts
-
 
 go through and change those heights and widths to be done with the d3Der
 add a "lastDot" again

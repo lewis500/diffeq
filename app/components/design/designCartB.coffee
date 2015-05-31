@@ -25,10 +25,10 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 30
+			left: 10
 			right: 10
 			top: 10
-			bottom: 18
+			bottom: 15
 			
 		@X = d3.scale.linear().domain [-.1,3] 
 

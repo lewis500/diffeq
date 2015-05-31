@@ -3,7 +3,7 @@ d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}' >
+	<svg ng-init='vm.resize()' width='100%' class='bottomChart'>
 		<defs>
 			<clippath id='plotA'>
 				<rect d3-der='{width: vm.width, height: vm.height}'></rect>
@@ -101,8 +101,7 @@ class Ctrl
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
 
 	@property 'dots', get:-> 
-		res = Data.dots.filter (d)->
-			d.id != 'first'
+		Data.dots.filter (d)-> (d.id !='first') and (d.id !='last')
 
 	on_drag: (dot)=> 
 			if event.which is 3
@@ -119,7 +118,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width*.6 - @mar.top - @mar.bottom
+		@height = @el[0].clientHeight - @mar.top - @mar.bottom
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()

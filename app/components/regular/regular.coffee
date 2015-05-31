@@ -3,7 +3,7 @@ d3 = require 'd3'
 require '../../helpers'
 _ = require 'lodash'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' height='250px'>
+	<svg ng-init='vm.resize()' width='100%' class='topChart'>
 		<defs>
 			<clippath id='reg'>
 				<rect d3-der='{width: vm.width, height: vm.height}' />

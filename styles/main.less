@@ -1,7 +1,5 @@
 @import "../node_modules/angular-material/angular-material.css";
 @import "../bower_components/material-color/material-color";
-// @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500italic);
-@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,400italic);
 @import url(http://fonts.googleapis.com/css?family=Vollkorn:400,400italic);
 body {
     font-family: 'Vollkorn', serif;
@@ -55,7 +53,7 @@ p {
 }
 
 .axis text {
-    font-family: 'PT Serif', serif;    // font-style: italic;
+    // font-family: 'PT Serif', serif;    // font-style: italic;
     font-size: 14px;
     font-style: italic;
     // font-weight: 100;
@@ -75,9 +73,6 @@ p {
     fill: none;
 }
 
-// .target {
-//     stroke: @clr-grey-700;
-// }
 
 [design-b-der] path.target{
     stroke: @clr-light-blue-900;
@@ -205,6 +200,14 @@ circle.point {
 }
 
 // ==== OTHER =======
+
+svg.topChart{
+    height: 250px;
+}
+svg.bottomChart{
+    height: 275px;
+}
+
 text.label {
     text-anchor: middle;
     dominant-baseline: central;

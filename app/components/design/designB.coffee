@@ -4,7 +4,7 @@ d3 = require 'd3'
 require '../../helpers'
 
 template = '''
-	<svg ng-init='vm.resize()'  width='100%' ng-attr-height='{{vm.svg_height}}'>
+	<svg ng-init='vm.resize()'  width='100%' class='bottomChart'>
 		<defs>
 			<clippath id='plotB'>
 				<rect d3-der='{width: vm.width, height: vm.height}' />
@@ -84,7 +84,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width*.6 - @mar.top - @mar.bottom
+		@height = @el[0].clientHeight - @mar.top - @mar.bottom
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width] 
 		@scope.$evalAsync()
