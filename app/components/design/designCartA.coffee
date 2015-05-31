@@ -9,9 +9,6 @@ template = '''
 		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 			<rect width='{{vm.width}}' height='{{vm.height}}' class='background'/>
 			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
-			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
-					<text class='label' >$t$</text>
-			</foreignObject>
 			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Cart.x) + ",0)"}' >
 				<rect class='cart' x='-12.5' width='25' y='{{30-12.5}}' height='25'/>
 			</g>
@@ -30,9 +27,9 @@ class Ctrl
 			top: 10
 			bottom: 18
 			
-		@X = d3.scale.linear().domain [-.25,3.5] 
+		@X = d3.scale.linear().domain [-.1,3] 
 
-		@sample = _.range( 0, 3.5 , .5)
+		@sample = _.range( 0, 5 , .5)
 
 		@Cart = Cart
 

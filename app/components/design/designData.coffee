@@ -12,10 +12,15 @@ class Dot
 class Data
 	constructor: ->
 		@t = @x = 0
+		@Cart = Cart
 		firstDot = new Dot 0 , Cart.v0
 		firstDot.id = 'first'
+		midDot = new Dot Cart.trajectory[10].t , Cart.trajectory[10].v
+		lastDot = new Dot 6 , Cart.trajectory[10].v
+		lastDot.id = 'last'
 		@dots = [ firstDot, 
-			new Dot Cart.trajectory[10].t , Cart.trajectory[10].v
+			midDot,
+			lastDot
 		]
 		@correct = @show = false
 		@first = @selected = firstDot
@@ -36,6 +41,9 @@ class Data
 		@dots.sort (a,b)-> a.t - b.t
 		@dots.forEach (dot, i, k)->
 			prev = k[i-1]
+			if dot.id == 'last'
+				dot.v = prev.v
+				return
 			if prev
 				dt = dot.t - prev.t
 				dot.x = prev.x + dt * (dot.v + prev.v)/2

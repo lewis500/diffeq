@@ -3,14 +3,14 @@ d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
 template = '''
-	<svg ng-init='vm.resize()' width='100%' height='{{vm.svg_height}}' >
+	<svg ng-init='vm.resize()' width='100%' ng-attr-height='{{vm.svg_height}}' >
 		<defs>
 			<clippath id='plotA'>
-				<rect width='{{vm.width}}' height='{{vm.height}}'></rect>
+				<rect d3-der='{width: vm.width, height: vm.height}'></rect>
 			</clippath>
 		</defs>
-		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]' behavior='vm.zoom'>
-			<rect class='background' width='{{vm.width}}' height='{{vm.height}}' behavior='vm.drag_rect'></rect>
+		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
+			<rect class='background' width='{{vm.width}}' d3-der='{height: vm.height}' behavior='vm.drag_rect'></rect>
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
 			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
@@ -28,6 +28,7 @@ template = '''
 				<path d='{{vm.triangleData()}}' class='tri' />
 				<path d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
 			</g>
+			<path ng-attr-d='{{vm.lineFun(vm.Data.Cart.trajectory)}}' class='fun target' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />
 			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der ></g>
 			<circle class='dot small' r='4' shifter='[vm.Hor(vm.Data.first.t),vm.Ver(vm.Data.first.v)]' />
@@ -63,15 +64,6 @@ class Ctrl
 		@lineFun = d3.svg.line()
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
-
-		@zoom = d3.behavior.zoom()
-		    .scaleExtent [.5, 4]
-		    .on "zoom", ()=>
-		    	# console.log d3.event
-		    	d3.event.translate = [0,0]
-		    	# @zoom.y @Ver
-	    	.on 'zoomend', ()=>
-		    	@scope.$evalAsync()
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
@@ -126,8 +118,7 @@ class Ctrl
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width*.9 - @mar.top - @mar.bottom
-		@zoom.y @Ver
+		@height = @width*.6 - @mar.top - @mar.bottom
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()

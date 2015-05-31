@@ -28,7 +28,7 @@ template = '''
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(0), x2: vm.Hor(vm.point.v), y1: vm.Ver(vm.point.dv), y2: vm.Ver(vm.point.dv)}'/>
 				<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.v), x2: vm.Hor(vm.point.v), y1: vm.Ver(0), y2: vm.Ver(vm.point.dv)}'/>
-				<path d='{{vm.lineFun(vm.Data.target_data)}}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
+				<path d3-der='{d:vm.lineFun(vm.Data.target_data)}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.Hor(dot.v),vm.Ver(dot.dv)]' dot-b-der></g>
 		</g>
@@ -43,9 +43,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@Ver = d3.scale.linear().domain [-2.25, .25]
+		@Ver = d3.scale.linear().domain [-2.25, .1]
 
-		@Hor = d3.scale.linear().domain [-.25,2.25]
+		@Hor = d3.scale.linear().domain [-.1,2.1]
 
 		@horAxFun = d3.svg.axis()
 			.scale @Hor
@@ -70,8 +70,8 @@ class Ctrl
 
 	@property 'dots', get:->
 		Data.dots
-			.filter (d)-> d.id !='first'
-
+			.filter (d)-> (d.id !='first') and (d.id !='last')
+			
 	hilite: (v)->
 		d3.select this
 			.transition()
@@ -81,9 +81,10 @@ class Ctrl
 
 	@property 'point', get: -> Data.selected
 
+
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @width * .9 - @mar.top - @mar.bottom
+		@height = @width*.6 - @mar.top - @mar.bottom
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width] 
 		@scope.$evalAsync()

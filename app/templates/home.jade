@@ -42,7 +42,7 @@ texture-der
 	div(flex layout='row' layout-align='start center')
 		div(flex='50')
 			p
-				| We're going to look at the one DE to rule them all. Consider a cart rolling to a stop. The cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity (how fast it slows down) and $k$ is a 'coefficient of friction' that depends on how 'sandpaper-ish' the surface and the axels are.
+				| Now consider a cart rolling to a stop. The cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity (how fast it slows down) and $k$ is a 'coefficient of friction' that depends on how greased the axels are. In other words, how fast the cart slows down depends on how fast the cart is going: the faster it goes, the more quickly it slows down.
 		div(flex offset='5' )
 			div(cart-sim-der )
 			div(cart-buttons-der )
@@ -50,7 +50,9 @@ texture-der
 	div(flex layout='row' layout-align='start center')
 		div(flex='50')
 			p
-				|  The solution is a function $v(t)$ that gives the velocity at $t$. We'll assume the starting velocity is $4$ and $k=1$, so $v(t)$ must solve $\dot{v}= -v$ and $v(0)=4$.
+				|  The solution  to the DE is a function $v(t)$ that gives the velocity at $t$. We'll assume that $k=.8$, so $v(t)$ must solve the DE $\dot{v}= -.8v$. Also, we'll assume the cart starts out with velocity $2$, so we need $v(0)=2$. 
+			p
+				| It turns out the exponential function, $e^{-kt}$, has the special property that $$ \frac{d}{dt}e^{-kt}=-ke^{-kt}.$$ If we multiply both sides by $2$ and plug in $k=0.8$, the relationship is still true. So, a solution is $v(t)=2\cdot e^{-.8t}$ (try it out here).
 		div(flex offset='5')
 			div(cart-plot-der)
 
@@ -59,7 +61,7 @@ texture-der
 	div(flex layout='row')
 		div(flex='50')
 			p
-				| Below, click and drag to make points of time/velocity pair like $\left( t, v \right)$. Together those pairs make up a function $v(t)$. You can't change the point $(t=0,v=4)$, though, since the cart's initial velocity is $4$.
+				| Below, click and drag to make points of time/velocity pair like $\left( t, v \right)$. Together those pairs make up a function $v(t)$. You can't change the point $(t=0,v=2)$, though, since the cart's initial velocity is $2$.
 		div(flex style='border-left: solid 1px #eee; padding-left: 10px; margin-left: 3%;')
 			p 
 				| For each point, we can store the value $v(t)$ and the derivative $\dot {v}(t)$ as a pair $( v, \dot{v})$. Those pairs get plotted on the right. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up on the line $\dot{v} = -v$.

@@ -9,8 +9,8 @@ body {
     padding-top: 5px;
     font-size: 18px;
     padding-left: 10%;
-    width: 80%;
-    max-width: 880px;
+    width: 90%;
+    max-width: 1080px;
     min-width: 400px;
 }
 
@@ -80,6 +80,11 @@ p {
     stroke: @clr-grey-700;
 }
 
+[design-a-der] path.target{
+    stroke: @clr-pink-900;
+    opacity: .9;
+}
+
 .correct {
     stroke: @clr-yellow-700;
 }
@@ -111,6 +116,11 @@ p {
 
 .tri.dv {
     marker-end: url(#arrow);
+}
+
+
+[design-b-der] .tri.dv{
+    marker-end: none;
 }
 
 #arrow{
