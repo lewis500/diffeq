@@ -31,6 +31,9 @@ template = '''
 				<path d3-der='{d:vm.lineFun(vm.Data.target_data)}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.Hor(dot.v),vm.Ver(dot.dv)]' dot-b-der></g>
+			<foreignObject width='70' height='30' y='0' shifter='[vm.Hor(1.7), vm.Ver(-1.2)]'>
+					<text class='tri-label' >$v'=-.8v$</text>
+			</foreignObject>
 		</g>
 	</svg>
 '''
@@ -43,9 +46,9 @@ class Ctrl
 			right: 20
 			bottom: 37
 
-		@Ver = d3.scale.linear().domain [-2.25, .1]
+		@Ver = d3.scale.linear().domain [-1.9, .1]
 
-		@Hor = d3.scale.linear().domain [-.1,2.1]
+		@Hor = d3.scale.linear().domain [-.1,2.15]
 
 		@horAxFun = d3.svg.axis()
 			.scale @Hor

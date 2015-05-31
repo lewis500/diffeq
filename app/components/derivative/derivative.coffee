@@ -27,7 +27,7 @@ template = '''
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.sthing]'>
 					<text class='tri-label' >$\\dot{y}$</text>
 			</foreignObject>
-			<foreignObject width='100' height='30' shifter='[vm.Hor(1.4), vm.Ver(1.3)]'>
+			<foreignObject width='100' height='30' shifter='[vm.Hor(1.65), vm.Ver(1.38)]'>
 				<text class='tri-label'>$\\sin(t)$</text>
 			</foreignObject>
 			<circle r='3px'  shifter='[vm.Hor(vm.point.t), vm.Ver(vm.point.v)]' class='point v'/>

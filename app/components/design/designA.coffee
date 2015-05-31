@@ -32,6 +32,9 @@ template = '''
 			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />
 			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der ></g>
 			<circle class='dot small' r='4' shifter='[vm.Hor(vm.Data.first.t),vm.Ver(vm.Data.first.v)]' />
+			<foreignObject width='70' height='30' shifter='[vm.Hor(4), vm.Ver(.33)]'>
+					<text class='tri-label' >$2e^{-.8t}$</text>
+			</foreignObject>
 		</g>
 	</svg>
 '''

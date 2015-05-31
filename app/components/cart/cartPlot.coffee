@@ -30,6 +30,9 @@ template = '''
 			<line class='tri v' d3-der='{x1: vm.T(vm.point.t)-1, x2: vm.T(vm.point.t)-1, y1: vm.V(0), y2: vm.V(vm.point.v)}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.trajectory)}}' class='fun v' />
 			<circle r='3px' shifter='[vm.T(vm.point.t), vm.V(vm.point.v)]' class='point v'/>
+			<foreignObject width='70' height='30' shifter='[vm.T(4), vm.V(.4)]'>
+					<text class='tri-label' >$2e^{-.8t}$</text>
+			</foreignObject>
 		</g>
 	</svg>
 '''
