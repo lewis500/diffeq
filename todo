@@ -1,3 +1,6 @@
+CART
+
+
 
 
 add an optional trans property on the shifterDer
@@ -10,6 +13,4 @@ make a cart directive with the wheels on it
 
 
 LONG TERM
-use one of those special scales that doesn't go off the end for the foreignobject labels
 don't just have the value light up at the top, have it snap to the zero-line
-
