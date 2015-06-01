@@ -11,17 +11,17 @@
   </div>
 </div>
 <texture-der></texture-der>
-<div id="content" layout="column">
-  <div flex="flex" layout="column">
-    <div flex="flex" layout="row" layout-align="start center">
-      <div flex="50">
-        <p>You're probably used to equations like $$ 5(t-.5)(t-1)(t-2)^2 = 0,$$ where 'solving' means finding an unknown <em>number</em>. To solve for $t$, we can plot the left-hand-side as a function <span class='col v'>$y(t)$</span> and look for $y(t)=0$.</p>
-        <p> </p>
-      </div>
-      <div flex="flex" offset="5" regular-der="regular-der"></div>
+<div id="content" layout="column" layout-padding="layout-padding">
+  <div flex="flex" layout="row" layout-align="start center">
+    <div flex="50">
+      <p>You're probably used to equations like $$ 5(t-.5)(t-1)(t-2)^2 = 0,$$ where 'solving' means finding an unknown <em>number</em>. To solve for $t$, we can plot the left-hand-side as a function <span class='col v'>$y(t)$</span> and look for $y(t)=0$.</p>
+      <p> </p>
     </div>
-    <div flex="flex" style="background-color: #F7F7F7; border-radius: 3px; margin-bottom: 10px;">
-      <h2 style="text-align:center">ORIGINAL $\sin(t)$</h2>
+    <div flex="flex" offset="5" regular-der="regular-der"></div>
+  </div>
+  <div flex="flex" layout="column">
+    <div flex="flex">
+      <h2 style="text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)">ORIGINAL $\sin(t)$</h2>
     </div>
     <div flex="flex" layout="row" layout-align="start center">
       <div flex="50">
@@ -36,47 +36,51 @@
       <div flex="flex" offset="5" derivative-b-der="derivative-b-der"></div>
     </div>
   </div>
-  <div flex="flex" style="background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;">
-    <h2 style="text-align:center">PICTURE ME ROLLING</h2>
+  <div flex="flex" layout="column">
+    <div flex="flex">
+      <h2 style="text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)">PICTURE ME ROLLING</h2>
+    </div>
+    <div flex="flex" layout="row" layout-align="start center">
+      <div flex="50">
+        <p>Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction' that depends on how greased the axels are. Basically, the faster the cart goes, the faster it slows down.</p>
+      </div>
+      <div flex="flex" offset="5">
+        <div cart-sim-der="cart-sim-der"></div>
+        <div cart-buttons-der="cart-buttons-der"></div>
+      </div>
+    </div>
+    <div flex="flex" layout="row" layout-align="start center">
+      <div flex="50">
+        <p> The solution to the DE is a function $v(t)$ that tells velocity at time $t$. We'll assume $k=.8$ and that the cart starts rolling at time $t=0$ with initial velocity $2$. Formally, our clues are $\dot{v}= -.8v$ and $v(0)=2$.</p>
+        <p>It turns the exponential function, $e^{-kt}$, has the convenient properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-.8\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$, as required!</p>
+      </div>
+      <div flex="flex" offset="5">
+        <div cart-plot-der="cart-plot-der"></div>
+      </div>
+    </div>
   </div>
-  <div flex="flex" layout="row" layout-align="start center">
-    <div flex="50">
-      <p>Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction' that depends on how greased the axels are. Basically, the faster the cart goes, the faster it slows down.</p>
+  <div flex="flex" layout="column">
+    <div flex="flex">
+      <h2 style="text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)">CARTOGRAPHY</h2>
     </div>
-    <div flex="flex" offset="5">
-      <div cart-sim-der="cart-sim-der"></div>
-      <div cart-buttons-der="cart-buttons-der"></div>
+    <div flex="flex" layout="row" layout-align="start center">
+      <div flex="50">
+        <p>Here, you'll solve the cart's DE manually by picking $\left( t, v \right)$ points to make a function $v(t)$. The first point, $(0,2)$ is fixed.</p>
+        <p>
+           
+          For each point you choose, the derivative is calculated and a pair $( v, \dot{v})$ is plotted on the lower chart. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up around the line $\dot{v} = -v$. 
+        </p>
+        <p>The first cart below obeys the $v(t)$ function you designed, and the lines indicate its location at half-second intervals. If you draw $v(t)$ right, the cart will have the same motion as its lower counterpart.</p>
+      </div>
+      <div design-a-der="design-a-der" flex="flex" offset="5"></div>
     </div>
-  </div>
-  <div flex="flex" layout="row" layout-align="start center">
-    <div flex="50">
-      <p> The solution to the DE is a function $v(t)$ that tells velocity at time $t$. We'll assume $k=.8$ and that the cart starts rolling at time $t=0$ with initial velocity $2$. Formally, our clues are $\dot{v}= -.8v$ and $v(0)=2$.</p>
-      <p>It turns the exponential function, $e^{-kt}$, has the convenient properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-.8\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$, as required!</p>
+    <div flex="flex" layout="row">
+      <div flex="50">
+        <div design-cart-a-der="design-cart-a-der"></div>
+        <div design-cart-b-der="design-cart-b-der"></div>
+        <div design-buttons-der="design-buttons-der"></div>
+      </div>
+      <div flex="flex" design-b-der="design-b-der" offset="5"></div>
     </div>
-    <div flex="flex" offset="5">
-      <div cart-plot-der="cart-plot-der"></div>
-    </div>
-  </div>
-  <div flex="flex" style="background-color: #F7F7F7; border-radius: 3px; margin-bottom: 15px;">
-    <h2 style="text-align:center">CARTOGRAPHY</h2>
-  </div>
-  <div flex="flex" layout="row" layout-align="start center">
-    <div flex="50">
-      <p>Here, you'll solve the cart's DE manually by picking $\left( t, v \right)$ points to make a function $v(t)$. The first point, $(0,2)$ is fixed.</p>
-      <p>
-         
-        For each point you choose, the derivative is calculated and a pair $( v, \dot{v})$ is plotted on the lower chart. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up around the line $\dot{v} = -v$. 
-      </p>
-      <p>The first cart below obeys the $v(t)$ function you designed, and the lines indicate its location at half-second intervals. If you draw $v(t)$ right, the cart will have the same motion as its lower counterpart.</p>
-    </div>
-    <div design-a-der="design-a-der" flex="flex" offset="5"></div>
-  </div>
-  <div flex="flex" layout="row">
-    <div flex="50">
-      <div design-cart-a-der="design-cart-a-der"></div>
-      <div design-cart-b-der="design-cart-b-der"></div>
-      <div design-buttons-der="design-buttons-der"></div>
-    </div>
-    <div flex="flex" design-b-der="design-b-der" offset="5"></div>
   </div>
 </div>

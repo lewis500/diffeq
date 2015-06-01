@@ -44,9 +44,6 @@ p {
   font-size: 14px;
   font-style: italic;
 }
-svg g.main {
-  opacity: .95;
-}
 .axis g.tick line {
   stroke-width: 1.3px;
   stroke-dasharray: 2, 2;
