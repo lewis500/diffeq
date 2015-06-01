@@ -15,7 +15,7 @@ der = ()->
 		controllerAs: 'vm'
 		templateNamespace: 'svg'
 		controller: ['$scope','$element','$window', Ctrl]
-		templateUrl: '../app/components/cart/cart.svg'
+		templateUrl: './app/components/cart/cart.svg'
 		bindToController: true
 		restrict: 'A'
 
