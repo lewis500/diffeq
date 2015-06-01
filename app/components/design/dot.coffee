@@ -17,8 +17,16 @@ class Ctrl
 			.on 'contextmenu', -> 
 				event.preventDefault()
 				event.stopPropagation()
-			# .on 'mousedown', @mousedown
-			# .on 'mouseup', @mouseup
+			.on 'mousedown', ->
+				big.transition 'grow'
+					.duration 150
+					.ease 'cubic'
+					.attr 'r', rad*1.7
+			.on 'mouseup', ->
+				big.transition 'grow'
+					.duration 150
+					.ease 'cubic-in'
+					.attr 'r', rad*1.3
 			.on 'mouseout' , @mouseout
 
 		@scope.$watch =>
@@ -52,19 +60,6 @@ class Ctrl
 							'stroke-width': 1.6
 							stroke: 'white'
 			 
-
-	# mouseup: =>
-	# 	@big.transition 'grow'
-	# 		.duration 150
-	# 		.ease 'cubic-in'
-	# 		.attr 'r', rad*1.3
-
-	# mousedown: =>
-	# 	@big.transition 'grow'
-	# 		.duration 150
-	# 		.ease 'cubic'
-	# 		.attr 'r', rad*1.7
-
 	mouseout: =>
 		Data.set_show false
 		@scope.$evalAsync()
