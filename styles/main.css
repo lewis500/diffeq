@@ -58,6 +58,11 @@ svg g.main {
   stroke-width: 1.5px;
   fill: none;
 }
+line.time-line {
+  stroke-width: 3px;
+  stroke: #616161;
+  opacity: .5;
+}
 .target {
   opacity: 0.6;
 }

@@ -28,6 +28,8 @@ class Data
 
 	set_show: (v)->
 		@show = v
+	set_t: (t)->
+		@t = t
 
 	increment: (dt)->
 		@t += dt

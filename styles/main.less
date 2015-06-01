@@ -49,14 +49,11 @@ p {
 .axis line {
     fill: none;
     stroke: white;
-    // shape-rendering: crispEdges;
 }
 
 .axis text {
-    // font-family: 'PT Serif', serif;    // font-style: italic;
     font-size: 14px;
     font-style: italic;
-    // font-weight: 100;
 }
 
 svg g.main{
@@ -75,6 +72,12 @@ svg g.main{
 .fun {
     stroke-width: 1.5px;
     fill: none;
+}
+
+line.time-line{
+    stroke-width: 3px;
+    stroke: @clr-grey-700;
+    opacity: .5;
 }
 
 .target{
@@ -215,6 +218,10 @@ svg.topChart{
 svg.bottomChart{
     height: 275px;
 }
+
+// svg.cartChart{
+//     height: 60px;
+// }
 
 text.label {
     text-anchor: middle;

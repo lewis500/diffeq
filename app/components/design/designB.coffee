@@ -42,7 +42,7 @@ class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
 			left: 40
-			top: 10
+			top: 0
 			right: 10
 			bottom: 37
 

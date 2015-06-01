@@ -23,10 +23,7 @@ class Ctrl
 				Data.increment dt/1000
 				last = elapsed
 				if Data.t > 4
-					Data.t = 0
-					# setTimeout =>
-					# 	@play()
-					# true
+					Data.set_t 0
 				@scope.$evalAsync()
 				@paused
 			, 1
