@@ -2,12 +2,10 @@ _ = require 'lodash'
 require '../../helpers'
 Cart = require '../cart/cartData'
 d3 = require 'd3'
-{exp, min, max} = Math
 
 class Dot
 	constructor: (@t, @v)->
 		@id = _.uniqueId 'dot'
-		@hilited = false
 
 class Data
 	constructor: ->
@@ -23,15 +21,21 @@ class Data
 			lastDot
 		]
 		@correct = @show = false
-		@first = @selected = firstDot
+		@first = firstDot
 		@target_data = Cart.trajectory
-				
 		@update_dots()
+		@select_dot @dots[1]
+
+	set_show: (v)->
+		@show = v
+
+	select_dot: (dot)->
+		@selected = dot
 
 	add_dot: (t, v)->
-		@selected = new Dot t,v
-		@dots.push @selected
-		@update_dot @selected, t, v
+		newDot = new Dot t,v
+		@dots.push newDot
+		@update_dot newDot, t, v
 
 	remove_dot: (dot)->
 		@dots.splice @dots.indexOf(dot), 1
@@ -47,17 +51,17 @@ class Data
 			if prev
 				dt = dot.t - prev.t
 				dot.x = prev.x + dt * (dot.v + prev.v)/2
-				dot.dv = (dot.v - prev.v)/max(dt, .0001)
+				dot.dv = (dot.v - prev.v)/Math.max(dt, .0001)
 			else
 				dot.x = 0
 				dot.dv = 0
 
 	update_dot: (dot, t, v)->
 		if dot.id == 'first' then return
-		@selected = dot
+		@select_dot dot
 		dot.t = t
 		dot.v = v
 		@update_dots()
-		@correct = Math.abs(Cart.k * @selected.v + @selected.dv) < 0.05
+		@correct = Math.abs(Cart.k * dot.v + dot.dv) < 0.05
 
 module.exports = new Data

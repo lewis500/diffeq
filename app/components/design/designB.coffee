@@ -26,11 +26,11 @@ template = '''
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
 			<g ng-class='{hide: !vm.Data.show}' >
-				<line class='tri v' d3-der='{x1: vm.Hor(0), x2: vm.Hor(vm.point.v), y1: vm.Ver(vm.point.dv), y2: vm.Ver(vm.point.dv)}'/>
-				<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.v), x2: vm.Hor(vm.point.v), y1: vm.Ver(0), y2: vm.Ver(vm.point.dv)}'/>
+				<line class='tri v' d3-der='{x1: vm.Hor(0), x2: vm.Hor(vm.selected.v), y1: vm.Ver(vm.selected.dv), y2: vm.Ver(vm.selected.dv)}'/>
+				<line class='tri dv' d3-der='{x1: vm.Hor(vm.selected.v), x2: vm.Hor(vm.selected.v), y1: vm.Ver(0), y2: vm.Ver(vm.selected.dv)}'/>
 				<path d3-der='{d:vm.lineFun(vm.Data.target_data)}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
-			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.Hor(dot.v),vm.Ver(dot.dv)]' dot-b-der></g>
+			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.Hor(dot.v),vm.Ver(dot.dv)]' dot-b-der=dot></g>
 			<foreignObject width='70' height='30' y='0' shifter='[vm.Hor(1.7), vm.Ver(-1.2)]'>
 					<text class='tri-label' >$v'=-.8v$</text>
 			</foreignObject>
@@ -69,22 +69,13 @@ class Ctrl
 		angular.element @window
 			.on 'resize', @resize
 
-	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
-
 	@property 'dots', get:->
 		Data.dots
 			.filter (d)-> (d.id !='first') and (d.id !='last')
-			
-	hilite: (v)->
-		d3.select this
-			.transition()
-			.duration 100
-			.ease 'cubic'
-			.attr 'r' , if v then 6 else 4
 
-	@property 'point', get: -> Data.selected
-
-
+	@property 'selected', get:->
+		Data.selected
+		
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
 		@height = @el[0].clientHeight - @mar.top - @mar.bottom

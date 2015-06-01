@@ -24,13 +24,13 @@ template = '''
 			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
-				<line class='tri v' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(0), y2: vm.Ver(vm.point.v)}'/>
+				<line class='tri v' d3-der='{x1: vm.Hor(vm.selected.t)-1, x2: vm.Hor(vm.selected.t)-1, y1: vm.Ver(0), y2: vm.Ver(vm.selected.v)}'/>
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
-				<path ng-attr-d='{{vm.lineFun([vm.point, {v: vm.point.dv + vm.point.v, t: vm.point.t}])}}' class='tri dv' />
+				<line d3-der='{x1: vm.Hor(vm.selected.t)+1, x2: vm.Hor(vm.selected.t)+1, y1: vm.Ver(vm.selected.v), y2: vm.Ver(vm.selected.v + vm.selected.dv)}' class='tri dv' />
 			</g>
 			<path ng-attr-d='{{vm.lineFun(vm.Data.Cart.trajectory)}}' class='fun target' />
 			<path ng-attr-d='{{vm.lineFun(vm.Data.dots)}}' class='fun v' />
-			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der ></g>
+			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-der=dot ></g>
 			<circle class='dot small' r='4' shifter='[vm.Hor(vm.Data.first.t),vm.Ver(vm.Data.first.v)]' />
 			<foreignObject width='70' height='30' shifter='[vm.Hor(4), vm.Ver(.33)]'>
 					<text class='tri-label' >$2e^{-.8t}$</text>
@@ -38,7 +38,6 @@ template = '''
 		</g>
 	</svg>
 '''
-
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
@@ -70,53 +69,46 @@ class Ctrl
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
-				Data.show= true
-				event.stopPropagation()
-				if event.which is 3
+				if event.which == 3
 					return event.preventDefault()
+				Data.set_show true
 				rect = event.toElement.getBoundingClientRect()
 				t = @Hor.invert event.x - rect.left
 				v  = @Ver.invert event.y - rect.top
 				Data.add_dot t , v
 				@scope.$evalAsync()
-			.on 'drag', => @on_drag(Data.selected)
-			.on 'dragend', => 
-				Data.show = false
+			.on 'drag', => @on_drag @selected
+			.on 'dragend',=>
+				event.stopPropagation()
 				@scope.$evalAsync()
 
 		@drag = d3.behavior.drag()
 			.on 'dragstart', (dot)=>
 				event.stopPropagation()
 				event.preventDefault()
-				if event.which is 3
+				if event.which == 3
 					Data.remove_dot dot
 					@scope.$evalAsync()
-				else
-					Data.show = true
 			.on 'drag', @on_drag
-			.on 'dragend', => 
-				# Data.show = false
-				@scope.$evalAsync()
 
 		angular.element @window
 			.on 'resize', @resize
 
-	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
-
 	@property 'dots', get:-> 
 		Data.dots.filter (d)-> (d.id !='first') and (d.id !='last')
 
+	@property 'selected', get:->
+		Data.selected
+
 	on_drag: (dot)=> 
-			if event.which is 3
-				event.preventDefault()
-				return
+			# if event.which is 3
+			# 	event.preventDefault()
+			# 	return
 			Data.update_dot dot, @Hor.invert(d3.event.x), @Ver.invert(d3.event.y)
 			@scope.$evalAsync()
 
-	@property 'point', get: -> Data.selected
-
 	triangleData:->
-		point = Data.selected
+		point = @selected
 		@lineFun [{v: point.v, t: point.t}, {v:point.dv + point.v, t: point.t+1}, {v: point.dv + point.v, t: point.t}]
 
 	resize: ()=>
@@ -125,7 +117,6 @@ class Ctrl
 		@Ver.range [@height, 0]
 		@Hor.range [0, @width]
 		@scope.$evalAsync()
-
 
 der = ()->
 	directive = 

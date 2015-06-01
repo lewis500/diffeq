@@ -115,13 +115,13 @@ circle.dot {
   stroke-width: 1px;
 }
 circle.dot.small {
-  pointer-events: none;
   stroke-width: 1.6px;
 }
 [design-b-der] circle.dot.small {
   fill: #0288d1;
 }
 [design-a-der] circle.dot.small {
+  pointer-events: none;
   fill: #c2185b;
 }
 circle.dot.large {
