@@ -44,7 +44,7 @@ texture-der
 	div(flex layout='row' layout-align='start center')
 		div(flex='50')
 			p
-				| Now consider a cart rolling to a stop. The cart's motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity (how fast it slows down) and $k$ is a 'coefficient of friction' that depends on how greased the axels are. The faster the cart goes, the more it slows down.
+				| Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction' that depends on how greased the axels are. Basically, the faster the cart goes, the faster it slows down.
 		div(flex offset='5' )
 			div(cart-sim-der )
 			div(cart-buttons-der )
@@ -52,7 +52,7 @@ texture-der
 	div(flex layout='row' layout-align='start center')
 		div(flex='50')
 			p
-				|  The solution is a function $v(t)$ giving the cart's velocity at time $t$. We'll assume that $k=.8$ and also that the cart starts out rolling at time $t=0$ with velocity $2$. So the two clues we have are $\dot{v}= -.8v$ and $v(0)=2$.
+				|  The solution to the DE is a function $v(t)$ that tells velocity at time $t$. We'll assume $k=.8$ and that the cart starts rolling at time $t=0$ with initial velocity $2$. Formally, our clues are $\dot{v}= -.8v$ and $v(0)=2$.
 			p
 				| It turns the exponential function, $e^{-kt}$, has the convenient properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-.8\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$, as required!
 		div(flex offset='5')
