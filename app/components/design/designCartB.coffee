@@ -15,9 +15,7 @@ template = '''
 			<g class='g-cart' ng-repeat='t in vm.sample' d3-der='{transform: "translate(" + vm.X(vm.Cart.loc(t)) + ",0)"}' style='opacity:.3;'>
 				<line class='time-line' d3-der='{x1: 0, x2: 0, y1: 0, y2: 60}' />
 			</g>
-			<g class='g-cart' d3-der='{transform: "translate(" + vm.X(vm.Cart.x) + ",30)"}' >
-				<rect class='cart' x='-12.5' width='25' y='-12.5' height='25'/>
-			</g>
+			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' transform='translate(0,25)'></g>
 		</g>
 	</svg>
 '''

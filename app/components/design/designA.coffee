@@ -83,9 +83,7 @@ class Ctrl
 			.on 'dragend',=>
 				event.preventDefault()
 				Data.set_show true
-				console.log 'hello'
 				event.stopPropagation()
-				# @scope.$evalAsync()
 
 		@drag = d3.behavior.drag()
 			.on 'dragstart', (dot)=>
