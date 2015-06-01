@@ -5,11 +5,10 @@ body {
     font-family: 'Vollkorn', serif;
     padding-top: 5px;
     font-size: 18px;
-    padding-left: 10%;
+    margin-left: 5%;
     width: 90%;
-    max-width: 1080px;
-    min-width: 400px;
 }
+
 
 // ======== boilerplate =========
 line,
@@ -34,7 +33,6 @@ h2,
 h3,
 h4,
 h5,
-button,
 {
     font-family: 'Vollkorn';
     font-weight: 300;
@@ -60,12 +58,16 @@ svg g.main{
     // opacity: .95;
 }
 
+// div[md-button] {
+//     background-color: @clr-green-500;
+// }
+
 .axis g.tick line {
     stroke-width: 1.3px;
-    stroke-dasharray: 2, 2;
-    shape-rendering: crispEdges;
-    stroke-linecap: round;
-    opacity: .9;
+    stroke-dasharray: 2, 1.6;
+    // shape-rendering: crispEdges;
+    // stroke-linecap: round;
+    // opacity: .9;
 }
 
 // ========= lines ==========
@@ -128,7 +130,7 @@ line.time-line{
 
 
 [design-b-der] .tri.dv{
-    marker-end: none;
+    // marker-end: none;
 }
 
 #arrow{
@@ -212,6 +214,13 @@ circle.point {
 
 // ==== OTHER =======
 
+.myButton{
+    // background-color: @clr-green-500;
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 6px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+}
+
 svg.topChart{
     height: 250px;
 }
@@ -219,9 +228,6 @@ svg.bottomChart{
     height: 275px;
 }
 
-// svg.cartChart{
-//     height: 60px;
-// }
 
 text.label {
     text-anchor: middle;

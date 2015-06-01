@@ -3,7 +3,7 @@ _ = require 'lodash'
 Cart = require './cartData'
 
 template = '''
-	<md-button class='md-raised' ng-click='vm.click()' ng-init='vm.play()'>{{vm.paused ? 'PLAY' : 'PAUSE'}} </md-button>
+	<md-button class='myButton' ng-click='vm.click()' ng-init='vm.play()'>{{vm.paused ? 'PLAY' : 'PAUSE'}} </md-button>
 '''
 
 class Ctrl

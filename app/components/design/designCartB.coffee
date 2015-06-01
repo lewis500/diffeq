@@ -41,7 +41,7 @@ class Ctrl
 
 		@tran = (tran)->
 			tran.ease 'linear'
-				.duration 60
+				.duration 30
 
 		angular.element @window
 			.on 'resize' , @resize

@@ -3,9 +3,8 @@ d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
 template = '''
-	<md-button ng-click='vm.click()' ng-init='vm.play()'>{{vm.paused ? 'PLAY' : 'PAUSE'}} </md-button>
+	<md-button class='myButton' ng-click='vm.click()' ng-init='vm.play()'>{{vm.paused ? 'PLAY' : 'PAUSE'}}</md-button>
 '''
-
 
 class Ctrl
 	constructor: (@scope)->

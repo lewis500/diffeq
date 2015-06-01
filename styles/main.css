@@ -4,10 +4,8 @@ body {
   font-family: 'Vollkorn', serif;
   padding-top: 5px;
   font-size: 18px;
-  padding-left: 10%;
+  margin-left: 5%;
   width: 90%;
-  max-width: 1080px;
-  min-width: 400px;
 }
 line,
 path {
@@ -26,8 +24,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-button {
+h5 {
   font-family: 'Vollkorn';
   font-weight: 300;
 }
@@ -46,10 +43,7 @@ p {
 }
 .axis g.tick line {
   stroke-width: 1.3px;
-  stroke-dasharray: 2, 2;
-  shape-rendering: crispEdges;
-  stroke-linecap: round;
-  opacity: .9;
+  stroke-dasharray: 2, 1.6;
 }
 .fun {
   stroke-width: 1.5px;
@@ -94,9 +88,6 @@ line.time-line {
 }
 .tri.dv {
   marker-end: url(#arrow);
-}
-[design-b-der] .tri.dv {
-  marker-end: none;
 }
 #arrow {
   fill: #03a9f4;
@@ -161,6 +152,11 @@ circle.point {
 #barzun {
   text-align: right;
   font-weight: 300;
+}
+.myButton {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 svg.topChart {
   height: 250px;
