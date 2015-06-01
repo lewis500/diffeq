@@ -15,7 +15,7 @@ template = '''
 			<rect class='background' d3-der='{width: vm.width, height: vm.height}' ng-mousemove='vm.move($event)' />
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
-			<foreignObject width='30' height='30' y='17' shifter='[vm.width/2, vm.height]'>
+			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
 		</g>

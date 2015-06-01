@@ -6,9 +6,9 @@ class Ctrl
 	constructor: (@scope, @el, @window)->
 		t = textures.lines()
 			.orientation "3/8", "7/8"
-			.size 5
+			.size 4
 			.stroke('#E6E6E6')
-		    .strokeWidth .8
+		    .strokeWidth .6
 
 		t.id 'myTexture'
 

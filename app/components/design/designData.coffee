@@ -29,6 +29,9 @@ class Data
 	set_show: (v)->
 		@show = v
 
+	increment: (dt)->
+		@t += dt
+
 	select_dot: (dot)->
 		@selected = dot
 

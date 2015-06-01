@@ -3,37 +3,36 @@ _ = require 'lodash'
 Cart = require './cartData'
 
 template = '''
-	<div flex layout='row'>
-		<md-button flex class="md-raised" ng-click='vm.play()'>Play</md-button>
-		<md-button flex class="md-raised" ng-click='vm.pause()'>Pause</md-button>
-	</div>
+	<md-button ng-click='vm.click()' ng-init='vm.play()'>{{vm.paused ? 'PLAY' : 'PAUSE'}} </md-button>
 '''
 
 class Ctrl
 	constructor: (@scope)->
-		@cart = Cart
+
+	click: ->
+		if @paused then @play() else @pause()
 
 	play: ->
-		Cart.paused = true
+		@paused = true
 		d3.timer.flush()
-		@cart.restart()
-		Cart.paused = false
-		setTimeout =>
-			last = 0
-			d3.timer (elapsed)=>
-				@cart.increment (elapsed - last)/1000
+		@paused = false
+		last = 0
+		d3.timer (elapsed)=>
+				dt = elapsed - last
+				Cart.increment dt/1000
 				last = elapsed
-				if (@cart.v < .01) then Cart.paused = true
+				if Cart.t > 4
+					Cart.set_t 0
 				@scope.$evalAsync()
-				Cart.paused
+				@paused
+			, 1
 
 	pause: ->
-		Cart.paused = true
+		@paused = true
 
 der = ()->
 	directive = 
 		controllerAs: 'vm'
-		# restrict: 'E'
 		scope: {}
 		controller: ['$scope', Ctrl]
 		template: template

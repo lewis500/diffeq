@@ -39,8 +39,6 @@ class Ctrl
 		tran.ease 'linear'
 			.duration 60
 
-	# @property 'svg_height' , get:-> @height + @mar.top + @mar.bottom
-
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
 		@height = @el[0].clientHeight - @mar.top - @mar.bottom

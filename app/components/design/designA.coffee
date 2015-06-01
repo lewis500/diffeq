@@ -13,10 +13,10 @@ template = '''
 			<rect class='background' d3-der='{width: vm.width, height: vm.height}' behavior='vm.drag_rect' />
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
-			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
+			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
 					<text class='label'>$v$</text>
 			</foreignObject>
-			<foreignObject width='30' height='30' shifter='[vm.width/2, vm.height]'>
+			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
 		</g>
@@ -42,9 +42,9 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 30
+			left: 38
 			top: 10
-			right: 20
+			right: 10
 			bottom: 37
 
 		@Ver = d3.scale.linear().domain [-.1,2.1]
@@ -69,8 +69,10 @@ class Ctrl
 
 		@drag_rect = d3.behavior.drag()
 			.on 'dragstart', ()=>
+				d3.event.sourceEvent.stopPropagation()
+				event.preventDefault()
 				if event.which == 3
-					return event.preventDefault()
+					return 
 				Data.set_show true
 				rect = event.toElement.getBoundingClientRect()
 				t = @Hor.invert event.x - rect.left
@@ -79,17 +81,23 @@ class Ctrl
 				@scope.$evalAsync()
 			.on 'drag', => @on_drag @selected
 			.on 'dragend',=>
+				event.preventDefault()
+				Data.set_show true
+				console.log 'hello'
 				event.stopPropagation()
-				@scope.$evalAsync()
+				# @scope.$evalAsync()
 
 		@drag = d3.behavior.drag()
 			.on 'dragstart', (dot)=>
-				event.stopPropagation()
-				event.preventDefault()
+				d3.event.sourceEvent.stopPropagation()
 				if event.which == 3
+					event.preventDefault()
 					Data.remove_dot dot
+					Data.set_show false
 					@scope.$evalAsync()
 			.on 'drag', @on_drag
+
+
 
 		angular.element @window
 			.on 'resize', @resize

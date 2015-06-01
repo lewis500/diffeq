@@ -3,14 +3,12 @@ d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
 template = '''
-	<mg-button ng-click='vm.click()'>{{vm.paused ? 'PLAY' : 'PAUSE'}} </md-button>
+	<md-button ng-click='vm.click()' ng-init='vm.play()'>{{vm.paused ? 'PLAY' : 'PAUSE'}} </md-button>
 '''
 
 
 class Ctrl
-	constructor: (@scope, @el, @window)->
-		@Data = Data
-		@pause()
+	constructor: (@scope)->
 
 	click: ->
 		if @paused then @play() else @pause()
@@ -19,15 +17,19 @@ class Ctrl
 		@paused = true
 		d3.timer.flush()
 		@paused = false
-		setTimeout =>
-			d3.timer (elapsed)=>
-				Data.t = elapsed/1000
+		last = 0
+		d3.timer (elapsed)=>
+				dt = elapsed - last
+				Data.increment dt/1000
+				last = elapsed
+				if Data.t > 4
+					Data.t = 0
+					# setTimeout =>
+					# 	@play()
+					# true
 				@scope.$evalAsync()
-				if elapsed > 4000
-					@pause()
-					setTimeout =>
-						@play()
 				@paused
+			, 1
 
 	pause: -> @paused = true
 
@@ -37,6 +39,6 @@ der = ()->
 		scope: {}
 		template: template
 		templateNamespace: 'svg'
-		controller: ['$scope','$element', '$window', Ctrl]
+		controller: ['$scope', Ctrl]
 
 module.exports = der

@@ -59,6 +59,10 @@ p {
     // font-weight: 100;
 }
 
+svg g.main{
+    opacity: .95;
+}
+
 .axis g.tick line {
     stroke-width: 1.3px;
     stroke-dasharray: 2, 2;
@@ -73,15 +77,17 @@ p {
     fill: none;
 }
 
-
+.target{
+    opacity: .6
+}
 [design-b-der] path.target{
     stroke: @clr-light-blue-900;
-    opacity: .9;
+    // opacity: .9;
 }
 
 [design-a-der] path.target{
     stroke: @clr-pink-900;
-    opacity: .9;
+    // opacity: .9;
 }
 
 .correct {
@@ -92,7 +98,7 @@ p {
     stroke-width: 1.3px;
     fill: none;
     opacity: 1;
-    stroke: @clr-green-300;
+    stroke: @clr-green-400;
     stroke-dasharray: 2, 2;
     stroke-linecap: round;
 }

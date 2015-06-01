@@ -14,7 +14,7 @@ template = '''
 			<rect class='background' d3-der='{width: vm.width, height: vm.height}' />
 			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
 			<g hor-axis-der height='vm.height' scale='vm.V' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
-			<foreignObject width='30' height='30' shifter='[-31, vm.height/2]'>
+			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
 					<text class='label'>$\\dot{v}$</text>
 			</foreignObject>
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
@@ -41,9 +41,9 @@ template = '''
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 30
+			left: 40
 			top: 10
-			right: 20
+			right: 10
 			bottom: 37
 
 		@Ver = d3.scale.linear().domain [-1.9, .1]
