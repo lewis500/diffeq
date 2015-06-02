@@ -9,22 +9,24 @@ der = ($window)->
 		restrict: 'A'
 		templateNamespace: 'svg'
 		scope: 
-			scale: '='
+			# scale: '='
 			width: '='
 			fun: '='
 		link: (scope, el, attr, vm)->
-			yAxisFun = vm.fun ? d3.svg.axis()
-				.scale vm.scale
-				.orient 'left'
+			# yAxisFun = vm.fun 
+			# scale. = yAxis
+			scale = vm.fun.scale()
 
 			sel = d3.select(el[0]).classed('y axis', true)
 
 			update = =>
-				yAxisFun.tickSize( -vm.width)
-				sel.call(yAxisFun)
+				vm.fun.tickSize( -vm.width)
+				sel.call vm.fun
 
-			scope.$watchCollection ['scale.domain()','scale.range()','width'], update, true
-				
-
+			scope.$watch ->
+				# console.log scale.range()
+				[scale.domain(), scale.range() ,vm.width]
+			, update
+			, true
 
 module.exports = der

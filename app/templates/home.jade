@@ -18,8 +18,6 @@ texture-der
 		div(flex )
 			h2.subtitle ORIGINAL $\sin(t)$
 
-		//- div()
-
 		div(flex layout='row' layout-align='start center' layout-padding)
 			div(flex='50')
 				p
@@ -30,10 +28,9 @@ texture-der
 					| Mousing over the plots to the right, you can see the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Thus, $y(t)=\sin(t)$ is a solution to $$ \dot y = \cos(t).$$ 
 				p
 					| That's a pretty basic DE, though. You could have solved it just by integrating $\cos(t)$. Now let's look at a more complicated one.
-			div(flex offset='5'  layout='column' layout-padding)
-				div(flex derivative-a-der)
-				div(flex derivative-b-der)
-		//- div(flex layout='row' layout-align='start center' layout-padding)
+			div(flex offset='5'  layout='column' )
+					div(derivative-a-der)
+					div(derivative-b-der)
 
 	div.block(flex layout='column')
 		div(flex )
@@ -75,6 +72,6 @@ texture-der
 						| ACTUAL $v(t)$
 					div(flex='90' design-cart-b-der)
 				div(design-buttons-der style='text-align: center;')
-			div(flex layout='column' offset='5' layout-margin)
-				div(design-a-der flex )
-				div(flex design-b-der )
+			div(flex layout='column' offset='5')
+				div(design-a-der  )
+				div(design-b-der )

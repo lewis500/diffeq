@@ -24,7 +24,10 @@ der = ($window)->
 				xAxisFun.tickSize -vm.height
 				sel.call xAxisFun
 				
-			scope.$watchCollection ['scale.domain()','scale.range()','height'], update, true
+			scope.$watch ->
+				[vm.scale.domain(), vm.scale.range() ,vm.height]
+			, update
+			, true
 
 
 module.exports = der
