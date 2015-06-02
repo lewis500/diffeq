@@ -65,7 +65,7 @@ line.time-line {
 .tri {
   stroke-width: 1.3px;
   fill: #66bb6a;
-  fill-opacity: .1;
+  fill-opacity: .07;
   stroke: #81c784;
   stroke-dasharray: 2, 2;
   stroke-linecap: round;
@@ -139,7 +139,6 @@ circle.point {
 }
 #quote {
   border-left: 4px solid #ccc;
-  margin-left: -15px;
   padding: 33px;
   padding-bottom: 25px;
   border-radius: 2px;
@@ -156,10 +155,12 @@ circle.point {
 }
 .title {
   text-align: center;
+  font-size: 44px;
 }
 .subtitle {
   text-align: center;
-  border-top: solid 1px rgba(0, 0, 0, 0.2);
+  margin-top: 25px;
+  margin-bottom: 5px;
 }
 .myButton {
   border: 1px solid rgba(0, 0, 0, 0.1);

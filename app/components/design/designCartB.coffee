@@ -3,6 +3,7 @@ d3= require 'd3'
 {min} = Math
 require '../../helpers'
 Cart = require './trueCart'
+Data = require './designData'
 
 template = '''
 	<svg ng-init='vm.resize()' width='100%' class='cartChart' ng-attr-height='{{::vm.svgHeight}}'>
@@ -22,7 +23,7 @@ template = '''
 			<g class='g-cart' ng-repeat='t in vm.sample' d3-der='{transform: "translate(" + vm.X(vm.Cart.loc(t)) + ",0)"}' style='opacity:.3;'>
 				<line class='time-line' d3-der='{x1: 0, x2: 0, y1: 0, y2: 60}' />
 			</g>
-			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' transform='translate(0,25)'></g>
+			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' shifter='[0,vm.height]' size='vm.size'></g>
 		</g>
 	</svg>
 '''
@@ -37,7 +38,12 @@ class Ctrl
 			
 		@X = d3.scale.linear().domain [-.1,3] 
 
-		@sample = _.range( 0, 5 , .5)
+		@sample = _.range( 0, 6 , .5)
+
+		@scope.$watch ->
+				Data.maxX
+			, (v)=>
+				@X.domain [-.1, v]
 
 		@Cart = Cart
 
@@ -52,6 +58,8 @@ class Ctrl
 
 		angular.element @window
 			.on 'resize' , @resize
+
+	@property 'size', get: -> (@X( 0.4) - @X(0))/80
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right

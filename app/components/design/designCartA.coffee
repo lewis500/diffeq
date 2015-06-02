@@ -3,6 +3,7 @@ d3= require 'd3'
 {min} = Math
 require '../../helpers'
 Cart = require './fakeCart'
+Data = require './designData'
 
 template = '''
 	<svg ng-init='vm.resize()' width='100%' class='cartChart' ng-attr-height='{{::vm.svgHeight}}'>
@@ -11,13 +12,18 @@ template = '''
 				<rect d3-der='{width: vm.width, height: vm.height}' />
 			</clippath>
 		</defs>
-		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'  clip-path="url(#dCartA)" >
+		<g class='boilerplate' shifter='{{::[vm.mar.left, vm.mar.top]}}' >
 			<rect d3-der='{width: vm.width, height: vm.height}' class='background'/>
 			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
+			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
+					<text class='label' >$x$</text>
+			</foreignObject>
+		</g>
+		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'  clip-path="url(#dCartA)" >
 			<g class='g-cart' ng-repeat='t in vm.sample' d3-der='{transform: "translate(" + vm.X(vm.Cart.loc(t)) + ",0)"}' style='opacity:.3;'>
 				<line class='time-line' d3-der='{x1: 0, x2: 0, y1: 0, y2: 60}' />
 			</g>
-			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' transform='translate(0,25)'></g>
+			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' shifter='[0,vm.height]' size='vm.size'></g>
 		</g>
 	</svg>
 '''
@@ -27,13 +33,17 @@ class Ctrl
 		@mar = 
 			left: 10
 			right: 10
-			top: 0
-			bottom: 0
+			top: 10
+			bottom: 20
 			
-		@X = d3.scale.linear().domain [-.1,3] 
+		@X = d3.scale.linear().domain [-.1,3]
+
+		@scope.$watch ->
+				Data.maxX
+			, (v)=>
+				@X.domain [-.1, v]
 
 		@sample = _.range( 0, 6 , .5)
-		console.log @sample
 
 		@Cart = Cart
 
@@ -50,6 +60,8 @@ class Ctrl
 			.on 'resize' , @resize
 
 	@property 'svgHeight' , get:-> @height + @mar.top + @mar.bottom
+
+	@property 'size', get: -> (@X( 0.4) - @X(0))/80
 
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right

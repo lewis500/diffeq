@@ -43,6 +43,15 @@ class Data
 		@dots.push newDot
 		@update_dot newDot, t, v
 
+	@property 'maxX', get:->
+		t = 4.5
+		i = _.findLastIndex @dots, (d)->
+			d.t <= t
+		a = @dots[i]
+		dt = t - a.t
+		dv = @dots[i+1]?.dv ? 0
+		a.x + a.v * dt + 0.5*dv * dt**2
+
 	remove_dot: (dot)->
 		@dots.splice @dots.indexOf(dot), 1
 		@update_dots()

@@ -22,7 +22,7 @@ template = '''
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' transform='translate(0,25)'></g>
+			<g class='g-cart' cart-object-der left='vm.X(vm.Cart.x)' shifter='[0,vm.height]' size='vm.size'></g>
 		</g>
 	</svg>
 '''
@@ -35,6 +35,7 @@ class Ctrl
 			right: 10
 			top: 10
 			bottom: 18
+
 		@X = d3.scale.linear().domain [-.1,3] 
 
 		@axisFun = d3.svg.axis()
@@ -51,13 +52,13 @@ class Ctrl
 
 	@property 'svgHeight', get:-> @height + @mar.top+@mar.bottom
 
+	@property 'size', get: -> (@X( 0.4) - @X(0))/80
+
 	resize: ()=>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
 		@height = 60
 		@X.range([0, @width])
 		@scope.$evalAsync()
-
-
 
 der = ()->
 	directive = 
