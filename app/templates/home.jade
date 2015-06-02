@@ -1,5 +1,6 @@
 
-h1(style='font-size: 48px; margin-top: 15px; margin-bottom: 20px; font-weight: 500; text-align: center;') DIFFERENTIAL EQUATIONS EXPLAINED
+h1.title DIFFERENTIAL EQUATIONS EXPLAINED
+p(style='text-align: center;') (to people who have already taken calculus or even ODE's and forgotten)
 //- p by Lewis Lehe
 
 #header
@@ -14,24 +15,16 @@ h1(style='font-size: 48px; margin-top: 15px; margin-bottom: 20px; font-weight: 5
 texture-der
 
 #content(layout='column' layout-padding)
-	//- div(flex layout='row' layout-align='start center'  )
-	//- 	div(flex='50')
-	//- 		p
-	//- 			To solve, we can plot the left-hand-side as <span class='col v'>$y(t)$</span> and find $t$ where $y(t)=0$.
-	//- 		p
-
-	//- 			| A differential equation (DE), by contrast, concerns an unknown  <em>function</em>. The DE gives you a clue about the function's derivative, and you find a function that fits the clue. 
-	//- 	div(flex offset='5' regular-der)
 	div(flex layout='column' )
 		div(flex )
-			h2(style='text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)' ) ORIGINAL $\sin(t)$
+			h2.subtitle ORIGINAL $\sin(t)$
 
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
 					| You're probably used to equations like $$(t-.5)(t-1)= 0,$$ where 'solving' means finding an unknown <em>number</em>. A differential equation (DE), by contrast, is a fact about the derivative of an unknown <em>function</em>. 'Solving' one means finding a function that fits it.
 				p
-					| To visualize derivatives, we draw a right triangle whose hypoteneuse is tangent to a function. If the triangle's width is $1$, then its <span class='col dv'>height</span> is the derivative.
+					| To visualize derivatives, we draw a right <span class='col tri'>triangle</span> whose hypoteneuse is tangent to a function. If the triangle's width is $1$, then its <span class='col dv'>height</span> is the derivative.
 			div(flex offset='5' derivative-der)
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
@@ -43,7 +36,7 @@ texture-der
 
 	div(flex layout='column')
 		div(flex )
-			h2(style='text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)' ) PICTURE ME ROLLING
+			h2.subtitle PICTURE ME ROLLING
 		
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
@@ -63,13 +56,13 @@ texture-der
 				div(cart-plot-der)
 
 	div(flex layout='column')
-		div(flex )
-			h2(style='text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)' ) CARTOGRAPHY
+		div(flex)
+			h2.subtitle CARTOGRAPHY
 
-		div(flex layout='row' layout-align='start center')
+		div(flex layout='row')
 			div(flex='50')
 				p
-					| Here, you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs, which make up the function $v(t)$. At each point, the derivative is calculated and the corresponding pair $( v, \dot{v})$ shows up on the lower chart. If you try to draw $v(t)=2e^-{.8t}$, then the $(v, \dot {v})$ points wind up around the line $\dot{v} = -.8v$. 
+					| Here, you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs, which make up the function $v(t)$. At each point, the derivative $\dot{v}$ is calculated and the corresponding pair $( v, \dot{v})$ shows up on the lower chart. If you try to draw $v(t)=2e^-{.8t}$, then the $(v, \dot {v})$ points wind up around the line $\dot{v} = -.8v$. 
 				p
 					| The first cart below obeys the $v(t)$ function you designed. The second obeys $v(t)=2e^{-.8t}$. If you draw $v(t)$ correctly, both cars move together. Grey lines indicate  locations sampled every half-second, so if the carts move in tandem they'll line up.
 				div(layout='row' layout-align='start center')
