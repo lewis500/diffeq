@@ -9,12 +9,9 @@ der = ($window)->
 		restrict: 'A'
 		templateNamespace: 'svg'
 		scope: 
-			# scale: '='
 			width: '='
 			fun: '='
 		link: (scope, el, attr, vm)->
-			# yAxisFun = vm.fun 
-			# scale. = yAxis
 			scale = vm.fun.scale()
 
 			sel = d3.select(el[0]).classed('y axis', true)

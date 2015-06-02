@@ -9,23 +9,20 @@ der = ($window)->
 		restrict: 'A'
 		templateNamespace: 'svg'
 		scope: 
-			scale: '='
 			height: '='
 			fun: '='
 		link: (scope, el, attr, vm)->
-			xAxisFun = vm.fun ? (d3.svg.axis()
-							.scale vm.scale
-							.orient 'bottom')
+			scale = vm.fun.scale()
 
 			sel = d3.select el[0]
 				.classed 'x axis', true
 
 			update = =>
-				xAxisFun.tickSize -vm.height
-				sel.call xAxisFun
+				vm.fun.tickSize -vm.height
+				sel.call vm.fun
 				
 			scope.$watch ->
-				[vm.scale.domain(), vm.scale.range() ,vm.height]
+				[scale.domain(), scale.range() ,vm.height]
 			, update
 			, true
 
