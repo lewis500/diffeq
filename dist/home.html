@@ -11,26 +11,20 @@
 </div>
 <texture-der></texture-der>
 <div id="content" layout="column" layout-padding="layout-padding">
-  <div flex="flex" layout="row" layout-align="start center">
-    <div flex="50">
-      <p>You're probably used to equations like $$ 5(t-.5)(t-1)(t-2)^2 = 0,$$ where 'solving' means finding an unknown <em>number</em>. To solve, we can plot the left-hand-side as <span class='col v'>$y(t)$</span> and find $t$ where $y(t)=0$.</p>
-      <p>A differential equation (DE), by contrast, concerns an unknown  <em>function</em>. The DE gives you a clue about the function's derivative, and you find a function that fits the clue. </p>
-    </div>
-    <div flex="flex" offset="5" regular-der="regular-der"></div>
-  </div>
   <div flex="flex" layout="column">
     <div flex="flex">
       <h2 style="text-align:center; border-bottom: solid 1px rgba(0,0,0,.2)">ORIGINAL $\sin(t)$</h2>
     </div>
     <div flex="flex" layout="row" layout-align="start center">
       <div flex="50">
-        <p>To see derivatives, we can draw a right triangle whose hypoteneuse is tangent to (i.e., barely grazes) a function. If the triangle's width is $1$, its <span class='col dv'>height</span> is the derivative. Here's <span class='col v'>$\sin(t)$</span>.</p>
+        <p>You're probably used to equations like $$(t-.5)(t-1)= 0,$$ where 'solving' means finding an unknown <em>number</em>. A differential equation (DE), by contrast, is a fact about the derivative of an unknown <em>function</em>. 'Solving' one means finding a function that fits it.</p>
+        <p>To visualize derivatives, we draw a right triangle whose hypoteneuse is tangent to a function. If the triangle's width is $1$, then its <span class='col dv'>height</span> is the derivative.</p>
       </div>
       <div flex="flex" offset="5" derivative-der="derivative-der"></div>
     </div>
     <div flex="flex" layout="row" layout-align="start center">
       <div flex="50">
-        <p>That one weird trick shows how the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Thus, $y(t)=\sin(t)$ is a solution to the DE $$ \dot y = \cos(t).$$ </p>
+        <p>Mousing over the plots to the right, you can see the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Thus, $y(t)=\sin(t)$ is a solution to the DE $$ \dot y = \cos(t).$$ </p>
         <p>That's a pretty basic DE, though. You could have solved it just by integrating $\cos(t)$. Now let's look at a more complicated one.</p>
       </div>
       <div flex="flex" offset="5" derivative-b-der="derivative-b-der"></div>
@@ -65,12 +59,8 @@
     </div>
     <div flex="flex" layout="row" layout-align="start center">
       <div flex="50">
-        <p>Here, you'll solve the cart's DE manually by picking $\left( t, v \right)$ points to make a function $v(t)$. The first point, $(0,2)$ is fixed.</p>
-        <p>
-           
-          For each point you choose, the derivative is calculated and a pair $( v, \dot{v})$ is plotted on the lower chart. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up around the line $\dot{v} = -v$. 
-        </p>
-        <p>The first cart below obeys the $v(t)$ function you designed. The second moves according to the real solution. If you draw $v(t)$ right, the cart will have the same motion as its lower counterpart. Grey lines indicate the cart's location at half-second intervals, so when the carts have the same motion they'll line up.</p>
+        <p>Here, you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs, which make up the function $v(t)$. At each point, the derivative is calculated and the corresponding pair $( v, \dot{v})$ shows up on the lower chart. If you draw $v(t)$ correctly, then the $(v, \dot {v})$ points wind up around the line $\dot{v} = -v$. </p>
+        <p>The first cart below obeys the $v(t)$ function you designed. The second obeys $v(t)=2e^{-.8t}$. If you draw $v(t)$ correctly, both cars move together. Grey lines indicate  locations sampled every half-second, so if the carts move in tandem they'll line up.</p>
       </div>
       <div design-a-der="design-a-der" flex="flex" offset="5"></div>
     </div>
