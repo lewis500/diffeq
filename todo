@@ -1,22 +1,12 @@
-CART
+STYLE THE MOVING DOTS
+
+
 make a class for the little headlines
-
-
-put a clip path on the cart directives
-add an arrow to the blue line on the botot plot
-
 fix how sometimes it doesn't understand the scales or whatever
 
 
 
-add an optional trans property on the shifterDer
+add an optional transition to the shifter
+MAKE THE TOP THREE PLOTS PLAY, TOO
 
-style the play button
-
-
-make a cart directive with the wheels on it
-
-
-
-LONG TERM
-don't just have the value light up at the top, have it snap to the zero-line
+MAKE DOTS THAT MOVE ALONG THE BOTTOM CHARTS, TOO

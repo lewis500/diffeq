@@ -21,7 +21,7 @@ class Ctrl
 				dt = elapsed - last
 				Data.increment dt/1000
 				last = elapsed
-				if Data.t > 4
+				if Data.t > 4.5
 					Data.set_t 0
 				@scope.$evalAsync()
 				@paused

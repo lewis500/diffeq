@@ -10,4 +10,7 @@ class Cart
 
 	@property 'x', get:-> @loc Data.t
 
+	@property 'v', get:->
+		2* Math.exp(-.8*Data.t)
+
 module.exports = new Cart

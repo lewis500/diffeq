@@ -2,6 +2,9 @@ angular = require 'angular'
 d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'
+Fake = require './fakeCart'
+Real = require './trueCart'
+
 template = '''
 	<svg ng-init='vm.resize()' width='100%' class='bottomChart'>
 		<defs>
@@ -35,6 +38,8 @@ template = '''
 			<foreignObject width='70' height='30' shifter='[vm.Hor(4), vm.Ver(.33)]'>
 					<text class='tri-label' >$2e^{-.8t}$</text>
 			</foreignObject>
+			<circle r='4px'  shifter='[vm.Hor(vm.Data.t), vm.Ver(vm.Fake.v)]' class='point fake'/>
+			<circle r='4px'  shifter='[vm.Hor(vm.Data.t), vm.Ver(vm.Real.v)]' class='point real'/>
 		</g>
 	</svg>
 '''
@@ -52,6 +57,9 @@ class Ctrl
 		@Hor = d3.scale.linear().domain [-.1,5]
 
 		@Data = Data
+
+		@Fake = Fake
+		@Real = Real
 
 		@horAxFun = d3.svg.axis()
 			.scale @Hor

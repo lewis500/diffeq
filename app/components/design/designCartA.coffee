@@ -6,7 +6,12 @@ Cart = require './fakeCart'
 
 template = '''
 	<svg ng-init='vm.resize()' width='100%' class='cartChart' ng-attr-height='{{::vm.svgHeight}}'>
-		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
+		<defs>
+			<clippath id='dCartA'>
+				<rect d3-der='{width: vm.width, height: vm.height}' />
+			</clippath>
+		</defs>
+		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'  clip-path="url(#dCartA)" >
 			<rect d3-der='{width: vm.width, height: vm.height}' class='background'/>
 			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
 			<g class='g-cart' ng-repeat='t in vm.sample' d3-der='{transform: "translate(" + vm.X(vm.Cart.loc(t)) + ",0)"}' style='opacity:.3;'>
@@ -27,7 +32,8 @@ class Ctrl
 			
 		@X = d3.scale.linear().domain [-.1,3] 
 
-		@sample = _.range( 0, 5 , .5)
+		@sample = _.range( 0, 6 , .5)
+		console.log @sample
 
 		@Cart = Cart
 

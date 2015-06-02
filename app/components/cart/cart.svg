@@ -29,7 +29,7 @@
     </g>
 
     <g class='g-carBody'>
-        <path fill="#4CAF50" d="M70.7,22.5l-1.2-4c-0.9-2.6-2.1-5.1-5.2-5.1h-8c-2.4,0-4.2,1.8-5.2,5.1l-1.2,4H29.4l-1.2-4
+        <path class='carBody' fill="#4CAF50" d="M70.7,22.5l-1.2-4c-0.9-2.6-2.1-5.1-5.2-5.1h-8c-2.4,0-4.2,1.8-5.2,5.1l-1.2,4H29.4l-1.2-4
 			c-0.9-2.6-2.1-5.1-5.2-5.1h-8c-2.4,0-4.2,1.8-5.2,5.1l-1.2,4H2.9L0.8,0.9h77.5l-2.1,21.5H70.7z" />
         <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="63.8413" y1="-13.6015" x2="15.3552" y2="34.884">
             <stop offset="0.5" style="stop-color:#FFFFFF" />

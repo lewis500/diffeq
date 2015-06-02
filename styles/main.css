@@ -86,6 +86,12 @@ line.time-line {
 .point.dv {
   fill: #03a9f4;
 }
+.fake {
+  fill: #e91e63;
+}
+.real {
+  fill: #880e4f;
+}
 .tri.dv {
   marker-end: url(#arrow);
 }
@@ -115,11 +121,11 @@ circle.dot.small {
   stroke-width: 1.6px;
 }
 [design-b-der] circle.dot.small {
-  fill: #0288d1;
+  fill: #039be5;
 }
 [design-a-der] circle.dot.small {
   pointer-events: none;
-  fill: #c2185b;
+  fill: #d81b60;
 }
 circle.dot.large {
   fill: #c2185b;
@@ -162,7 +168,7 @@ svg.topChart {
   height: 250px;
 }
 svg.bottomChart {
-  height: 275px;
+  height: 250px;
 }
 text.label {
   text-anchor: middle;
@@ -197,4 +203,10 @@ span.v {
 }
 span.dv {
   background-color: rgba(3, 169, 244, 0.4);
+}
+[design-cart-a-der] .carBody {
+  fill: #e91e63;
+}
+[design-cart-b-der] .carBody {
+  fill: #880e4f;
 }

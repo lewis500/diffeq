@@ -6,9 +6,19 @@ require '../../helpers'
 
 template = '''
 	<svg ng-init='vm.resize()' width='100%' ng-attr-height="{{vm.svgHeight}}">
-		<g shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<rect class='background' d3-der='{width: vm.width, height: vm.height}' ng-mousemove='vm.move($event)' />
+		<defs>
+			<clippath id='cartSim'>
+				<rect d3-der='{width: vm.width, height: vm.height}' />
+			</clippath>
+		</defs>
+		<g class='boilerplate' shifter='{{::[vm.mar.left, vm.mar.top]}}' >
+			<rect d3-der='{width: vm.width, height: vm.height}' class='background'/>
 			<g hor-axis-der height='vm.height' scale='vm.X' fun='vm.axisFun' shifter='[0,vm.height]'></g>
+			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
+					<text class='label' >$x$</text>
+			</foreignObject>
+		</g>
+		<g shifter='{{::[vm.mar.left, vm.mar.top]}}' clip-path="url(#cartSim)" >
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>

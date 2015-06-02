@@ -1,6 +1,6 @@
 
 h1(style='font-size: 48px; margin-top: 15px; margin-bottom: 20px; font-weight: 500; text-align: center;') DIFFERENTIAL EQUATIONS EXPLAINED
-//- h3(style='margin-top: 9px;') differential equations explained
+//- p by Lewis Lehe
 
 #header
 	#quote
@@ -71,11 +71,17 @@ texture-der
 				p 
 					| For each point you choose, the derivative is calculated and a pair $( v, \dot{v})$ is plotted on the lower chart. If you draw the $v(t)$ correctly, then the $(v, \dot {v})$ points will all wind up around the line $\dot{v} = -v$. 
 				p
-					| The first cart below obeys the $v(t)$ function you designed, and the lines indicate its location at half-second intervals. If you draw $v(t)$ right, the cart will have the same motion as its lower counterpart.
+					| The first cart below obeys the $v(t)$ function you designed. The second moves according to the real solution. If you draw $v(t)$ right, the cart will have the same motion as its lower counterpart. Grey lines indicate the cart's location at half-second intervals, so when the carts have the same motion they'll line up.
 			div(design-a-der flex offset='5')
 		div(flex layout='row')
-			div(flex='50' )
-				div(design-cart-a-der)
-				div(design-cart-b-der)
+			div(flex='50')
+				div(flex layout='row' layout-align='start center')
+					div(flex style='font-size: 13px; text-align: center')
+						| YOUR $v(t)$
+					div(flex='90' design-cart-a-der)
+				div(flex layout='row' layout-align='start center')
+					div(flex style='font-size: 13px; text-align: center')
+						| ACTUAL $v(t)$
+					div(flex='90' design-cart-b-der)
 				div(design-buttons-der style='text-align: center;')
 			div(flex design-b-der offset='5')

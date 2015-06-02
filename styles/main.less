@@ -124,6 +124,15 @@ line.time-line{
     fill: @clr-light-blue-500;
 }
 
+
+.fake{
+    fill: @clr-pink-500;
+}
+
+.real{
+    fill: @clr-pink-900;
+}
+
 .tri.dv {
     marker-end: url(#arrow);
 }
@@ -165,12 +174,12 @@ circle.dot.small{
 }
 
 [design-b-der] circle.dot.small {
-    fill: @clr-light-blue-700;
+    fill: @clr-light-blue-600;
 }
 
 [design-a-der] circle.dot.small {
     pointer-events: none;
-    fill: @clr-pink-700;
+    fill: @clr-pink-600;
 }
 
 circle.dot.large {
@@ -225,7 +234,7 @@ svg.topChart{
     height: 250px;
 }
 svg.bottomChart{
-    height: 275px;
+    height: 250px;
 }
 
 
@@ -270,4 +279,12 @@ span.v {
 
 span.dv {
     background-color: fade(@clr-light-blue-500, 40%);
+}
+
+[design-cart-a-der] .carBody{
+    fill: @clr-pink-500;
+}
+
+[design-cart-b-der] .carBody{
+    fill: @clr-pink-900;
 }
