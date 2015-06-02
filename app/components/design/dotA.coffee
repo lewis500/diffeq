@@ -74,7 +74,7 @@ der = ()->
 		template: template
 		controllerAs: 'vm'
 		scope: 
-			dot: '=dotDer'
+			dot: '=dotADer'
 		bindToController: true
 		controller: ['$scope','$element',Ctrl]
 		restrict: 'A'

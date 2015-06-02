@@ -1,3 +1,9 @@
+make the dot.coffee into dota, and hte directive,too
+
+also derivative should be derviativeA
+
+remove unwanted files
+
 move the cart to be located correctly
 i think the dv tri is offset by one pixel in derivative b
 
@@ -14,3 +20,10 @@ add an optional transition to the shifter
 MAKE THE TOP THREE PLOTS PLAY, TOO
 
 MAKE DOTS THAT MOVE ALONG THE BOTTOM CHARTS, TOO
+
+
+
+
+SIMPLIFYING
+make one designData for dots, another for time/show/etc.
+make a directive for the 
