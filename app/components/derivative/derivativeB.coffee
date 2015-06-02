@@ -3,6 +3,7 @@ d3 = require 'd3'
 require '../../helpers'
 _ = require 'lodash'
 Data = require './derivativeData'
+PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
 	<svg ng-init='vm.resize()' class='topChart'>
@@ -25,57 +26,28 @@ template = '''
 	</svg>
 '''
 			
-class Ctrl
+class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
-		@mar = 
-			left: 30
-			top: 20
-			right: 20
-			bottom: 40
+		super @scope, @el, @window
 
-		@Ver = d3.scale.linear().domain [-1.5,1.5]
-		@Hor = d3.scale.linear().domain [0,6]
+		@Ver.domain [-1.5,1.5]
+		@Hor.domain [0,6]
 
 		@name = 'derivativeB'
 
 		@data = Data.data
 
-		@horAxFun = d3.svg.axis()
-			.scale @Hor
-			.ticks 5
-			.orient 'bottom'
-
-		@verAxFun = d3.svg.axis()
-			.scale @Ver
-			.tickFormat (d)->
-				if Math.floor( d ) != d then return
-				d
-			.ticks 5
-			.orient 'left'
-
-		@lineFun = d3.svg.line()
+		@lineFun
 			.y (d)=> @Ver d.dv
 			.x (d)=> @Hor d.t
-
-		angular.element @window
-			.on 'resize', @resize
 
 		@move = (event) =>
 			t = @Hor.invert event.x - event.target.getBoundingClientRect().left
 			Data.move t
 			@scope.$evalAsync()
 
-	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
-
 	@property 'point', get:->
 		Data.point
-
-	resize: ()=>
-		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientHeight - @mar.top - @mar.bottom
-		@Ver.range [@height, 0]
-		@Hor.range [0, @width]
-		@scope.$evalAsync()
 
 der = ()->
 	directive = 

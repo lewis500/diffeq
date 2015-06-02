@@ -27,44 +27,25 @@ template = '''
 	</svg>
 '''
 			
-class Ctrl
+class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
-		@mar = 
-			left: 30
-			top: 20
-			right: 20
-			bottom: 35
+		super @scope, @el, @window
 
 		@name = 'derClip'
 
 		@data = Data.data
 
-		@horAxFun = d3.svg.axis()
-			.scale @Hor
-			.ticks 5
-			.orient 'bottom'
-
-		@verAxFun = d3.svg.axis()
-			.scale @Ver
-			.tickFormat (d)->
-				if Math.floor( d ) != d then return
-				d
-			.ticks 5
-			.orient 'left'
-
-		@lineFun = d3.svg.line()
+		@lineFun
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
 
-		angular.element @window
-			.on 'resize', @resize
+		@Ver.domain [-1.5,1.5]
+		@Hor.domain [0,6]
 
 		@move = (event) =>
 			t = @Hor.invert event.x - event.target.getBoundingClientRect().left
 			Data.move t
 			@scope.$evalAsync()
-
-	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
 
 	@property 'sthing', get:->
 		@Ver(@point.dv/2 + @point.v) - 7
@@ -75,15 +56,6 @@ class Ctrl
 	@property 'triangleData', get:->
 		@lineFun [{v: @point.v, t: @point.t}, {v:@point.dv + @point.v, t: @point.t+1}, {v: @point.dv + @point.v, t: @point.t}]
 
-	Ver: d3.scale.linear().domain [-1.5,1.5]
-	Hor: d3.scale.linear().domain [0,6]
-
-	resize: =>
-		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientHeight - @mar.top - @mar.bottom - 8
-		@Ver.range [@height, 0]
-		@Hor.range [0, @width]
-		@scope.$evalAsync()
 
 der = ()->
 	directive = 

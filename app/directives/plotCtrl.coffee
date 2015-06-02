@@ -1,3 +1,4 @@
+d3 = require 'd3'
 
 class Ctrl
 	constructor: (@scope, @el, @window)->
@@ -7,10 +8,9 @@ class Ctrl
 			right: 20
 			bottom: 35
 
-		@Ver = d3.scale.linear()
+		@Ver =d3.scale.linear()
+		
 		@Hor = d3.scale.linear()
-
-		@data = Data.data
 
 		@horAxFun = d3.svg.axis()
 			.scale @Hor
@@ -19,22 +19,20 @@ class Ctrl
 
 		@verAxFun = d3.svg.axis()
 			.scale @Ver
-			.tickFormat (d)->
-				if Math.floor( d ) != d then return
-				d
+			# .tickFormat (d)->
+			# 	if Math.floor( d ) != d then return
+			# 	d
 			.ticks 5
 			.orient 'left'
 
 		@lineFun = d3.svg.line()
-			.y (d)=> @Ver d.v
-			.x (d)=> @Hor d.t
 
 		angular.element @window
 			.on 'resize', @resize
 
 	@property 'svg_height', get: -> @height + @mar.top + @mar.bottom
 
-	resize: ()=>
+	resize: =>
 		@width = @el[0].clientWidth - @mar.left - @mar.right
 		@height = @el[0].clientHeight - @mar.top - @mar.bottom
 		@Ver.range [@height, 0]

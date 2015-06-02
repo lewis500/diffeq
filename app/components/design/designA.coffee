@@ -4,6 +4,7 @@ Data = require './designData'
 require '../../helpers'
 Fake = require './fakeCart'
 Real = require './trueCart'
+PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
 	<svg ng-init='vm.resize()' class='bottomChart'>
@@ -35,34 +36,16 @@ template = '''
 	</svg>
 '''
 
-class Ctrl
+class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
-		@mar = 
-			left: 38
-			top: 0
-			right: 10
-			bottom: 37
-
-		@Ver = d3.scale.linear().domain [-.1,2.1]
-
-		@Hor = d3.scale.linear().domain [-.1,5]
-
+		super @scope, @el, @window
+		@Ver.domain [-.1,2.1]
+		@Hor.domain [-.1,5]
 		@Data = Data
-
 		@Fake = Fake
 		@Real = Real
 
-		@horAxFun = d3.svg.axis()
-			.scale @Hor
-			.ticks 5
-			.orient 'bottom'
-
-		@verAxFun = d3.svg.axis()
-			.scale @Ver
-			.ticks 5
-			.orient 'left'
-		
-		@lineFun = d3.svg.line()
+		@lineFun
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
 
@@ -94,10 +77,6 @@ class Ctrl
 					@scope.$evalAsync()
 			.on 'drag', @on_drag
 
-
-		angular.element @window
-			.on 'resize', @resize
-
 	@property 'dots', get:-> 
 		Data.dots.filter (d)-> (d.id !='first') and (d.id !='last')
 
@@ -114,13 +93,6 @@ class Ctrl
 	triangleData:->
 		point = @selected
 		@lineFun [{v: point.v, t: point.t}, {v:point.dv + point.v, t: point.t+1}, {v: point.dv + point.v, t: point.t}]
-
-	resize: ()=>
-		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientHeight - @mar.top - @mar.bottom
-		@Ver.range [@height, 0]
-		@Hor.range [0, @width]
-		@scope.$evalAsync()
 
 der = ()->
 	directive = 

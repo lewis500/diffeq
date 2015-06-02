@@ -2,9 +2,10 @@ Data = require './designData'
 angular = require 'angular'
 d3 = require 'd3'
 require '../../helpers'
+PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
-	<svg ng-init='vm.resize()'  width='100%' class='bottomChart'>
+	<svg ng-init='vm.resize()'  class='bottomChart'>
 		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designB"'></g>
 		<g class='main' clip-path="url(#designB)" shifter='[vm.mar.left, vm.mar.top]'>
 			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
@@ -29,36 +30,18 @@ template = '''
 	</svg>
 '''
 
-class Ctrl
+class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
-		@mar = 
-			left: 40
-			top: 0
-			right: 10
-			bottom: 37
+		super @scope, @el, @window
 
-		@Ver = d3.scale.linear().domain [-1.9, .1]
-
-		@Hor = d3.scale.linear().domain [-.1,2.15]
-
-		@horAxFun = d3.svg.axis()
-			.scale @Hor
-			.ticks 5
-			.orient 'bottom'
-
-		@verAxFun = d3.svg.axis()
-			.scale @Ver
-			.ticks 5
-			.orient 'left'
+		@Ver.domain [-1.9, .1]
+		@Hor.domain [-.1,2.15]
 
 		@Data = Data
 
-		@lineFun = d3.svg.line()
+		@lineFun
 			.y (d)=> @Ver d.dv
 			.x (d)=> @Hor d.v
-
-		angular.element @window
-			.on 'resize', @resize
 
 	@property 'dots', get:->
 		Data.dots
@@ -67,13 +50,6 @@ class Ctrl
 	@property 'selected', get:->
 		Data.selected
 		
-	resize: ()=>
-		@width = @el[0].clientWidth - @mar.left - @mar.right
-		@height = @el[0].clientHeight - @mar.top - @mar.bottom
-		@Ver.range [@height, 0]
-		@Hor.range [0, @width] 
-		@scope.$evalAsync()
-
 
 der = ()->
 	directive = 
