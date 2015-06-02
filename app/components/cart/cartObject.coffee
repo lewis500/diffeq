@@ -12,6 +12,7 @@ der = ()->
 		scope: 
 			size: '='
 			left: '='
+			top: '='
 		controllerAs: 'vm'
 		templateNamespace: 'svg'
 		controller: ['$scope',Ctrl]

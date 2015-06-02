@@ -1,4 +1,13 @@
 
+
+use require '^' to implement the data stuff
+bring back the drags and such
+
+
+MAKE A DIRECTIVE FOR THE CART PLOTS!
+
+
+
 stop using getters to get the point
 
 triangle der
@@ -19,10 +28,6 @@ move the cart to be located correctly
 make hte things play
 
 add m/s units
-
-make a class for the little headlines
-fix how sometimes it doesn't understand the scales or whatever
-
 
 
 add an optional transition to the shifter

@@ -10,6 +10,7 @@ template = '''
 	<svg ng-init='vm.resize()' class='bottomChart'>
 		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designA"'></g>
 		<g class='main' clip-path="url(#designA)" shifter='[vm.mar.left, vm.mar.top]' >
+			<rect style='opacity:0' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' behavior='vm.drag_rect'></rect>
 			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
 					<text class='label'>$v$</text>
 			</foreignObject>
@@ -82,6 +83,7 @@ class Ctrl extends PlotCtrl
 
 	@property 'selected', get:->
 		Data.selected
+
 
 	on_drag: (dot)=> 
 			# if event.which is 3

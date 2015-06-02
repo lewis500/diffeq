@@ -46,9 +46,9 @@ h5 {
   fill: none;
 }
 line.time-line {
-  stroke-width: 3px;
-  stroke: #616161;
-  opacity: .5;
+  stroke-width: 2px;
+  stroke: #9e9e9e;
+  opacity: .4;
 }
 .target {
   opacity: 0.6;
@@ -217,4 +217,8 @@ span.tri {
 }
 [design-cart-b-der] .carBody {
   fill: #880e4f;
+}
+[cart-der] svg {
+  width: 100%;
+  height: 80px;
 }

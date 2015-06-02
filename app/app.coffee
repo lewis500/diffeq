@@ -24,7 +24,8 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.directive 'textureDer', require './directives/texture'
 	.directive 'designButtonsDer', require './components/design/designButtons'
 	.directive 'boilerplateDer', require './directives/boilerplate'
-
+	.directive 'cartDer' , require './directives/cartDer'
+	
 looper = ->
     setTimeout( ()->
     			d3.selectAll 'circle.dot.large'

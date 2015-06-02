@@ -26,26 +26,22 @@ template = '''
 		</g>
 	</svg>
 '''
-			
+
 class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
 		super @scope, @el, @window
-
-		@name = 'derClip'
-
+		@name = 'derivativeA'
 		@data = Data.data
-
+		@Ver.domain [-1.5,1.5]
+		@Hor.domain [0,6]
 		@lineFun
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
 
-		@Ver.domain [-1.5,1.5]
-		@Hor.domain [0,6]
-
-		@move = (event) =>
-			t = @Hor.invert event.x - event.target.getBoundingClientRect().left
-			Data.move t
-			@scope.$evalAsync()
+	move: =>
+		t = @Hor.invert event.x - event.target.getBoundingClientRect().left
+		Data.move t
+		@scope.$evalAsync()
 
 	@property 'sthing', get:->
 		@Ver(@point.dv/2 + @point.v) - 7
@@ -57,10 +53,15 @@ class Ctrl extends PlotCtrl
 		@lineFun [{v: @point.v, t: @point.t}, {v:@point.dv + @point.v, t: @point.t+1}, {v: @point.dv + @point.v, t: @point.t}]
 
 
-der = ()->
+der = ->
 	directive = 
 		controllerAs: 'vm'
 		scope: {}
+		link: (scope,el,attr, vm)->
+			d3.select el[0]
+				.select 'rect.background'
+				.on 'mousemove', ->
+					vm.move()
 		template: template
 		templateNamespace: 'svg'
 		controller: ['$scope','$element', '$window', Ctrl]
