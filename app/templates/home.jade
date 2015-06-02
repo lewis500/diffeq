@@ -48,7 +48,7 @@ texture-der
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
-					| Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a 'coefficient of friction' that depends on how greased the axels are. Basically, the faster the cart goes, the faster it slows down.
+					| Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a '<a href='http://en.wikipedia.org/wiki/Friction#Coefficient_of_friction'>coefficient of friction.</a>' Basically, the faster the cart goes, the faster it slows down.
 			div(flex offset='5' )
 				div(cart-sim-der )
 				div(cart-buttons-der style='text-align: center;')
@@ -56,9 +56,9 @@ texture-der
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
-					|  The solution to the DE is a function $v(t)$ that tells velocity at time $t$. We'll assume $k=.8$ and that the cart starts rolling at time $t=0$ with initial velocity $2$. Formally, our clues are $\dot{v}= -.8v$ and $v(0)=2$.
+					|  The solution is a function $v(t)$ giving velocity at time $t$. Suppose $k=.8$ and that the cart starts rolling at time $t=0$ at velocity $2$. Then we want a $v(5)$ for which $\dot{v}= -.8v$ and $v(0)=2$.
 				p
-					| It turns out the exponential function, $e^{-kt}$, has the convenient properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-.8\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$, as required!
+					| It turns out the exponential function, $e^{-kt}$, has the properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-k\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$. Solved!
 			div(flex offset='5')
 				div(cart-plot-der)
 
@@ -69,19 +69,18 @@ texture-der
 		div(flex layout='row' layout-align='start center')
 			div(flex='50')
 				p
-					| Here, you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs, which make up the function $v(t)$. At each point, the derivative is calculated and the corresponding pair $( v, \dot{v})$ shows up on the lower chart. If you draw $v(t)$ correctly, then the $(v, \dot {v})$ points wind up around the line $\dot{v} = -v$. 
+					| Here, you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs, which make up the function $v(t)$. At each point, the derivative is calculated and the corresponding pair $( v, \dot{v})$ shows up on the lower chart. If you try to draw $v(t)=2e^-{.8t}$, then the $(v, \dot {v})$ points wind up around the line $\dot{v} = -.8v$. 
 				p
 					| The first cart below obeys the $v(t)$ function you designed. The second obeys $v(t)=2e^{-.8t}$. If you draw $v(t)$ correctly, both cars move together. Grey lines indicate  locations sampled every half-second, so if the carts move in tandem they'll line up.
-			div(design-a-der flex offset='5')
-		div(flex layout='row')
-			div(flex='50')
-				div(flex layout='row' layout-align='start center')
+				div(layout='row' layout-align='start center')
 					div(flex style='font-size: 13px; text-align: center')
 						| YOUR $v(t)$
 					div(flex='90' design-cart-a-der)
-				div(flex layout='row' layout-align='start center')
+				div(layout='row' layout-align='start center')
 					div(flex style='font-size: 13px; text-align: center')
 						| ACTUAL $v(t)$
 					div(flex='90' design-cart-b-der)
 				div(design-buttons-der style='text-align: center;')
-			div(flex design-b-der offset='5')
+			div(flex layout='column' offset='5' layout-margin)
+				div(design-a-der flex )
+				div(flex design-b-der )

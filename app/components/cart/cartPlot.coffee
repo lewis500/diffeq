@@ -41,9 +41,9 @@ class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
 			left: 30
-			top: 20
-			right: 20
-			bottom: 35
+			top: 10
+			right: 10
+			bottom: 40
 
 		@V = d3.scale.linear().domain [-.1,2.5]
 		@T = d3.scale.linear().domain [-.1,5]
