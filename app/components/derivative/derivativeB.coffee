@@ -5,21 +5,12 @@ _ = require 'lodash'
 Data = require './derivativeData'
 
 template = '''
-	<svg ng-init='vm.resize()' width='100%'  class='topChart'>
-		<defs>
-			<clippath id='dervativeB'>
-				<rect d3-der='{width: vm.width, height: vm.height}' />
-			</clippath>
-		</defs>
-		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' d3-der='{width: vm.width, height: vm.height}' ng-mousemove='vm.move($event)' />
-			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
-			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+	<svg ng-init='vm.resize()' class='topChart'>
+		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='vm.name'></g>
+		<g class='main' ng-attr-clip-path="url(#{{vm.name}})" shifter='[vm.mar.left, vm.mar.top]'>
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-		</g>
-		<g class='main' clip-path="url(#dervativeB)" shifter='[vm.mar.left, vm.mar.top]'>
 			<line class='zero-line hor' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}'/>
 			<path d3-der='{d:vm.lineFun(vm.data)}' class='fun dv' />
 			<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.t), x2: vm.Hor(vm.point.t), y1: vm.Ver(0), y2: vm.Ver(vm.point.dv)}'/>
@@ -44,6 +35,8 @@ class Ctrl
 
 		@Ver = d3.scale.linear().domain [-1.5,1.5]
 		@Hor = d3.scale.linear().domain [0,6]
+
+		@name = 'derivativeB'
 
 		@data = Data.data
 

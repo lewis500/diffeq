@@ -20,14 +20,11 @@ der = ($window)->
 			sel = d3.select el[0]
 				.classed 'x axis', true
 
-			update = ()=>
+			update = =>
 				xAxisFun.tickSize -vm.height
 				sel.call xAxisFun
 				
-			update()
-				
-			scope.$watch 'vm.scale.domain()', update , true
-			scope.$watch 'vm.scale.range()', update , true
-			scope.$watch 'vm.height', update , true
+			scope.$watchCollection ['scale.domain()','scale.range()','height'], update, true
+
 
 module.exports = der

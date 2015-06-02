@@ -19,15 +19,12 @@ der = ($window)->
 
 			sel = d3.select(el[0]).classed('y axis', true)
 
-			update = ()=>
+			update = =>
 				yAxisFun.tickSize( -vm.width)
 				sel.call(yAxisFun)
 
-			update()
+			scope.$watchCollection ['scale.domain()','scale.range()','width'], update, true
 				
-			scope.$watch 'vm.scale.domain()', update , true
-			scope.$watch 'vm.scale.range()', update , true
-			scope.$watch 'vm.scale.ticks()', update , true
 
 
 module.exports = der

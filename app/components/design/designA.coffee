@@ -6,24 +6,15 @@ Fake = require './fakeCart'
 Real = require './trueCart'
 
 template = '''
-	<svg ng-init='vm.resize()' width='100%' class='bottomChart'>
-		<defs>
-			<clippath id='plotA'>
-				<rect d3-der='{width: vm.width, height: vm.height}'></rect>
-			</clippath>
-		</defs>
-		<g class='boilerplate' shifter='[vm.mar.left, vm.mar.top]'>
-			<rect class='background' d3-der='{width: vm.width, height: vm.height}' behavior='vm.drag_rect' />
-			<g ver-axis-der width='vm.width' scale='vm.Ver' fun='vm.verAxFun'></g>
-			<g hor-axis-der height='vm.height' scale='vm.Hor' fun='vm.horAxFun' shifter='[0,vm.height]'></g>
+	<svg ng-init='vm.resize()' class='bottomChart'>
+		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designA"'></g>
+		<g class='main' clip-path="url(#designA)" shifter='[vm.mar.left, vm.mar.top]' >
 			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
 					<text class='label'>$v$</text>
 			</foreignObject>
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-		</g>
-		<g class='main' clip-path="url(#plotA)" shifter='[vm.mar.left, vm.mar.top]' >
 			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
 			<g ng-class='{hide: !vm.Data.show}' >
@@ -102,7 +93,6 @@ class Ctrl
 					Data.set_show false
 					@scope.$evalAsync()
 			.on 'drag', @on_drag
-
 
 
 		angular.element @window
