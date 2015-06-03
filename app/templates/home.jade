@@ -28,30 +28,30 @@ texture-der
 					| Mousing over the plots to the right, you can see the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Thus, $y(t)=\sin(t)$ is a solution to $$ \dot y = \cos(t).$$ 
 				p
 					| That's a pretty basic DE, though. You could have solved it just by integrating $\cos(t)$. Now let's look at a more complicated one.
-			div(flex offset='5'  layout='column' )
+			div(flex offset='5'  layout='column')
 					div(derivative-a-der)
 					div(derivative-b-der)
 
-	div.block(flex layout='column')
-		div(flex )
-			h2.subtitle PICTURE ME ROLLING
+	//- div.block(flex layout='column')
+	//- 	div(flex )
+	//- 		h2.subtitle PICTURE ME ROLLING
 		
-		div(flex layout='row' layout-padding)
-			div(flex='50')
-				p
-					| Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a '<a href='http://en.wikipedia.org/wiki/Friction#Coefficient_of_friction'>coefficient of friction.</a>' Basically, the faster the cart goes, the faster it slows down.
-			div(flex offset='5' )
-				div(cart-sim-der)
-				div(cart-buttons-der style='text-align: center;')
+	//- 	div(flex layout='row' layout-padding)
+	//- 		div(flex='50')
+	//- 			p
+	//- 				| Consider a cart rolling to a stop. Its motion obeys the DE $$ \dot{v} = -k \cdot v, $$ where $v$ is velocity, $\dot{v}$ is the rate-of-change of velocity and $k$ is a '<a href='http://en.wikipedia.org/wiki/Friction#Coefficient_of_friction'>coefficient of friction.</a>' Basically, the faster the cart goes, the faster it slows down.
+	//- 		div(flex offset='5' )
+	//- 			div(cart-sim-der)
+	//- 			div(cart-buttons-der style='text-align: center;')
 
-		div(flex layout='row'  layout-padding)
-			div(flex='50')
-				p
-					|  The solution is a function $v(t)$ giving velocity at time $t$. Suppose $k=.8$ and that the cart starts rolling at time $t=0$ at velocity $2$. Then we want a $v(5)$ for which $\dot{v}= -.8v$ and $v(0)=2$.
-				p
-					| It turns out the exponential function, $e^{-kt}$, has the properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-k\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$. Solved!
-			div(flex offset='5')
-				div(cart-plot-der)
+	//- 	div(flex layout='row'  layout-padding)
+	//- 		div(flex='50')
+	//- 			p
+	//- 				|  The solution is a function $v(t)$ giving velocity at time $t$. Suppose $k=.8$ and that the cart starts rolling at time $t=0$ at velocity $2$. Then we want a $v(5)$ for which $\dot{v}= -.8v$ and $v(0)=2$.
+	//- 			p
+	//- 				| It turns out the exponential function, $e^{-kt}$, has the properties $$ \begin{align} \frac{d}{dt}e^{-kt}=-ke^{-kt} && e^{-k\cdot 0}=1.\end{align}$$ Thus, if $v(t)=2e^{-.8t}$, then $\dot{v}=-.8v$ and $v(0)=2$. Solved!
+	//- 		div(flex offset='5')
+	//- 			div(cart-plot-der)
 
 	div.block(flex layout='column')
 		div(flex)
@@ -66,12 +66,12 @@ texture-der
 				div(layout='row' layout-align='start center')
 					div(flex style='font-size: 13px; text-align: center')
 						| YOUR $v(t)$
-					div(flex='90' design-cart-a-der)
+					//- div(flex='90' design-cart-a-der)
 				div(layout='row' layout-align='start center')
 					div(flex style='font-size: 13px; text-align: center')
 						| ACTUAL $v(t)$
-					div(flex='90' design-cart-b-der)
-				div(design-buttons-der style='text-align: center;')
+					//- div(flex='90' design-cart-b-der)
+				//- div(design-buttons-der style='text-align: center;')
 			div(flex layout='column' offset='5')
-				div(design-a-der  )
-				div(design-b-der )
+				div(design-a-der)
+				//- div(design-b-der)

@@ -7,7 +7,7 @@ class Service
 		@rootScope = $rootScope
 		@setT 0
 		@paused =  false
-		@trajectory = _.range 0 , 6 , 1/25
+		@data = _.range 0 , 8 , 1/50
 			.map (t)->
 				res = 
 					dv: dvFun t
@@ -23,11 +23,11 @@ class Service
 
 	increment:(dt) ->
 		@t += dt
-		@move(@t)
+		@move()
 
 	setT: (t)->
 		@t = t
-		@move(@t)
+		@move()
 
 	play: ->
 		@paused = true

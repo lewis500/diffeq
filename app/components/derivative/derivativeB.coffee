@@ -2,7 +2,7 @@ angular = require 'angular'
 d3 = require 'd3'
 require '../../helpers'
 _ = require 'lodash'
-Data = require './derivativeData'
+# Data = require './derivativeData'
 PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
@@ -13,7 +13,7 @@ template = '''
 					<text class='label' >$t$</text>
 			</foreignObject>
 			<line class='zero-line hor' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}'/>
-			<path d3-der='{d:vm.lineFun(vm.data)}' class='fun dv' />
+			<path d3-der='{d:vm.lineFun(vm.Data.trajectory)}' class='fun dv' />
 			<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.t), x2: vm.Hor(vm.point.t), y1: vm.Ver(0), y2: vm.Ver(vm.point.dv)}'/>
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.Ver(vm.point.dv*.5)-6]'>
 					<text class='tri-label'>$\\dot{y}$</text>
@@ -27,23 +27,22 @@ template = '''
 '''
 
 class Ctrl extends PlotCtrl
-	constructor: (@scope, @el, @window)->
+	constructor: (@scope, @el, @window, @Data)->
 		super @scope, @el, @window
 		@Ver.domain [-1.5,1.5]
 		@Hor.domain [0,6]
 		@name = 'derivativeB'
-		@data = Data.data
 		@lineFun
 			.y (d)=> @Ver d.dv
 			.x (d)=> @Hor d.t
 
 	move: =>
 		t = @Hor.invert event.x - event.target.getBoundingClientRect().left
-		Data.move t
+		@Data.setT t
 		@scope.$evalAsync()
 
 	@property 'point', get:->
-		Data.point
+		@Data.point
 
 der = ->
 	directive = 
@@ -52,10 +51,14 @@ der = ->
 		link: (scope,el,attr, vm)->
 			d3.select el[0]
 				.select 'rect.background'
+				.on 'mouseover',->
+					vm.Data.pause()
 				.on 'mousemove', ->
 					vm.move()
+				.on 'mouseout', ->
+					vm.Data.play()
 		template: template
 		templateNamespace: 'svg'
-		controller: ['$scope','$element', '$window', Ctrl]
+		controller: ['$scope','$element', '$window', 'derivativeData', Ctrl]
 
 module.exports = der

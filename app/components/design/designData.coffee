@@ -1,82 +1,39 @@
-_ = require 'lodash'
-require '../../helpers'
-Cart = require '../cart/cartData'
+angular = require 'angular'
 d3 = require 'd3'
+require '../../helpers'
 
-class Dot
-	constructor: (@t, @v)->
-		@id = _.uniqueId 'dot'
+class Service
+	constructor: (@rootScope)->
+		@t = 0
+		@show = @paused = false
 
-class Data
-	constructor: ->
-		@t = @x = 0
-		@Cart = Cart
-		firstDot = new Dot 0 , Cart.v0
-		firstDot.id = 'first'
-		midDot = new Dot Cart.trajectory[10].t , Cart.trajectory[10].v
-		lastDot = new Dot 6 , Cart.trajectory[10].v
-		lastDot.id = 'last'
-		@dots = [ firstDot, 
-			midDot,
-			lastDot
-		]
-		@correct = @show = false
-		@first = firstDot
-		@target_data = Cart.trajectory
-		@update_dots()
-		@select_dot @dots[1]
+	click: ->
+		if @paused then @play() else @pause()
+
+	increment: (dt)->
+		@t+=dt
+
+	setT: (t)->
+		@t = t
 
 	set_show: (v)->
 		@show = v
-		
-	set_t: (t)->
-		@t = t
 
-	increment: (dt)->
-		@t += dt
+	play: ->
+		@paused = true
+		d3.timer.flush()
+		@paused = false
+		last = 0
+		console.log 'asdf'
+		d3.timer (elapsed)=>
+				dt = elapsed - last
+				@increment dt/1000
+				last = elapsed
+				if @t > 4.5 then @setT 0
+				@rootScope.$evalAsync()
+				@paused
+			, 1
 
-	select_dot: (dot)->
-		@selected = dot
+	pause: -> @paused = true
 
-	add_dot: (t, v)->
-		newDot = new Dot t,v
-		@dots.push newDot
-		@update_dot newDot, t, v
-
-	@property 'maxX', get:->
-		t = 4.5
-		i = _.findLastIndex @dots, (d)->
-			d.t <= t
-		a = @dots[i]
-		dt = t - a.t
-		dv = @dots[i+1]?.dv ? 0
-		a.x + a.v * dt + 0.5*dv * dt**2
-
-	remove_dot: (dot)->
-		@dots.splice @dots.indexOf(dot), 1
-		@update_dots()
-
-	update_dots: -> 
-		@dots.sort (a,b)-> a.t - b.t
-		@dots.forEach (dot, i, k)->
-			prev = k[i-1]
-			if dot.id == 'last'
-				dot.v = prev.v
-				return
-			if prev
-				dt = dot.t - prev.t
-				dot.x = prev.x + dt * (dot.v + prev.v)/2
-				dot.dv = (dot.v - prev.v)/Math.max(dt, .0001)
-			else
-				dot.x = 0
-				dot.dv = 0
-
-	update_dot: (dot, t, v)->
-		if dot.id == 'first' then return
-		@select_dot dot
-		dot.t = t
-		dot.v = v
-		@update_dots()
-		@correct = Math.abs(Cart.k * dot.v + dot.dv) < 0.05
-
-module.exports = new Data
+module.exports = ['$rootScope', Service]

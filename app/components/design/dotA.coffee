@@ -1,12 +1,10 @@
-Data = require './designData'
-
 template = '''
 	<circle class='dot large'></circle>
 	<circle class='dot small' r='4'></circle>
 '''
 
 class Ctrl
-	constructor: (@scope, @el)->
+	constructor: (@scope, @el, @fakeCart, @Data)->
 		rad = 7 #the radius of the large circle naturally
 		sel = d3.select @el[0]
 		big = sel.select 'circle.dot.large'
@@ -30,7 +28,7 @@ class Ctrl
 			.on 'mouseout' , @mouseout
 
 		@scope.$watch =>
-				(Data.selected == @dot) and (Data.show)
+				(@fakeCart.selected == @dot) and (@Data.show)
 			, (v, old)->
 				if v
 					big.transition 'grow'
@@ -61,12 +59,12 @@ class Ctrl
 							stroke: 'white'
 			 
 	mouseout: =>
-		Data.set_show false
+		@Data.set_show false
 		@scope.$evalAsync()
 
 	mouseover: =>
-		Data.select_dot @dot
-		Data.set_show true
+		@fakeCart.select_dot @dot
+		@Data.set_show true
 		@scope.$evalAsync()
 
 der = ()->
@@ -76,7 +74,7 @@ der = ()->
 		scope: 
 			dot: '=dotADer'
 		bindToController: true
-		controller: ['$scope','$element',Ctrl]
+		controller: ['$scope','$element', 'fakeCart', 'designData', Ctrl]
 		restrict: 'A'
 
 
