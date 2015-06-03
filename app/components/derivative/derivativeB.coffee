@@ -2,7 +2,6 @@ angular = require 'angular'
 d3 = require 'd3'
 require '../../helpers'
 _ = require 'lodash'
-# Data = require './derivativeData'
 PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
@@ -37,7 +36,7 @@ class Ctrl extends PlotCtrl
 			.x (d)=> @Hor d.t
 
 	move: =>
-		t = @Hor.invert event.x - event.target.getBoundingClientRect().left
+		t = @Hor.invert d3.event.x - d3.event.target.getBoundingClientRect().left
 		@Data.setT t
 		@scope.$evalAsync()
 

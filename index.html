@@ -3,8 +3,6 @@
 <head>
     <meta name="viewport" content="initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
-    <script type="text/javascript" src="node_modules/mathjax/MathJax.js"></script>
-    <script type="text/javascript" src="node_modules/mathjax/config/TeX-AMS-MML_SVG.js"></script>
 </head>
 
 <body>
@@ -29,28 +27,23 @@
 <script src='dist/bundle.js'></script>
 
 <script>
-// MathJax.Hub.Register.
-// StartupHook("End", function() {
-//     console.log('mathjaxdone')
-//     window.dispatchEvent(new Event('resize'));
-// });
-
-// MathJax.Hub.Config({
-//     tex2jax: {
-//         inlineMath: [
-//             ['$', '$'],
-//             ["\\(", "\\)"]
-//         ],
-//         displayMath: [
-//             ['$$', '$$'],
-//             ["\\[", "\\]"]
-//         ]
-//     }
-// });
-// MathJax.Hub.Configured();
+(function () {
+  var head = document.getElementsByTagName("head")[0], script;
+  script = document.createElement("script");
+  script.type = "text/x-mathjax-config";
+  script[(window.opera ? "innerHTML" : "text")] =
+    "MathJax.Hub.Config({\n" +
+    "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
+    "});" 
+    // + "MathJax.Hub.Register.StartupHook('End', function() {window.dispatchEvent(new Event('resize'));});"
+  head.appendChild(script);
+  script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src  = "node_modules/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+  head.appendChild(script);
+})();
 </script>
 
-<!-- <svg id='myTexture'></svg> -->
 <svg>
     <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">

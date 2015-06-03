@@ -10,9 +10,7 @@ class Ctrl
 
 		circ.on 'mouseover',@mouseover
 			.on 'mouseout' , @mouseout
-			# .on 'contextmenu', -> 
-			# 	event.preventDefault()
-			# 	event.stopPropagation()
+
 
 		@scope.$watch =>
 				(Data.selected == @dot) and (Data.show)

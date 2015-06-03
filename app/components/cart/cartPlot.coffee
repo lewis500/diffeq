@@ -43,7 +43,7 @@ class Ctrl extends PlotCtrl
 		@Data.play()
 
 	move: =>
-		t = @Hor.invert event.x - event.target.getBoundingClientRect().left
+		t = @Hor.invert d3.event.x - d3.event.target.getBoundingClientRect().left
 		@Data.setT t
 		@scope.$evalAsync()
 

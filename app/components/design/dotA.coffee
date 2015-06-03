@@ -13,8 +13,8 @@ class Ctrl
 
 		big.on 'mouseover', @mouseover
 			.on 'contextmenu', -> 
-				event.preventDefault()
-				event.stopPropagation()
+				d3.event.preventDefault()
+				d3.event.stopPropagation()
 			.on 'mousedown', ->
 				big.transition 'grow'
 					.duration 150
