@@ -3,17 +3,16 @@ PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
 	<svg ng-init='vm.resize()' class='bottomChart' >
-		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designA"'></g>
-		<g class='main' clip-path="url(#designA)" shifter='[vm.mar.left, vm.mar.top]' >
-			<rect style='opacity:0' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' behavior='vm.drag_rect'></rect>
-			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
-					<text class='label'>$v$</text>
-			</foreignObject>
-			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
+		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designA"'>
+			<foreignObject width='30' height='30' y='5' x='-8' shifter='[vm.width, vm.height]'>
 					<text class='label' >$t$</text>
 			</foreignObject>
-			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
-			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
+			<foreignObject width='30' height='30' y='0' x='-15' shifter='[0, 0]'>
+					<text class='label' >$v$</text>
+			</foreignObject>
+		</g>
+		<g class='main' clip-path="url(#designA)" shifter='[vm.mar.left, vm.mar.top]' >
+			<rect style='opacity:0' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' behavior='vm.drag_rect'></rect>
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(vm.selected.t)-1, x2: vm.Hor(vm.selected.t)-1, y1: vm.Ver(0), y2: vm.Ver(vm.selected.v)}'/>
 				<path ng-attr-d='{{vm.triangleData()}}' class='tri' />
@@ -36,7 +35,7 @@ template = '''
 class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window, @fakeCart, @trueCart, @Data)->
 		super @scope, @el, @window
-		@Ver.domain [-.1,2.1]
+		@Ver.domain [-.1,2.3]
 		@Hor.domain [-.1,4.5]
 
 		@tran = (tran)->

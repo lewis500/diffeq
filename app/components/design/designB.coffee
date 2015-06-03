@@ -3,16 +3,15 @@ PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
 	<svg ng-init='vm.resize()'  class='bottomChart'>
-		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designB"'></g>
-		<g class='main' clip-path="url(#designB)" shifter='[vm.mar.left, vm.mar.top]'>
-			<foreignObject width='30' height='30' shifter='[-38, vm.height/2]'>
-					<text class='label'>$\\dot{v}$</text>
+		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designB"'>
+			<foreignObject width='30' height='30' y='5' x='-8' shifter='[vm.width, vm.height]'>
+					<text class='label' >$t$</text>
 			</foreignObject>
-			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
-					<text class='label'>$v$</text>
+			<foreignObject width='30' height='30' y='0' x='-15' shifter='[0, 0]'>
+					<text class='label' >$v$</text>
 			</foreignObject>
-			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
-			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
+		</g>
+		<g class='main' clip-path="url(#designB)" shifter='[vm.mar.left, vm.mar.top]'>	
 			<path ng-attr-d='{{vm.lineFun(vm.trueCart.trajectory)}}' class='fun target' />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(0), x2: vm.Hor(vm.selected.v), y1: vm.Ver(vm.selected.dv), y2: vm.Ver(vm.selected.dv)}'/>
@@ -32,7 +31,7 @@ class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window, @fakeCart, @trueCart, @Data)->
 		super @scope, @el, @window
 
-		@Ver.domain [-1.9, .1]
+		@Ver.domain [-1.7, .2]
 		@Hor.domain [-.1,2.15]
 
 		@lineFun

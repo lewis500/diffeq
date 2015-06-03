@@ -6,7 +6,7 @@ class Ctrl
 			left: 30
 			top: 20
 			right: 20
-			bottom: 30
+			bottom: 35
 
 		@Ver =d3.scale.linear()
 		

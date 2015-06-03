@@ -6,12 +6,12 @@ PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
 	<svg ng-init='vm.resize()' class='topChart' >
-		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='vm.name'></g>
+		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='vm.name'>
+		</g>
 		<g class='main' ng-attr-clip-path='url(#{{vm.name}})' shifter='[vm.mar.left, vm.mar.top]'>
-			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
-					<text class='label' >$t$</text>
+			<foreignObject width='30' height='30' x='-15' y='-20' shifter='[vm.width, vm.Ver(0)]'>
+					<text class='label'>$t$</text>
 			</foreignObject>
-			<line class='zero-line hor' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}'/>
 			<path ng-attr-d='{{vm.lineFun(vm.Data.trajectory)}}' class='fun v' />
 			<path ng-attr-d='{{vm.triangleData}}' class='tri' />
 			<line class='tri dv' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(vm.point.v), y2: vm.Ver((vm.point.v + vm.point.dv))}'/>
