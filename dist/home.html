@@ -1,6 +1,6 @@
 
 <h1 class="title">DIFFERENTIAL EQUATIONS EXPLAINED</h1>
-<p style="text-align: center;">(for people who have already taken calculus)</p>
+<h4 style="margin-top: 0px; text-align: center;">by <a href='https://twitter.com/LewisLehe'>Lewis Lehe</a> w/ design help from <a href='https://twitter.com/dennyshess'>Dennys Hess</a>.</h4>
 <div id="header">
   <div id="quote">
     <p>
@@ -51,8 +51,8 @@
     </div>
     <div flex="flex" layout="row">
       <div flex="50">
-        <p>To make the solution more intuitive, here you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs. Together, the pairs you choose make up a function <span class='col v'>$v(t)$</span>. At each point, the derivative <span class='col dv'>$\dot{v}$</span> is calculated and the corresponding point <span class='col dv'>$( v, \dot{v})$</span> shows up on the lower chart. Notice that if you choose pairs along <span class='col real '>$2e^{-.8t}$</span>, then the $(v, \dot {v})$ points wind up around the line <span class='col real-two'>$\dot{v} = -.8v$</span>. </p>
-        <p>The first cart below obeys the $v(t)$ function you designed. The second obeys $v(t)=2e^{-.8t}$. If you draw $v(t)$ correctly, both cars move together. Grey lines indicate  locations sampled every half-second. If the carts move in tandem they'll line up.</p>
+        <p>To make the solution more intuitive, here you'll solve the cart's DE manually by picking a series of <span class='col v'>$\left( t, v \right)$</span> points. The points that you choose get strung together into a function <span class='col v'>$v(t)$</span>. At each point, the derivative <span class='col dv'>$\dot{v}$</span> of is calculated and the corresponding point <span class='col dv'>$( v, \dot{v})$</span> shows up on the lower chart. Notice that if you choose pairs along <span class='col real '>$2e^{-.8t}$</span>, then the $(v, \dot {v})$ points wind up around the line <span class='col real-two'>$\dot{v} = -.8v$</span>. </p>
+        <p>The first cart below obeys the $v(t)$ function you designed. The second obeys $v(t)=2e^{-.8t}$. If you draw $v(t)$ correctly, both cars move together. <span class='col grey'>Grey lines</span> indicate  locations sampled every half-second. If the carts move in tandem they'll line up.</p>
         <div design-cart-a-der="design-cart-a-der"></div>
         <div design-cart-b-der="design-cart-b-der"></div>
       </div>
@@ -61,5 +61,9 @@
         <div design-b-der="design-b-der"></div>
       </div>
     </div>
+  </div>
+  <div flex="flex" style="width: 80%;" class="block">
+    <p>We've just scratched the surface here. Differential equations are indispensable tools for understanding everything form ecology, to economics to jet engines. They can involve fifth derivatives, derivatives of more than one variables (partial differential equations). Some of them don't even really have solutions (non-linear differential equations). To learn more, check out <a href='http://ocw.mit.edu/courses/mathematics/18-03sc-differential-equations-fall-2011/index.htm'>this amazing course</a> on MIT's Open Courseware or Steven Strogatz' excellent <a href='http://www.amazon.com/Nonlinear-Dynamics-And-Chaos-Applications/dp/0738204536'>Nonlinear Dynamics and Chaos</a>.</p>
+    <p>Thanks to <a href="https://twitter.com/enjalot">Ian Johnson</a> for good advice.  <br> Tools: <a href='http://d3js.org/'>d3</a>, <a href='http://jade-lang.com/'>Jade</a>, <a href="https://material.angularjs.org/#/">Angular Material</a>, <a href="http://coffeescript.org/">Coffeescript</a>, <a href="http://browserify.org/">Browserify</a>, <a href="http://gulpjs.com/">Gulp</a> and <a href='http://5hourenergy.com/'>Five-Hour Energy Drink</a>.</p>
   </div>
 </div>

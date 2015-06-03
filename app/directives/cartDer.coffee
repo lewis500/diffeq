@@ -25,10 +25,10 @@ template = '''
 				<line class='time-line' d3-der='{x1: 0, x2: 0, y1: 0, y2: vm.height}' />
 			</g>
 			<g class='g-cart' cart-object-der left='vm.Hor(vm.data.x)' top='vm.height' size='vm.size'></g>
-			<rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 		</g>
 	</svg>
 '''
+			# <rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 
 class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->

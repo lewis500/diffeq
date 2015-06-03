@@ -5,7 +5,7 @@ delT = .1
 
 class Service
 	constructor: (@Data)->
-		@trajectory = _.range 0, 4.5 , delT
+		@trajectory = _.range 0, 4.7 , delT
 			.map (t)->
 				t: t
 				x: 2/.8 * (1-Math.exp(-.8*t))

@@ -4,8 +4,8 @@ body {
   font-family: 'Vollkorn', serif;
   padding-top: 5px;
   font-size: 17px;
-  margin-left: 5%;
-  width: 90%;
+  margin-left: 7.5%;
+  width: 85%;
 }
 line,
 path {
@@ -180,6 +180,7 @@ circle.point {
 .title {
   text-align: center;
   font-size: 44px;
+  margin-bottom: 8px;
 }
 .subtitle {
   text-align: center;
@@ -241,6 +242,9 @@ span.real {
 }
 span.real-two {
   background-color: rgba(2, 119, 189, 0.4);
+}
+span.grey {
+  background-color: rgba(158, 158, 158, 0.4);
 }
 [design-cart-a-der] .carBody {
   fill: #e91e63;

@@ -3,8 +3,8 @@ class Ctrl
 
 	trans: (tran)->
 		tran
-			.duration 200
-			.ease 'cubic'
+			.duration 40
+			.ease 'linear'
 
 der = ()->
 	directive = 
