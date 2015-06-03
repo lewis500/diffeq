@@ -1,17 +1,11 @@
-
-institue the play system for the designData
-
+give cartsim der different clippath name
 
 
-use require '^' to implement the data stuff
-bring back the drags and such
+implement the new system on the cartSim plots
+
+clean up designB
 
 
-MAKE A DIRECTIVE FOR THE CART PLOTS!
-
-
-
-stop using getters to get the point
 
 triangle der
 
@@ -19,14 +13,7 @@ foreignobject der for ax label
 fo der for triangle
 
 
-PLOT CONTROLLER
-
-
-
-make sure left,right,top,bottom margins are same for everyone
-
 oops i D'd it again
-move the cart to be located correctly
 
 make hte things play
 

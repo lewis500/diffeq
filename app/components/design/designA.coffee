@@ -1,5 +1,3 @@
-angular = require 'angular'
-d3 = require 'd3'
 require '../../helpers'
 PlotCtrl = require '../../directives/plotCtrl'
 
@@ -38,7 +36,7 @@ class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window, @fakeCart, @trueCart, @Data)->
 		super @scope, @el, @window
 		@Ver.domain [-.1,2.1]
-		@Hor.domain [-.1,5]
+		@Hor.domain [-.1,4.5]
 
 		@lineFun
 			.y (d)=> @Ver d.v
@@ -77,8 +75,7 @@ class Ctrl extends PlotCtrl
 	@property 'dots', get:-> 
 		@fakeCart.dots.filter (d)-> (d.id !='first') and (d.id !='last')
 
-	@property 'selected', get:->
-		@fakeCart.selected
+	@property 'selected', get:-> @fakeCart.selected
 
 	on_drag: (dot)=> 
 			@fakeCart.update_dot dot, @Hor.invert(d3.event.x), @Ver.invert(d3.event.y)

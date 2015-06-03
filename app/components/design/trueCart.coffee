@@ -18,4 +18,6 @@ class Service
 
 	@property 'v', get:-> 2* Math.exp(-.8*@Data.t)
 
+	@property 'dv', get:-> -.8*2* Math.exp(-.8*@Data.t)
+
 module.exports = ['designData', Service]

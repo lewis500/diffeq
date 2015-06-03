@@ -1,6 +1,3 @@
-Data = require './designData'
-angular = require 'angular'
-d3 = require 'd3'
 require '../../helpers'
 PlotCtrl = require '../../directives/plotCtrl'
 
@@ -16,11 +13,11 @@ template = '''
 			</foreignObject>
 			<line class='zero-line' d3-der='{x1: 0, x2: vm.width, y1: vm.Ver(0), y2: vm.Ver(0)}' />
 			<line class='zero-line' d3-der="{x1: vm.Hor(0), x2: vm.Hor(0), y1: vm.height, y2: 0}" />
-			<path ng-attr-d='{{vm.lineFun(vm.Data.target_data)}}' class='fun target' />
+			<path ng-attr-d='{{vm.lineFun(vm.trueCart.trajectory)}}' class='fun target' />
 			<g ng-class='{hide: !vm.Data.show}' >
 				<line class='tri v' d3-der='{x1: vm.Hor(0), x2: vm.Hor(vm.selected.v), y1: vm.Ver(vm.selected.dv), y2: vm.Ver(vm.selected.dv)}'/>
 				<line class='tri dv' d3-der='{x1: vm.Hor(vm.selected.v), x2: vm.Hor(vm.selected.v), y1: vm.Ver(0), y2: vm.Ver(vm.selected.dv)}'/>
-				<path d3-der='{d:vm.lineFun(vm.Data.target_data)}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
+				<path d3-der='{d:vm.lineFun(vm.trueCart.trajectory)}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.Hor(dot.v),vm.Ver(dot.dv)]' dot-b-der=dot></g>
 			<foreignObject width='70' height='30' y='0' shifter='[vm.Hor(1.7), vm.Ver(-1.2)]'>
@@ -31,24 +28,20 @@ template = '''
 '''
 
 class Ctrl extends PlotCtrl
-	constructor: (@scope, @el, @window)->
+	constructor: (@scope, @el, @window, @fakeCart, @trueCart, @Data)->
 		super @scope, @el, @window
 
 		@Ver.domain [-1.9, .1]
 		@Hor.domain [-.1,2.15]
-
-		@Data = Data
 
 		@lineFun
 			.y (d)=> @Ver d.dv
 			.x (d)=> @Hor d.v
 
 	@property 'dots', get:->
-		Data.dots
-			.filter (d)-> (d.id !='first') and (d.id !='last')
+		@fakeCart.dots.filter (d)-> (d.id !='first') and (d.id !='last')
 
-	@property 'selected', get:->
-		Data.selected
+	@property 'selected', get:-> @fakeCart.selected
 		
 
 der = ()->
@@ -57,6 +50,6 @@ der = ()->
 		scope: {}
 		template: template
 		templateNamespace: 'svg'
-		controller: ['$scope','$element','$window', Ctrl]
+		controller: ['$scope','$element', '$window', 'fakeCart', 'trueCart', 'designData', Ctrl]
 
 module.exports = der

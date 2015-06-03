@@ -35,8 +35,8 @@ class Ctrl extends PlotCtrl
 
 		@Hor.domain [-.1,3]
 
-		# @scope.$watch 'max', =>
-		# 	@Hor.domain [-.1, @max]
+		@scope.$watch 'vm.max', =>
+			@Hor.domain [-.1, @max]
 
 	tran: (tran)->
 		tran.ease 'linear'

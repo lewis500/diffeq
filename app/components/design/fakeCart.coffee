@@ -16,7 +16,7 @@ class Service
 		firstDot = new Dot 0 , 2
 		firstDot.id = 'first'
 		@dots = [firstDot]
-		@trajectory = _.range 0, 4.5 , delT
+		@trajectory = _.range 0, 5 , delT
 			.map (t)->
 				res = 
 					t: t
@@ -49,6 +49,8 @@ class Service
 	@property 'x', get: -> @loc @Data.t
 
 	@property 'v', get: -> @trajectory[Math.floor(@Data.t/delT)].v
+
+	@property 'dv', get: -> @trajectory[Math.floor(@Data.t/delT)].dv
 
 	update: -> 
 		@dots.sort (a,b)-> a.t - b.t

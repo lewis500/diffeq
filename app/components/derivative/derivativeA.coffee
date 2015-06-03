@@ -5,7 +5,7 @@ _ = require 'lodash'
 PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
-	<svg ng-init='vm.resize()' class='topChart' ng-init='vm.Data.play()'>
+	<svg ng-init='vm.resize()' class='topChart' >
 		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='vm.name'></g>
 		<g class='main' ng-attr-clip-path='url(#{{vm.name}})' shifter='[vm.mar.left, vm.mar.top]'>
 			<foreignObject width='30' height='30' y='20' shifter='[vm.width/2, vm.height]'>
@@ -35,6 +35,9 @@ class Ctrl extends PlotCtrl
 		@lineFun
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
+
+		setTimeout =>
+			@Data.play()
 
 	move: =>
 		t = @Hor.invert event.x - event.target.getBoundingClientRect().left

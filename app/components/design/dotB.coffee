@@ -5,7 +5,7 @@ template = '''
 '''
 
 class Ctrl
-	constructor: (@scope, @el)->
+	constructor: (@scope, @el, @fakeCart, @Data)->
 		circ = d3.select @el[0]
 
 		circ.on 'mouseover',@mouseover
@@ -17,8 +17,7 @@ class Ctrl
 		@scope.$watch =>
 				(Data.selected == @dot) and (Data.show)
 			, (v, old)->
-				# if v == old then return
-				
+				if v == old then return
 				if v
 					circ.transition()
 						.duration 150
@@ -34,12 +33,12 @@ class Ctrl
 							stroke: 'white'
 			 
 	mouseout: =>
-		Data.set_show false
+		@Data.set_show false
 		@scope.$evalAsync()
 
 	mouseover: =>
-		Data.select_dot @dot
-		Data.set_show true
+		@fakeCart.select_dot @dot
+		@Data.set_show true
 		@scope.$evalAsync()
 
 der = ()->
@@ -49,7 +48,7 @@ der = ()->
 		scope: 
 			dot: '=dotBDer'
 		bindToController: true
-		controller: ['$scope','$element',Ctrl]
+		controller: ['$scope','$element', 'fakeCart', 'designData', Ctrl]
 		restrict: 'A'
 
 
