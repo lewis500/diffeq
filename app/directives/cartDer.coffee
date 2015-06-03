@@ -22,9 +22,10 @@ template = '''
 					<text class='label' >$t$</text>
 			</foreignObject>
 			<g ng-repeat='t in vm.sample' d3-der='{transform: "translate(" + vm.Hor(vm.data.loc(t)) + ",0)"}'>
-				<line class='time-line' d3-der='{x1: 0, x2: 0, y1: 0, y2: 60}' />
+				<line class='time-line' d3-der='{x1: 0, x2: 0, y1: 0, y2: vm.height}' />
 			</g>
 			<g class='g-cart' cart-object-der left='vm.Hor(vm.data.x)' top='vm.height' size='vm.size'></g>
+			<rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 		</g>
 	</svg>
 '''
@@ -32,15 +33,13 @@ template = '''
 class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
 		super @scope, @el, @window
-
-		@Hor.domain [-.1,3]
+		@mar.left = @mar.right = 5
+		@mar.top = 5
+		@mar.bottom = 25
 
 		@scope.$watch 'vm.max', =>
-			@Hor.domain [-.1, @max]
+			@Hor.domain [-.4, @max]
 
-	tran: (tran)->
-		tran.ease 'linear'
-			.duration 60
 
 	@property 'size', get: -> (@Hor(0.4) - @Hor(0))/80
 
@@ -53,7 +52,7 @@ der = ->
 			sample: '='
 		restrict: 'A'
 		bindToController: true
-		transclude: true
+		# transclude: true
 		templateNamespace: 'svg'
 		controller: ['$scope', '$element', '$window', Ctrl]
 		controllerAs: 'vm'

@@ -1,11 +1,10 @@
-
 class Ctrl
 	constructor:(@scope)->
 
 	trans: (tran)->
 		tran
-			.duration 30
-			.ease 'linear'
+			.duration 200
+			.ease 'cubic'
 
 der = ()->
 	directive = 

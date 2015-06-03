@@ -24,7 +24,8 @@ path {
 }
 
 rect.background {
-    fill: url(#myTexture);
+    fill: #eeeeee;
+    // fill: url(#myTexture);
 }
 
 foreign-object {
@@ -64,9 +65,6 @@ h5,
 .axis g.tick line {
     stroke-width: 1.3px;
     stroke-dasharray: 2, 1.6;
-    // shape-rendering: crispEdges;
-    // stroke-linecap: round;
-    // opacity: .9;
 }
 
 // ========= lines ==========
@@ -76,8 +74,8 @@ h5,
 }
 
 line.time-line{
-    stroke-width: 2px;
-    stroke: @clr-grey-500;
+    stroke-width: 1.6px;
+    stroke: @clr-grey-400;
     opacity: .4;
 }
 
@@ -91,7 +89,6 @@ line.time-line{
 
 [design-a-der] path.target{
     stroke: @clr-pink-900;
-    // opacity: .9;
 }
 
 .correct {
@@ -102,7 +99,6 @@ line.time-line{
     stroke-width: 1.3px;
     fill: @clr-green-400;
     fill-opacity: .07;
-    // opacity: 1;/
     stroke: @clr-green-300;
     stroke-dasharray: 2, 2;
     stroke-linecap: round;
@@ -253,7 +249,7 @@ svg.topChart{
 }
 svg.bottomChart{
     width: 100%;
-    height: 250px;
+    height: 275px;
 }
 
 
@@ -314,5 +310,17 @@ span.tri{
 
 [cart-der] svg{
     width: 100%;
-    height: 100px;
+    height: 85px;
+}
+
+[cart-der] .axis g.tick line {
+    stroke-width: 1.5px;
+    stroke-dasharray: 2, 1.6;
+}
+
+rect.experiment {
+    opacity: .32;
+    fill: url(#myTexture2);
+    pointer-events: none;
+    shape-rendering: crisp;
 }

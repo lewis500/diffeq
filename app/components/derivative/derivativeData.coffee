@@ -7,7 +7,7 @@ class Service
 		@rootScope = $rootScope
 		@setT 0
 		@paused =  false
-		@trajectory = _.range 0 , 6 , 1/25
+		@trajectory = _.range 0 , 6 , 1/10
 			.map (t)->
 				res = 
 					dv: dvFun t

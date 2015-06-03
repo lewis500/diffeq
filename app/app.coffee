@@ -6,7 +6,7 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.directive 'verAxisDer', require './directives/yAxis'
 	.directive 'cartSimDer', require './components/cart/cartSim'
 	.directive 'cartObjectDer', require './components/cart/cartObject'
-	.directive 'cartButtonsDer', require './components/cart/cartButtons'
+	# .directive 'cartButtonsDer', require './components/cart/cartButtons'
 	.directive 'shifter' , require './directives/shifter'
 	.directive 'behavior', require './directives/behavior'
 	.directive 'dotADer', require './components/design/dotA'
@@ -28,6 +28,7 @@ app = angular.module 'mainApp', [require 'angular-material']
 	.service 'fakeCart', require './components/design/fakeCart'
 	.service 'trueCart', require './components/design/trueCart'
 	.service 'designData', require './components/design/designData'
+	.service 'cartData', require './components/cart/cartData'
 looper = ->
     setTimeout( ()->
     			d3.selectAll 'circle.dot.large'

@@ -1,31 +1,55 @@
 _ = require 'lodash'
-{exp} = Math
+vFun = (t)->2*Math.exp -.8*t
+dvFun = (t)-> -.8 * 2*Math.exp -.8*t
+xFun = (t)-> 2/.8*(1-Math.exp(-.8*t))
 
-class Cart
-	constructor: (@options)->
-		{@v0, @k} = @options
-		@restart()
-	restart: ->
-		@t = @x = 0
-		@trajectory = _.range 0 , 6 , 1/50
-			.map (t)=>
-				v = @v0 * exp(-@k * t)
-				res = 
-					v: v
-					x: @v0/@k * (1-exp(-@k*t))
-					dv: -@k*v
+class Service
+	constructor: ($rootScope)->
+		@rootScope = $rootScope
+		@setT 0
+		@paused =  false
+		@trajectory = _.range 0 , 6 , 1/10
+			.map (t)->
+				res =
+					x: xFun t
+					dv: dvFun t
+					v: vFun t
 					t: t
-		@move 0
-		@paused = true
-	set_t: (t)->
-		@t = t
-		@move t
-	increment: (dt)->
-		@t+=dt
-		@move @t
-	move: (t)->
-		@v = @v0 * exp( -@k * t)
-		@x = @v0/@k * (1-exp(-@k*t))
-		@dv = -@k*@v
+		@move 0 
 
-module.exports = new Cart {v0: 2, k: .8}
+	click: ->
+		if @paused then @play() else @pause()
+
+	pause: ->
+		@paused = true
+
+	increment:(dt) ->
+		@t += dt
+		@move(@t)
+
+	setT: (t)->
+		@t = t
+		@move @t
+
+	play: ->
+		@paused = true
+		d3.timer.flush()
+		@paused = false
+		last = 0
+		d3.timer (elapsed)=>
+				dt = elapsed - last
+				@increment dt/1000
+				last = elapsed
+				if @t > 6 then @setT 0
+				@rootScope.$evalAsync()
+				@paused
+			, 1
+
+	move: (t)->
+		@point = 
+			x: xFun t
+			dv: dvFun t
+			v: vFun t
+			t: t
+
+module.exports = Service

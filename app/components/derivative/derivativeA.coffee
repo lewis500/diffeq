@@ -22,6 +22,7 @@ template = '''
 				<text class='tri-label'>$\\sin(t)$</text>
 			</foreignObject>
 			<circle r='3px'  shifter='[vm.Hor(vm.point.t), vm.Ver(vm.point.v)]' class='point v'/>
+			<rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 		</g>
 	</svg>
 '''

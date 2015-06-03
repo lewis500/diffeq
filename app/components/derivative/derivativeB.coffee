@@ -22,6 +22,7 @@ template = '''
 				<text class='tri-label'>$\\cos(t)$</text>
 			</foreignObject>
 			<circle r='4px'  shifter='[vm.Hor(vm.point.t), vm.Ver(vm.point.dv)]' class='point dv'/>
+			<rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 		</g>
 	</svg>
 '''

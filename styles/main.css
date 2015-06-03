@@ -15,7 +15,7 @@ path {
   display: none;
 }
 rect.background {
-  fill: url(#myTexture);
+  fill: #eeeeee;
 }
 foreign-object {
   pointer-events: none;
@@ -46,8 +46,8 @@ h5 {
   fill: none;
 }
 line.time-line {
-  stroke-width: 2px;
-  stroke: #9e9e9e;
+  stroke-width: 1.6px;
+  stroke: #bdbdbd;
   opacity: .4;
 }
 .target {
@@ -173,7 +173,7 @@ svg.topChart {
 }
 svg.bottomChart {
   width: 100%;
-  height: 250px;
+  height: 275px;
 }
 text.label {
   text-anchor: middle;
@@ -220,5 +220,15 @@ span.tri {
 }
 [cart-der] svg {
   width: 100%;
-  height: 100px;
+  height: 85px;
+}
+[cart-der] .axis g.tick line {
+  stroke-width: 1.5px;
+  stroke-dasharray: 2, 1.6;
+}
+rect.experiment {
+  opacity: .32;
+  fill: url(#myTexture2);
+  pointer-events: none;
+  shape-rendering: crisp;
 }

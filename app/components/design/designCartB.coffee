@@ -6,12 +6,12 @@ template = '''
 '''
 
 class Ctrl
-	constructor: (@scope, @trueCart)->
+	constructor: (@scope, @trueCart, @fakeCart)->
 		@max = 4
 		@sample = _.range 0, 5 , .5
 
 	@property 'max', get:->
-		@trueCart.loc 4.5
+		@fakeCart.loc 4.5
 
 der = ->
 	directive = 
@@ -19,7 +19,7 @@ der = ->
 		restrict: 'A'
 		bindToController: true
 		template: template
-		controller: ['$scope', 'trueCart', Ctrl]
+		controller: ['$scope', 'trueCart', 'fakeCart', Ctrl]
 		controllerAs: 'vm'
 
 module.exports = der

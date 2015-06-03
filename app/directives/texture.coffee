@@ -12,9 +12,18 @@ class Ctrl
 
 		t.id 'myTexture'
 
+		t2 = textures.lines()
+			.orientation "3/8", "7/8"
+			.size 4
+			.stroke('white')
+		    .strokeWidth .4
+
+		t2.id 'myTexture2'
+
 		d3.select @el[0]
 			.select 'svg'
 			.call t
+			.call t2
 
 der = ->
 	directive = 

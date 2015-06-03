@@ -23,11 +23,12 @@ template = '''
 			<path ng-attr-d='{{vm.lineFun(vm.fakeCart.dots)}}' class='fun v' />
 			<g ng-repeat='dot in vm.dots track by dot.id' datum=dot shifter='[vm.Hor(dot.t),vm.Ver(dot.v)]' behavior='vm.drag' dot-a-der=dot ></g>
 			<circle class='dot small' r='4' shifter='[vm.Hor(0),vm.Ver(2)]' />
-			<foreignObject width='70' height='30' shifter='[vm.Hor(4), vm.Ver(.33)]'>
+			<foreignObject width='70' height='30' shifter='[vm.Hor(3.7), vm.Ver(.33)]'>
 					<text class='tri-label' >$2e^{-.8t}$</text>
 			</foreignObject>
 			<circle r='4px'  shifter='[vm.Hor(vm.Data.t), vm.Ver(vm.fakeCart.v)]' class='point fake'/>
 			<circle r='4px'  shifter='[vm.Hor(vm.Data.t), vm.Ver(vm.trueCart.v)]' class='point real'/>
+			<rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 		</g>
 	</svg>
 '''
@@ -37,6 +38,10 @@ class Ctrl extends PlotCtrl
 		super @scope, @el, @window
 		@Ver.domain [-.1,2.1]
 		@Hor.domain [-.1,4.5]
+
+		@tran = (tran)->
+			tran.duration 30
+				.ease 'linear'
 
 		@lineFun
 			.y (d)=> @Ver d.v

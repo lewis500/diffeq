@@ -20,9 +20,10 @@ template = '''
 				<path d3-der='{d:vm.lineFun(vm.trueCart.trajectory)}' class='fun correct' ng-class='{hide: !vm.Data.correct}' />
 			</g>
 			<g ng-repeat='dot in vm.dots track by dot.id' shifter='[vm.Hor(dot.v),vm.Ver(dot.dv)]' dot-b-der=dot></g>
-			<foreignObject width='70' height='30' y='0' shifter='[vm.Hor(1.7), vm.Ver(-1.2)]'>
+			<foreignObject width='70' height='30' y='0' shifter='[vm.Hor(.3), vm.Ver(-.1)]'>
 					<text class='tri-label' >$v'=-.8v$</text>
 			</foreignObject>
+			<rect class='experiment' ng-attr-height='{{vm.height}}' ng-attr-width='{{vm.width}}' />
 		</g>
 	</svg>
 '''

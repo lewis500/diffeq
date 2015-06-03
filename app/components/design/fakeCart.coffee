@@ -1,6 +1,8 @@
 require '../../helpers'
 _ = require 'lodash'
-delT = .025
+d3 = require 'd3'
+delT = .05
+
 class Dot
 	constructor: (@t, @v)->
 		@id = _.uniqueId 'dot'
@@ -44,25 +46,36 @@ class Service
 		@dots.splice @dots.indexOf(dot), 1
 		@update()
 
-	loc: (t)-> @trajectory[Math.floor(t/delT)].x
+	loc: (t)-> 
+		a = Math.floor t/delT
+		h = (t - @trajectory[a].t)/delT
+		@trajectory[a].x* (1-h) + h* @trajectory[a+1]?.x
 
 	@property 'x', get: -> @loc @Data.t
 
-	@property 'v', get: -> @trajectory[Math.floor(@Data.t/delT)].v
+	@property 'v', get: -> 
+		t = @Data.t
+		a = Math.floor t/delT
+		h = (t - @trajectory[a].t)/delT
+		@trajectory[a].v* (1-h) + h* @trajectory[a+1]?.v
 
 	@property 'dv', get: -> @trajectory[Math.floor(@Data.t/delT)].dv
 
 	update: -> 
 		@dots.sort (a,b)-> a.t - b.t
+		domain = []
+		range = []
 		@dots.forEach (dot, i, k)->
 			prev = k[i-1]
 			if dot.id == 'last'
 				dot.v = prev.v
+				domain.push dot.v
+				range.push dot.v
 				return
 			if prev
 				dt = dot.t - prev.t
 				dot.x = prev.x + dt * (dot.v + prev.v)/2
-				dot.dv = (dot.v - prev.v)/Math.max(dt, .0001)
+				dot.dv = (dot.v - prev.v)/Math.max(dt, .001)
 			else
 				dot.x = 0
 				dot.dv = 0
