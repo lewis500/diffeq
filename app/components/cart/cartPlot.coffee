@@ -19,7 +19,7 @@ template = '''
 			<path ng-attr-d='{{vm.lineFun(vm.Data.trajectory)}}' class='fun v' />
 			<line class='tri v' d3-der='{x1: vm.Hor(vm.point.t)-1, x2: vm.Hor(vm.point.t)-1, y1: vm.Ver(vm.point.v), y2: vm.Ver(0)}'/>
 			<foreignObject width='30' height='30' shifter='[(vm.Hor(vm.point.t) - 16), vm.Ver(vm.point.v/2)]'>
-					<text class='tri-label' >$y$</text>
+					<text class='tri-label' >$v$</text>
 			</foreignObject>
 			<foreignObject width='100' height='30' shifter='[vm.Hor(3.5), vm.Ver(0.4)]'>
 				<text class='tri-label'>$2e^{-.8t}$</text>
