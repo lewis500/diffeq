@@ -33,6 +33,7 @@
     "angular-material": "^0.9.6",
     "gulp-jade": "^1.0.1",
     "gulp-less": "^3.0.3",
+    "mathjax": "^2.5.1",
     "textures": "^1.0.3"
   }
 }
