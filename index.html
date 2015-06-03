@@ -31,7 +31,7 @@
 <script src='dist/bundle.js'></script>
 
 <script>
-(function () {
+setTimeout(function(){
   var head = document.getElementsByTagName("head")[0], script;
   script = document.createElement("script");
   script.type = "text/x-mathjax-config";
@@ -39,13 +39,13 @@
     "MathJax.Hub.Config({\n" +
     "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
     "});" 
-    // + "MathJax.Hub.Register.StartupHook('End', function() {window.dispatchEvent(new Event('resize'));});"
+    + "MathJax.Hub.Register.StartupHook('End', function() {window.dispatchEvent(new Event('resize'));});"
   head.appendChild(script);
   script = document.createElement("script");
   script.type = "text/javascript";
   script.src  = "node_modules/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
   head.appendChild(script);
-})();
+}, 100)
 </script>
 
 <div id="fb-root"></div>
