@@ -39,11 +39,11 @@ setTimeout(function(){
     "MathJax.Hub.Config({\n" +
     "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
     "});" 
-    + "MathJax.Hub.Register.StartupHook('End', function() {window.dispatchEvent(new Event('resize'));});"
+    // + "MathJax.Hub.Register.StartupHook('End', function() {window.dispatchEvent(new Event('resize'));});"
   head.appendChild(script);
   script = document.createElement("script");
   script.type = "text/javascript";
-  script.src  = "node_modules/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+  script.src  = "node_modules/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full";
   head.appendChild(script);
 }, 100)
 </script>
