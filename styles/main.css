@@ -113,7 +113,7 @@ line.time-line {
   fill: #880e4f;
 }
 .tri.dv {
-  marker-end: url(#arrow);
+  marker-end: url(/#arrow);
 }
 #arrow {
   fill: #03a9f4;
@@ -262,7 +262,7 @@ span.grey {
 }
 rect.experiment {
   opacity: .32;
-  fill: url(#myTexture2);
+  fill: url(/#myTexture2);
   pointer-events: none;
   shape-rendering: crisp;
 }
