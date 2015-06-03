@@ -7,6 +7,12 @@ body {
   margin-left: 7.5%;
   width: 85%;
 }
+.twitter-share,
+.facebook-share {
+  float: right;
+  clear: both;
+  padding: 5px;
+}
 line,
 path {
   pointer-events: none;
