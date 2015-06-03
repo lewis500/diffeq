@@ -7,13 +7,13 @@ class Service
 		@rootScope = $rootScope
 		@setT 0
 		@paused =  false
-		@trajectory = _.range 0 , 6 , 1/10
+		@trajectory = _.range 0 , 6 , .18
 			.map (t)->
 				res = 
 					dv: dvFun t
 					v: vFun t
 					t: t
-		@move 0 
+		@move 0
 
 	click: ->
 		if @paused then @play() else @pause()

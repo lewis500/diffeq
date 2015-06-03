@@ -5,6 +5,11 @@ _ = require 'lodash'
 PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
+	<div class='explainer'>
+	  <div>
+	    <p>Hover to choose a time.</p>
+	  </div>
+	</div>
 	<svg ng-init='vm.resize()' class='topChart' >
 		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='vm.name'>
 		</g>
@@ -34,6 +39,7 @@ class Ctrl extends PlotCtrl
 		@Ver.domain [-1.5,1.5]
 		@Hor.domain [0,6]
 		@lineFun
+			# .interpolate 'cardinal'
 			.y (d)=> @Ver d.v
 			.x (d)=> @Hor d.t
 

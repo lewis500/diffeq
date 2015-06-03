@@ -5,10 +5,10 @@ template = '''
 	<svg ng-init='vm.resize()'  class='bottomChart'>
 		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designB"'>
 			<foreignObject width='30' height='30' y='5' x='-8' shifter='[vm.width, vm.height]'>
-					<text class='label' >$t$</text>
+					<text class='label' >$v$</text>
 			</foreignObject>
 			<foreignObject width='30' height='30' y='0' x='-15' shifter='[0, 0]'>
-					<text class='label' >$v$</text>
+					<text class='label' >$\\dot{v}$</text>
 			</foreignObject>
 		</g>
 		<g class='main' clip-path="url(#designB)" shifter='[vm.mar.left, vm.mar.top]'>	

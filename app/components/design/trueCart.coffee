@@ -1,7 +1,7 @@
 Data = require './designData'
 _ = require 'lodash'
 require '../../helpers'
-delT = .01
+delT = .1
 
 class Service
 	constructor: (@Data)->

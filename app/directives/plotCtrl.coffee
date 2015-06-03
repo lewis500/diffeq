@@ -3,10 +3,10 @@ d3 = require 'd3'
 class Ctrl
 	constructor: (@scope, @el, @window)->
 		@mar = 
-			left: 30
-			top: 20
-			right: 20
-			bottom: 35
+			left: 20
+			top: 10
+			right: 15
+			bottom: 30
 
 		@Ver =d3.scale.linear()
 		
@@ -19,9 +19,9 @@ class Ctrl
 
 		@verAxFun = d3.svg.axis()
 			.scale @Ver
-			# .tickFormat (d)->
-			# 	if Math.floor( d ) != d then return
-			# 	d
+			.tickFormat (d)->
+				if Math.floor( d ) != d then return
+				d
 			.ticks 5
 			.orient 'left'
 

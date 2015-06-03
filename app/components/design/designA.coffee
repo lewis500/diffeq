@@ -2,6 +2,14 @@ require '../../helpers'
 PlotCtrl = require '../../directives/plotCtrl'
 
 template = '''
+	<div class='explainer'>
+	  <div>
+	    <p>Left-click to add a point $(v,t)$. <br>
+	    	Click-and-drag to move it; <br>
+	    	right-click to delete it.
+	    </p>
+	  </div>
+	</div>
 	<svg ng-init='vm.resize()' class='bottomChart' >
 		<g boilerplate-der width='vm.width' height='vm.height' ver-ax-fun='vm.verAxFun' hor-ax-fun='vm.horAxFun' ver='vm.Ver' hor='vm.Hor' mar='vm.mar' name='"designA"'>
 			<foreignObject width='30' height='30' y='5' x='-8' shifter='[vm.width, vm.height]'>

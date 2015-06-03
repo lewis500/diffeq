@@ -25,7 +25,7 @@ texture-der
 				p Mousing over the plots to the right, you can see the derivative of <span class='col v'>$\sin(t)$</span> is <span class='col dv'>$\cos(t)$</span>. Thus, $y(t)=\sin(t)$ is a solution to $$ \dot y = \cos(t).$$ 
 				p That's a pretty basic DE, though. You could have solved it just by integrating $\cos(t)$. Now let's look at a more complicated one.
 			div(flex offset='5'  layout='column')
-					div(derivative-a-der)
+					div.labeled(derivative-a-der)
 					div(derivative-b-der)
 
 	div.block(flex layout='column')
@@ -40,7 +40,7 @@ texture-der
 
 			div(flex offset='5' )
 				div( cart-sim-der)
-				div( cart-plot-der)
+				div.labeled( cart-plot-der)
 
 	div.block(flex layout='column')
 		div(flex)
@@ -49,12 +49,12 @@ texture-der
 		div(flex layout='row')
 			div(flex='50')
 				p
-					| To make the solution more intuitive, here you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs. Together, the pairs you choose make up a function <span class='col v'>$v(t)$</span>. At each point, the derivative $\dot{v}$ is calculated and the corresponding pair <span class='col dv'>$( v, \dot{v})$</span> shows up on the lower chart. Notice that if you choose pairs along <span class='col real '>$2e^{-.8t}$</span>, then the $(v, \dot {v})$ points wind up around the line <span class='col real-two'>$\dot{v} = -.8v$</span>. 
+					| To make the solution more intuitive, here you'll solve the cart's DE manually by picking a series of $\left( t, v \right)$ pairs. Together, the pairs you choose make up a function <span class='col v'>$v(t)$</span>. At each point, the derivative <span class='col dv'>$\dot{v}$</span> is calculated and the corresponding point <span class='col dv'>$( v, \dot{v})$</span> shows up on the lower chart. Notice that if you choose pairs along <span class='col real '>$2e^{-.8t}$</span>, then the $(v, \dot {v})$ points wind up around the line <span class='col real-two'>$\dot{v} = -.8v$</span>. 
 				p
 					| The first cart below obeys the $v(t)$ function you designed. The second obeys $v(t)=2e^{-.8t}$. If you draw $v(t)$ correctly, both cars move together. Grey lines indicate  locations sampled every half-second. If the carts move in tandem they'll line up.
 				div(design-cart-a-der)
 				div(design-cart-b-der)
 				//- div(design-buttons-der style='text-align: center;')
 			div(flex layout='column' offset='5')
-				div(design-a-der)
+				div.labeled(design-a-der)
 				div(design-b-der)

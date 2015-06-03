@@ -33,12 +33,12 @@ template = '''
 class Ctrl extends PlotCtrl
 	constructor: (@scope, @el, @window)->
 		super @scope, @el, @window
-		@mar.left = @mar.right = 5
+		# @mar.left = @mar.right = 10
 		@mar.top = 5
 		@mar.bottom = 25
 
 		@scope.$watch 'vm.max', =>
-			@Hor.domain [-.4, @max]
+			@Hor.domain [-.1, @max]
 
 
 	@property 'size', get: -> (@Hor(0.4) - @Hor(0))/80

@@ -28,6 +28,30 @@ h5 {
   font-family: 'Vollkorn';
   font-weight: 300;
 }
+div.explainer {
+  position: absolute;
+  right: 50px;
+  pointer-events: none;
+}
+div.explainer > div {
+  color: white;
+  background-color: black;
+  text-align: center;
+  opacity: .8;
+  padding: 6px 10px 6px 10px;
+  font-size: 14px;
+  border-radius: 1.5px;
+  transition: opacity ease-in-out 0.6s;
+  transition-delay: 1.6s;
+}
+div.explainer p {
+  margin: 0px;
+  line-height: 1.4;
+}
+div.labeled:hover div.explainer > div {
+  transition: opacity ease-in-out 0.12s;
+  opacity: 0;
+}
 .axis path,
 .axis line {
   fill: none;

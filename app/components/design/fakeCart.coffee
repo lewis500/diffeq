@@ -1,7 +1,7 @@
 require '../../helpers'
 _ = require 'lodash'
 d3 = require 'd3'
-delT = .05
+delT = .1
 
 class Dot
 	constructor: (@t, @v)->
