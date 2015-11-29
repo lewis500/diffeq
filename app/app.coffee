@@ -1,7 +1,6 @@
 'use strict'
-angular = require 'angular'
 d3 = require 'd3'
-app = angular.module 'mainApp', [require 'angular-material']
+app = angular.module 'mainApp', ['ngMaterial']
 	.directive 'horAxisDer', require './directives/xAxis'
 	.directive 'verAxisDer', require './directives/yAxis'
 	.directive 'cartSimDer', require './components/cart/cartSim'

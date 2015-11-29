@@ -1,4 +1,3 @@
-angular = require 'angular'
 d3 = require 'd3'
 Data = require './designData'
 require '../../helpers'

@@ -28,7 +28,7 @@ gulp.task('jade', function() {
 gulp.task('thirdParty', function() {
     return browserify({
             require: 
-            ['lodash', 'd3', 'angular', 'angular-material', 'textures'],
+            ['lodash', 'd3', 'textures'],
         })
         .bundle()
         .pipe(source('thirdParty.js'))
@@ -49,7 +49,7 @@ gulp.task('watch', function() {
         debug: true,
         extensions: ['.coffee'],
         external: 
-            ['lodash', 'd3', 'angular', 'angular-material', 'textures'],
+            ['lodash', 'd3', 'textures'],
         transform: ['coffeeify'],
         bundleExternal: false
     }));

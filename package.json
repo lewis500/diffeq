@@ -30,7 +30,7 @@
   "dependencies": {
     "angular-animate": "^1.4.0",
     "angular-aria": "^1.4.0",
-    "angular-material": "^0.9.6",
+    "angular-material": "^0.9.8",
     "gulp-jade": "^1.0.1",
     "gulp-less": "^3.0.3",
     "mathjax": "^2.5.1",

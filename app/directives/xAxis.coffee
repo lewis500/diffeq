@@ -1,5 +1,4 @@
 d3 = require 'd3'
-angular = require 'angular'
 
 der = ($window)->
 	directive = 
